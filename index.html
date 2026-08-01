@@ -1,18 +1,315 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الصفحة الشخصية ومعرض المشاريع الخاصة بالصالح أحمد الحياري - خبير إدارة سيرفرات، أتمتة n8n، وتطوير الويب.">
     <title>الصفحة الشخصية والمشاريع - صالح الحياري</title>
-    <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* ============================================================
+         بطاقة الروابط الاجتماعية والمشاريع — التنسيقات الداخلية
+         ============================================================ */
+
+      :root {
+        --green: #c4f82a;
+        --white: #ffffff;
+        --grey: #a9a9a9;
+        --dark-grey: #1f1f1f;
+        --off-black: #141414;
+        --black: #0d0d0d;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        background-color: var(--black);
+        font-family: "Cairo", "Inter", Arial, Helvetica, sans-serif;
+        color: var(--white);
+      }
+
+      .wrapper {
+        display: flex;
+        gap: 2rem;
+        max-width: 1000px;
+        width: 100%;
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 350px;
+        background-color: var(--dark-grey);
+        border-radius: 12px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .avatar {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--green);
+        background-color: var(--off-black);
+      }
+
+      .name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .location {
+        color: var(--green);
+        font-size: 0.875rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      .bio {
+        color: var(--grey);
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .link {
+        display: block;
+        background-color: var(--off-black);
+        color: var(--white);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 700;
+        padding: 0.75rem;
+        border-radius: 8px;
+        transition: background-color 0.2s, color 0.2s, transform 0.2s;
+      }
+
+      .link:hover, .link:focus-visible {
+        background-color: var(--green);
+        color: var(--black);
+        transform: translateY(-2px);
+        outline: none;
+      }
+
+      .quick-icons-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.85rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .icon-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: var(--off-black);
+        border: 1px solid #2d2d2d;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 1.15rem;
+        transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+      }
+
+      .icon-link:hover, .icon-link:focus-visible {
+        background-color: var(--green);
+        border-color: var(--green);
+        transform: translateY(-3px);
+        outline: none;
+      }
+
+      .content-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+      }
+
+      .about-card-section, .projects-section {
+        background-color: var(--dark-grey);
+        border-radius: 12px;
+        padding: 2rem;
+        width: 100%;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--off-black);
+        padding-bottom: 0.5rem;
+        color: var(--green);
+      }
+
+      .about-card-body {
+        background-color: var(--off-black);
+        border: 1px solid #2d2d2d;
+        border-radius: 8px;
+        padding: 1.25rem;
+      }
+
+      .about-text {
+        color: var(--grey);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+
+      .about-text strong {
+        color: var(--white);
+      }
+
+      .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .skill-tag {
+        background-color: var(--dark-grey);
+        color: var(--green);
+        border: 1px solid var(--green);
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.25rem 0.6rem;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .skill-tag:hover {
+        background-color: var(--green);
+        color: var(--black);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+        gap: 1.25rem;
+      }
+
+      .project-card {
+        background-color: var(--off-black);
+        border: 1px solid #2d2d2d;
+        border-radius: 8px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 150px;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--green);
+      }
+
+      .project-title a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 700;
+        transition: color 0.2s;
+      }
+
+      .project-title a:hover, .project-title a:focus-visible {
+        color: var(--green);
+        outline: none;
+      }
+
+      .project-desc {
+        color: var(--grey);
+        font-size: 0.85rem;
+        margin: 0.75rem 0;
+        line-height: 1.5;
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .project-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.8rem;
+        color: var(--grey);
+        margin-top: auto;
+      }
+
+      .project-lang {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .lang-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .loading, .error-msg, .no-projects {
+        color: var(--grey);
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.95rem;
+      }
+
+      .error-msg {
+        color: #ff6b6b;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .wrapper {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .card {
+          max-width: 100%;
+        }
+
+        .about-card-section, .projects-section {
+          padding: 1.25rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="wrapper">
       <!-- البطاقة التعريفية -->
       <main class="card">
-        <img class="avatar" src="images.jpeg" alt="Profile picture" />
-        <h1 class="name">الصالح احمد الحياري</h1>
+        <img class="avatar" src="images.jpeg" onerror="this.onerror=null; this.src='https://github.com/alsaleh20.png';" alt="الصورة الشخصية - الصالح أحمد الحياري">
+        <h1 class="name">الصالح أحمد الحياري</h1>
         <p class="location">الأردن</p>
         <p class="bio">"إدارة سيرفرات | أتمتة n8n | تطوير ويب"</p>
         
@@ -62,6 +359,151 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- كود الجافا سكربت الداخلي (Internal JavaScript) -->
+    <script>
+      const fallbackProjects = [
+        {
+          name: 'linkedin_ai.skill',
+          html_url: 'https://github.com/alsaleh20/linkedin_ai.skill',
+          description: 'مهارة الذكاء الاصطناعي الخاصة بأتمتة وصناعة المحتوى والتفاعل على منصة LinkedIn.',
+          language: 'AI Skill',
+          stargazers_count: 1
+        },
+        {
+          name: 'n8n_master.skill',
+          html_url: 'https://github.com/alsaleh20/n8n_master.skill',
+          description: 'حزمة المهارات المتقدمة لبناء وأتمتة سيناريوهات وسير عمليات n8n الاحترافية.',
+          language: 'n8n',
+          stargazers_count: 1
+        },
+        {
+          name: 'PayFlow',
+          html_url: 'https://github.com/alsaleh20/PayFlow',
+          description: 'مشروع PayFlow AR المتخصص في إدارة وتسهيل عمليات الدفع والتدفق المالي.',
+          language: 'PHP',
+          stargazers_count: 1
+        }
+      ];
+
+      function renderProjects(repos) {
+        const container = document.getElementById('projects-container');
+        if (!container) return;
+
+        const hiddenRepos = ['alsaleh20.github.io'];
+        const filteredRepos = repos.filter(repo => !repo.fork && !hiddenRepos.includes((repo.name || '').toLowerCase()));
+
+        if (filteredRepos.length === 0) {
+          container.innerHTML = '<p class="no-projects">لا توجد مشاريع عامة حالياً.</p>';
+          return;
+        }
+
+        container.innerHTML = '';
+        filteredRepos.forEach(repo => {
+          const card = document.createElement('div');
+          card.className = 'project-card';
+          
+          const safeTitle = escapeHTML(repo.name);
+          const safeDesc = escapeHTML(repo.description || 'مشروع مميز من مشاريع alsaleh20 المتاحة على GitHub.');
+          const safeLang = repo.language ? escapeHTML(repo.language) : null;
+          const safeUrl = escapeHTML(repo.html_url);
+          
+          card.innerHTML = `
+            <h3 class="project-title">
+              <a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeTitle}</a>
+            </h3>
+            <p class="project-desc">${safeDesc}</p>
+            <div class="project-meta">
+              ${safeLang ? `<span class="project-lang"><span class="lang-dot" style="background-color: ${getLanguageColor(repo.language)}"></span>${safeLang}</span>` : ''}
+              <span class="project-stars">⭐ ${repo.stargazers_count || 0}</span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      async function fetchProjects() {
+        const username = 'alsaleh20';
+        const container = document.getElementById('projects-container');
+        if (!container) return;
+
+        // 1. عرض الكاش أولاً إن وجد لتأمين سرعة التحميل
+        try {
+          const cachedData = localStorage.getItem('alsaleh20_repos_cache');
+          if (cachedData) {
+            const parsed = JSON.parse(cachedData);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              renderProjects(parsed);
+            }
+          }
+        } catch (e) {
+          console.warn('Cache read error:', e);
+        }
+
+        // 2. محاولة جلب المشاريع الحية مباشرة من API الرئسي
+        try {
+          const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+          if (response.ok) {
+            const repos = await response.json();
+            if (Array.isArray(repos) && repos.length > 0) {
+              localStorage.setItem('alsaleh20_repos_cache', JSON.stringify(repos));
+              renderProjects(repos);
+              return;
+            }
+          }
+        } catch (error) {
+          console.warn('Direct GitHub API limited/blocked, trying CORS proxy...', error);
+        }
+
+        // 3. المحاولة عبر بروكسي عام حقيقي لتجاوز حظر الـ Rate Limit لعنوان الـ IP
+        try {
+          const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)}`;
+          const proxyResponse = await fetch(proxyUrl);
+          if (proxyResponse.ok) {
+            const repos = await proxyResponse.json();
+            if (Array.isArray(repos) && repos.length > 0) {
+              localStorage.setItem('alsaleh20_repos_cache', JSON.stringify(repos));
+              renderProjects(repos);
+              return;
+            }
+          }
+        } catch (proxyError) {
+          console.warn('Proxy fetch failed, rendering real fallback repos.', proxyError);
+        }
+
+        // 4. عرض مشاريع حسابك الحقيقية والفعلية المحدثة دائماً
+        renderProjects(fallbackProjects);
+      }
+
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function getLanguageColor(lang) {
+        const colors = {
+          JavaScript: '#f1e05a',
+          HTML: '#e34c26',
+          CSS: '#563d7c',
+          Python: '#3572A5',
+          TypeScript: '#3178c6',
+          PHP: '#4F5D95',
+          C: '#555555',
+          'C++': '#f34b7d',
+          'C#': '#178600',
+          Java: '#b07219',
+          Go: '#00ADD8',
+          Rust: '#dea584',
+          Shell: '#89e051'
+        };
+        return colors[lang] || '#8b949e';
+      }
+
+      document.addEventListener('DOMContentLoaded', fetchProjects);
+    </script>
   </body>
 </html>
