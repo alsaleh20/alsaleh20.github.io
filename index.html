@@ -14,77 +14,54 @@
         <img class="avatar" src="images.jpeg" alt="Profile picture" />
         <h1 class="name">الصالح احمد الحياري</h1>
         <p class="location">الأردن</p>
-        <p class="bio">"مطور ويب شغوف بالتكنولوجيا والتصميم"</p>
+        <p class="bio">"إدارة سيرفرات | أتمتة n8n | تطوير ويب"</p>
         
+        <!-- أيقونات التواصل السريعة فوق GitHub -->
+        <div class="quick-icons-bar">
+          <a href="https://wa.me/962775858328" target="_blank" rel="noopener noreferrer" class="icon-link" title="واتساب 0775858328">💬</a>
+          <a href="https://wa.me/962779511729" target="_blank" rel="noopener noreferrer" class="icon-link" title="واتساب 0779511729">📱</a>
+          <a href="mailto:alsalehhiary@gmail.com" class="icon-link" title="إيميل alsalehhiary@gmail.com">✉️</a>
+        </div>
+
         <nav class="links">
-          <a class="link" href="https://github.com/alsaleh20" target="_blank">GitHub</a>
-          <a class="link" href="https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/" target="_blank">LinkedIn</a>
-          <a class="link" href="http://instagram.com/k_alsaleh20_" target="_blank">Instagram</a>
-          <a class="link" href="https://x.com/k_alsaleh20" target="_blank">X (Twitter)</a>
-          <a class="link" href="https://www.youtube.com/@alsaleh20" target="_blank">YouTube</a>
-          <a class="link" href="https://www.facebook.com/alsaleh.hiary.2025" target="_blank">Facebook</a>
+          <a class="link" href="https://github.com/alsaleh20" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="link" href="https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="link" href="https://instagram.com/k_alsaleh20_" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="link" href="https://x.com/k_alsaleh20" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+          <a class="link" href="https://www.youtube.com/@alsaleh20" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a class="link" href="https://www.facebook.com/alsaleh.hiary.2025" target="_blank" rel="noopener noreferrer">Facebook</a>
         </nav>
       </main>
 
-      <!-- قسم المشاريع -->
-      <section class="projects-section">
-        <h2 class="section-title">مشاريعي على GitHub</h2>
-        <div id="projects-container" class="projects-grid">
-          <div class="loading">جاري تحميل المشاريع...</div>
-        </div>
-      </section>
+      <!-- العمود الأيسر للمحتوى (بوكس نبذة عني + بوكس المشاريع) -->
+      <div class="content-column">
+        <!-- بوكس نبذة عني المنفصل -->
+        <section class="about-card-section">
+          <h2 class="section-title">نبذة عني</h2>
+          <div class="about-card-body">
+            <p class="about-text">
+              أنا <strong>الصالح أحمد الحياري</strong>، أعمل في مجال إدارة وتجهيز السيرفرات، وبناء أتمتة للمهام والعمليات باستخدام <strong>n8n</strong>، بالإضافة لتطوير مواقع الويب. أركز على تقديم حلول عملية ومباشرة تساعد في تنظيم العمل وتسهيل الربط بين الخدمات.
+            </p>
+            <div class="skills-tags">
+              <span class="skill-tag">n8n</span>
+              <span class="skill-tag">إدارة سيرفرات</span>
+              <span class="skill-tag">تطوير ويب</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">HTML/CSS/JS</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- بوكس المشاريع المنفصل -->
+        <section class="projects-section">
+          <h2 class="section-title">مشاريعي على GitHub</h2>
+          <div id="projects-container" class="projects-grid">
+            <div class="loading">جاري تحميل المشاريع...</div>
+          </div>
+        </section>
+      </div>
     </div>
 
-    <script>
-      async function fetchProjects() {
-        const username = 'alsaleh20';
-        const container = document.getElementById('projects-container');
-        try {
-          const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
-          if (!response.ok) throw new Error('Failed to fetch');
-          const repos = await response.json();
-          container.innerHTML = '';
-          
-          if (repos.length === 0) {
-            container.innerHTML = '<p class="no-projects">لا توجد مشاريع عامة حالياً.</p>';
-            return;
-          }
-          
-          repos.forEach(repo => {
-            if (repo.fork) return; // تخطي المشاريع المنسوخة
-            
-            const card = document.createElement('div');
-            card.className = 'project-card';
-            
-            card.innerHTML = `
-              <h3 class="project-title">
-                <a href="${repo.html_url}" target="_blank">${repo.name}</a>
-              </h3>
-              <p class="project-desc">${repo.description || 'لا يوجد وصف متوفر لهذا المشروع حالياً.'}</p>
-              <div class="project-meta">
-                ${repo.language ? `<span class="project-lang"><span class="lang-dot" style="background-color: ${getLanguageColor(repo.language)}"></span>${repo.language}</span>` : ''}
-                <span class="project-stars">⭐ ${repo.stargazers_count}</span>
-              </div>
-            `;
-            container.appendChild(card);
-          });
-        } catch (error) {
-          container.innerHTML = '<p class="error-msg">فشل في تحميل المشاريع من GitHub. يرجى التحقق من اتصالك بالإنترنت.</p>';
-        }
-      }
-
-      function getLanguageColor(lang) {
-        const colors = {
-          JavaScript: '#f1e05a',
-          HTML: '#e34c26',
-          CSS: '#563d7c',
-          Python: '#3572A5',
-          TypeScript: '#3178c6',
-        };
-        return colors[lang] || '#8b949e';
-      }
-
-      document.addEventListener('DOMContentLoaded', fetchProjects);
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
