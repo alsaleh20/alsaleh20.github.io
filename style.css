@@ -1,0 +1,223 @@
+/* ============================================================
+   بطاقة الروابط الاجتماعية والمشاريع — التنسيقات
+   ============================================================ */
+
+/* الألوان المستخدمة في جميع أنحاء الصفحة */
+:root {
+  --green: #c4f82a;
+  --white: #ffffff;
+  --grey: #a9a9a9;
+  --dark-grey: #1f1f1f;
+  --off-black: #141414;
+  --black: #0d0d0d;
+}
+
+/* إعادة ضبط المسافات الافتراضية */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* الشاشة الخلفية وتوسيط العناصر */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background-color: var(--black);
+  font-family: "Cairo", "Inter", Arial, Helvetica, sans-serif;
+  color: var(--white);
+}
+
+/* الحاوية الأساسية للبطاقة والمشاريع */
+.wrapper {
+  display: flex;
+  gap: 2rem;
+  max-width: 1000px;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* حاوية البطاقة التعريفية */
+.card {
+  width: 100%;
+  max-width: 350px;
+  background-color: var(--dark-grey);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* الصورة الشخصية الدائرية */
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--green);
+}
+
+/* الاسم */
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+/* الموقع (السطر الأخضر) */
+.location {
+  color: var(--green);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* سطر التعريف القصير */
+.bio {
+  color: var(--grey);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ترتيب الروابط عموديًا مع مسافات متساوية */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* كل زر رابط */
+.link {
+  display: block;
+  background-color: var(--off-black);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+/* إبراز الرابط عند تمرير المؤشر فوقه */
+.link:hover {
+  background-color: var(--green);
+  color: var(--black);
+  transform: translateY(-2px);
+}
+
+/* قسم المشاريع */
+.projects-section {
+  flex: 1;
+  background-color: var(--dark-grey);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--off-black);
+  padding-bottom: 0.5rem;
+  color: var(--green);
+}
+
+/* شبكة المشاريع */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+/* كرت المشروع */
+.project-card {
+  background-color: var(--off-black);
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 150px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green);
+}
+
+.project-title a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.project-title a:hover {
+  color: var(--green);
+}
+
+.project-desc {
+  color: var(--grey);
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--grey);
+  margin-top: auto;
+}
+
+.project-lang {
+  display: flex;
+  align-items: center;
+}
+
+.lang-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+
+.loading, .error-msg, .no-projects {
+  color: var(--grey);
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.95rem;
+}
+
+.error-msg {
+  color: #ff6b6b;
+}
+
+/* التجاوب مع مقاسات الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card {
+    max-width: 100%;
+  }
+}
