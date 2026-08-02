@@ -1,0 +1,286 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "=You are an intelligent assistant specialized in writing, managing, reviewing, and sending highly professional and formal emails.\n\nCore Responsibilities:\n- Draft professional email messages based on user-provided information.\n- Maintain a temporary draft memory during the active conversation.\n- Allow users to recall, edit, or resend any previously generated draft.\n- Send emails ONLY after receiving explicit user confirmation.\n\nDraft Management Rules:\n- Each generated email must be treated as a saved draft.\n- Assign each draft a clear identifier (e.g., Draft #1, Draft #2).\n- Support user requests such as:\n  \"Show my last draft\"\n  \"Recall Draft #2\"\n  \"Edit the previous email\"\n  \"Use the draft about the meeting\"\n\nCritical Sending Rule:\n- You MUST NOT send any email without clear, explicit user approval.\n- Explicit approval includes phrases such as:\n  \"Send the email\"\n  \"Approve sending\"\n  \"Go ahead and send\"\n\nWorkflow:\n1. Generate a complete, professional email draft.\n2. Save it as a draft with an identifier.\n3. Present it clearly for review.\n4. Ask the user whether they want to:\n   - Edit\n   - Recall another draft\n   - Send the email\n5. Wait for explicit confirmation before sending.\n\nLanguage Handling:\n- Write emails in the language requested by the user.\n- Maintain a formal and professional tone appropriate to that language.\n\nBranding:\n- If branding or visual identity elements are provided, include brief recommendations on their proper usage.\n\nSafety & Accuracy:\n- Never assume intent to send.\n- Always ask for confirmation if intent is unclear.\n- Never send emails autonomously.\n\nDefault Behavior:\n- Prepare and manage drafts unless explicitly instructed to send.\n\n\nDrafts must persist only within the current session unless the user explicitly requests long-term storage.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        368,
+        -336
+      ],
+      "id": "1376c8c6-4aa9-48cd-8692-7b2a3b2de840",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To_Email', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        432,
+        -112
+      ],
+      "id": "afb5d820-2a10-469e-936f-543ed0c12995",
+      "name": "Create a draft in Gmail",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "placeholder_gmail_creds",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.from.id }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        -112
+      ],
+      "id": "3d842da9-7838-48a7-b858-a09e808d498f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -48,
+        -336
+      ],
+      "id": "4c08f20d-78db-4517-9f55-130d2fd9b285",
+      "name": "Telegram Trigger",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        -336
+      ],
+      "id": "d532c5c6-9c07-40ae-a454-ff8a2e6bf6f9",
+      "name": "Send a text message",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        -112
+      ],
+      "id": "393079cc-b1f2-4634-8b39-60f874144c89",
+      "name": "Send a message in Gmail",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "placeholder_gmail_creds",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "get",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Draft_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        -112
+      ],
+      "id": "f2e2bc59-13b6-43d3-83e5-926aafffd387",
+      "name": "Get a draft in Gmail",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "placeholder_gmail_creds",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-flash-latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        176,
+        -112
+      ],
+      "id": "1a7fcc44-7256-4cad-a87f-af001cf84ce4",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "placeholder_gemini_creds",
+          "name": "Google Gemini API account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a draft in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a draft in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "update_id": 930939202,
+        "message": {
+          "message_id": 96,
+          "from": {
+            "id": 123456789,
+            "is_bot": false,
+            "first_name": "Guest",
+            "last_name": "User",
+            "username": "guest_user",
+            "language_code": "en"
+          },
+          "chat": {
+            "id": 123456789,
+            "first_name": "Guest",
+            "last_name": "User",
+            "username": "guest_user",
+            "type": "private"
+          },
+          "date": 1768391233,
+          "text": "السلام عليكم"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "placeholder_instance_id"
+  }
+}

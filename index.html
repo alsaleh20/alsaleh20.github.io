@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="الصفحة الشخصية ومعرض المشاريع الخاصة بالصالح أحمد الحياري - خبير إدارة سيرفرات، أتمتة n8n، وتطوير الويب.">
-    <title>الصفحة الشخصية والمشاريع - صالح الحياري</title>
+    <title>الصفحة الشخصية والمشاريع - الصالح حياري</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
       /* ============================================================
@@ -302,6 +302,110 @@
           padding: 1.25rem;
         }
       }
+
+      /* ============================================================
+         Interactive Terminal Window Styles
+         ============================================================ */
+      .terminal-window {
+        background-color: #0c0c0c;
+        border: 1px solid #2d2d2d;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 1rem;
+        overflow: hidden;
+        direction: ltr;
+        text-align: left;
+        cursor: text;
+      }
+
+      .terminal-header {
+        background-color: #1a1a1a;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border-bottom: 1px solid #2d2d2d;
+      }
+
+      .terminal-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .btn-red { background-color: #ff5f56; }
+      .btn-yellow { background-color: #ffbd2e; }
+      .btn-green { background-color: #27c93f; }
+
+      .terminal-title {
+        color: var(--grey);
+        font-size: 0.75rem;
+        margin-left: 1rem;
+        font-weight: bold;
+      }
+
+      .terminal-body {
+        padding: 1.25rem;
+        height: 300px;
+        overflow-y: auto;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #e0e0e0;
+      }
+
+      .terminal-body::-webkit-scrollbar {
+        width: 6px;
+      }
+      .terminal-body::-webkit-scrollbar-track {
+        background: #0c0c0c;
+      }
+      .terminal-body::-webkit-scrollbar-thumb {
+        background: #2d2d2d;
+        border-radius: 3px;
+      }
+
+      .terminal-welcome {
+        color: var(--green);
+        margin-bottom: 0.75rem;
+      }
+
+      .terminal-line {
+        margin-bottom: 0.5rem;
+        white-space: pre-wrap;
+      }
+
+      .terminal-command-response {
+        color: var(--green);
+      }
+
+      .terminal-error {
+        color: #ff6b6b;
+      }
+
+      .terminal-input-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--green);
+      }
+
+      .terminal-prompt {
+        color: var(--green);
+        font-weight: bold;
+      }
+
+      .terminal-input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #e0e0e0;
+        font-family: inherit;
+        font-size: inherit;
+        flex: 1;
+        caret-color: var(--green);
+      }
     </style>
   </head>
   <body>
@@ -356,11 +460,88 @@
             <div class="loading">جاري تحميل المشاريع...</div>
           </div>
         </section>
+
+        <!-- بوكس المواقع المفتوحة / المميزة المنفصل -->
+        <section class="projects-section">
+          <h2 class="section-title">مواقع قمت بتطويرها</h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="https://puretouchplus.com/" target="_blank" rel="noopener noreferrer">Pure Touch Plus</a>
+              </h3>
+              <p class="project-desc">موقع شركة Pure Touch Plus المتخصصة في خدمات التنظيف والتعقيم الاحترافية الشاملة.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Website</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="https://ashrafaldbas.com/" target="_blank" rel="noopener noreferrer">السلط تايم</a>
+              </h3>
+              <p class="project-desc">موقع إخباري مخصص لنشر أخبار مدينة السلط والمملكة الأردنية الهاشمية.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Website</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- بوكس واجهة الأوامر التفاعلية (Linux Terminal CLI) -->
+        <section class="projects-section">
+          <h2 class="section-title">my CLI</h2>
+          <div class="about-card-body">
+            <p class="about-text" style="margin-bottom: 0.75rem;">
+              واجهة تفاعلية لاستكشاف مشاريعي ومهاراتي في الأتمتة وإدارة السيرفرات. اكتب <code dir="ltr">help</code> للبدء.
+            </p>
+            <div class="terminal-window" onclick="document.getElementById('cli-input').focus()">
+              <div class="terminal-header">
+                <span class="terminal-btn btn-red"></span>
+                <span class="terminal-btn btn-yellow"></span>
+                <span class="terminal-btn btn-green"></span>
+                <span class="terminal-title">guest@alhayari: ~</span>
+              </div>
+              <div class="terminal-body" id="cli-body">
+                <div class="terminal-welcome">مرحباً بك في نظام الصالح حياري! اكتب 'help' للبدء.</div>
+                <div class="terminal-input-line">
+                  <span class="terminal-prompt">guest@alhayari:~$</span>
+                  <input type="text" id="cli-input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- بوكس أتمتة العمليات n8n المنفصل -->
+        <section class="projects-section">
+          <h2 class="section-title">أحدث أتمتة وسير العمل (n8n)</h2>
+          <div id="n8n-container" class="projects-grid">
+            <div class="loading">جاري تحميل أتمتة n8n...</div>
+          </div>
+        </section>
       </div>
     </div>
 
     <!-- كود الجافا سكربت الداخلي (Internal JavaScript) -->
     <script>
+      const featuredWebsites = [
+        {
+          name: 'Pure Touch Plus',
+          html_url: 'https://puretouchplus.com/',
+          description: 'موقع شركة Pure Touch Plus المتخصصة في خدمات التنظيف والتعقيم الاحترافية الشاملة.',
+          language: 'Website',
+          stargazers_count: 'Live'
+        },
+        {
+          name: 'السلط تايم',
+          html_url: 'https://ashrafaldbas.com/',
+          description: 'موقع إخباري مخصص لنشر أخبار مدينة السلط والمملكة الأردنية الهاشمية.',
+          language: 'Website',
+          stargazers_count: 'Live'
+        }
+      ];
+
       const fallbackProjects = [
         {
           name: 'linkedin_ai.skill',
@@ -382,6 +563,57 @@
           description: 'مشروع PayFlow AR المتخصص في إدارة وتسهيل عمليات الدفع والتدفق المالي.',
           language: 'PHP',
           stargazers_count: 1
+        }
+      ];
+
+      const fallbackWorkflows = [
+        {
+          id: '1',
+          name: 'معالجة حضور الطلاب (Ollama + n8n)',
+          description: 'أتمتة ذكية تستخدم نموذج Ollama لمعالجة بيانات حضور الطلاب وإرسال تقرير فوري عبر تليجرام.',
+          fileUrl: 'workflows/student_attendance.json',
+          active: true,
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '2',
+          name: 'تجميع ونشر الأخبار تلقائياً على Telegram',
+          description: 'سير عمل يقوم بسحب الأخبار من قنوات تليجرام متعددة، تنظيف النصوص برمجياً، وإعادة نشرها تلقائياً.',
+          fileUrl: 'workflows/telegram_news_aggregator.json',
+          active: true,
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '3',
+          name: 'بوابة إشعارات الويب الموحدة (Webhook Notification Hub)',
+          description: 'نظام موحد لاستقبال وتصنيف إشعارات الموقع الإلكتروني (الرسائل، الطلبات، الأخطاء، والنجاحات) وإرسالها فوراً إلى قنوات تليجرام المحددة.',
+          fileUrl: 'workflows/unified_webhook_input.json',
+          active: true,
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '4',
+          name: 'توليد العملاء والبريد البارد (Gemini + GPT-4)',
+          description: 'منظومة متكاملة لجمع بيانات الشركات محلياً، استخراج البريد الإلكتروني باستخدام Gemini، وإرسال بريد تسويقي عبر GPT-4.',
+          fileUrl: 'workflows/ai_lead_generator.json',
+          active: true,
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '5',
+          name: 'وكيل إدارة المهام الذكي (Google Sheets + GPT-4o)',
+          description: 'وكيل ذكاء اصطناعي تفاعلي (AI Agent) يدير قائمة المهام داخل Google Sheets بالكامل من خلال فهم الأوامر وإضافتها وتحديثها وحذفها.',
+          fileUrl: 'workflows/google_sheets_task_agent.json',
+          active: true,
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '6',
+          name: 'مساعد البريد عبر تليجرام (Telegram Gmail Assistant Agent)',
+          description: 'مساعد ذكي يتيح صياغة، ومراجعة، وحفظ الإيميلات كمسودات، وإرسالها مباشرة من تليجرام باستخدام Gemini.',
+          fileUrl: 'workflows/telegram_gmail_assistant.json',
+          active: true,
+          updatedAt: new Date().toISOString()
         }
       ];
 
@@ -415,6 +647,47 @@
             <div class="project-meta">
               ${safeLang ? `<span class="project-lang"><span class="lang-dot" style="background-color: ${getLanguageColor(repo.language)}"></span>${safeLang}</span>` : ''}
               <span class="project-stars">⭐ ${repo.stargazers_count || 0}</span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      function renderWorkflows(workflows) {
+        const container = document.getElementById('n8n-container');
+        if (!container) return;
+
+        if (workflows.length === 0) {
+          container.innerHTML = '<p class="no-projects">لا توجد أتمتة نشطة حالياً.</p>';
+          return;
+        }
+
+        container.innerHTML = '';
+        workflows.forEach(flow => {
+          const card = document.createElement('div');
+          card.className = 'project-card';
+          
+          const safeTitle = escapeHTML(flow.name);
+          const safeDesc = escapeHTML(flow.description || 'أتمتة سير عمل نشطة وجاهزة للاستخدام في منصة n8n.');
+          const formattedDate = new Date(flow.updatedAt).toLocaleDateString('ar-JO', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          const fileUrl = flow.fileUrl ? escapeHTML(flow.fileUrl) : null;
+          
+          card.innerHTML = `
+            <h3 class="project-title" style="color: var(--white); margin-bottom: 0.5rem;">
+              ${safeTitle}
+            </h3>
+            <p class="project-desc">${safeDesc}</p>
+            <div class="project-meta" style="margin-top: 0.75rem;">
+              <span class="project-lang">
+                <span class="lang-dot" style="background-color: var(--green)"></span>
+                ${flow.active ? 'نشط' : 'غير نشط'}
+              </span>
+              ${fileUrl ? `<a href="${fileUrl}" download style="color: var(--green); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-right: auto;">📥 تحميل JSON</a>` : ''}
+              <span class="project-stars" style="margin-left: 0.5rem;">📅 ${formattedDate}</span>
             </div>
           `;
           container.appendChild(card);
@@ -474,6 +747,41 @@
         renderProjects(fallbackProjects);
       }
 
+      async function fetchN8NWorkflows() {
+        const webhookUrl = 'https://nonapplicatory-hitchier-tu.ngrok-free.dev/webhook/get-latest-automations';
+        
+        // 1. محاولة جلب البيانات المخزنة مؤقتاً
+        try {
+          const cachedData = localStorage.getItem('n8n_workflows_cache');
+          if (cachedData) {
+            const parsed = JSON.parse(cachedData);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              renderWorkflows(parsed);
+            }
+          }
+        } catch (e) {
+          console.warn('n8n Cache read error:', e);
+        }
+
+        // 2. جلب البيانات من الويب-هوك مباشرة
+        try {
+          const response = await fetch(webhookUrl);
+          if (response.ok) {
+            const workflows = await response.json();
+            if (Array.isArray(workflows) && workflows.length > 0) {
+              localStorage.setItem('n8n_workflows_cache', JSON.stringify(workflows));
+              renderWorkflows(workflows);
+              return;
+            }
+          }
+        } catch (error) {
+          console.warn('Failed to fetch from n8n webhook, using fallback workflows', error);
+        }
+
+        // 3. في حال الفشل نستخدم البيانات الاحتياطية
+        renderWorkflows(fallbackWorkflows);
+      }
+
       function escapeHTML(str) {
         if (!str) return '';
         return String(str)
@@ -503,7 +811,182 @@
         return colors[lang] || '#8b949e';
       }
 
-      document.addEventListener('DOMContentLoaded', fetchProjects);
+      // ============================================================
+      // Interactive Terminal CLI Logic
+      // ============================================================
+      const cliInput = document.getElementById('cli-input');
+      const cliBody = document.getElementById('cli-body');
+      let commandHistory = [];
+      let historyIndex = -1;
+
+      if (cliInput) {
+        cliInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            const command = this.value.trim();
+            if (command) {
+              commandHistory.push(command);
+              historyIndex = commandHistory.length;
+              executeCommand(command);
+            }
+            this.value = '';
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (historyIndex > 0) {
+              historyIndex--;
+              this.value = commandHistory[historyIndex];
+            }
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex < commandHistory.length - 1) {
+              historyIndex++;
+              this.value = commandHistory[historyIndex];
+            } else {
+              historyIndex = commandHistory.length;
+              this.value = '';
+            }
+          } else if (e.key === 'Tab') {
+            e.preventDefault();
+            const currentVal = this.value.trim().toLowerCase();
+            if (currentVal) {
+              const commands = ['about', 'skills', 'projects', 'contact', 'clear', 'github', 'help', 'puretouch', 'salttime', 'ashraf'];
+              const matches = commands.filter(cmd => cmd.startsWith(currentVal));
+              if (matches.length > 0) {
+                this.value = matches[0];
+              }
+            }
+          }
+        });
+      }
+
+      function appendTerminalLine(text, className = '') {
+        const line = document.createElement('div');
+        line.className = `terminal-line ${className}`;
+        line.textContent = text;
+        
+        // Insert before the input line
+        const inputLine = cliBody.querySelector('.terminal-input-line');
+        cliBody.insertBefore(line, inputLine);
+        cliBody.scrollTop = cliBody.scrollHeight;
+      }
+
+      function executeCommand(cmd) {
+        // Echo command
+        appendTerminalLine(`guest@alhayari:~$ ${cmd}`, 'terminal-command-response');
+
+        const parts = cmd.trim().split(/\s+/);
+        const mainCmd = parts[0].toLowerCase();
+        const arg = parts[1] ? parts[1].toLowerCase() : '';
+
+        switch(mainCmd) {
+          case 'help':
+            appendTerminalLine('Available commands:\n' +
+                               '  about      - Show information about Alsaleh Al-Hayari\n' +
+                               '  skills     - List technical skills and proficiency\n' +
+                               '  projects   - Show key portfolio projects\n' +
+                               '  puretouch  - Open Pure Touch Plus website\n' +
+                               '  salttime   - Open Salt Time news website\n' +
+                               '  contact    - Options: -wa, -git, -link\n' +
+                               '  clear      - Clear the terminal screen');
+            break;
+          case 'about':
+            appendTerminalLine('Name: Alsaleh Al-Hayari\n' +
+                               'Role: Server Administrator & Automation Expert (n8n)\n' +
+                               'Location: Salt, Jordan\n' +
+                               'Bio: I design workflows, deploy web servers, configure secure Linux systems, and connect APIs.');
+            break;
+          case 'skills':
+            appendTerminalLine('[ Server Administration ]  ██████████████████ 90%\n' +
+                               '[ n8n / Automations ]      ████████████████████ 95%\n' +
+                               '[ Linux / Bash Scripting ] ████████████████ 85%\n' +
+                               '[ Frontend Web (HTML/JS) ] ██████████████ 70%');
+            break;
+          case 'projects':
+            appendTerminalLine('Featured Web Projects:\n' +
+                               '1. Pure Touch Plus   - Cleaning & Sterilization Service Website (https://puretouchplus.com/)\n' +
+                               '2. السلط تايم        - Salt Time News Website (https://ashrafaldbas.com/)\n\n' +
+                               'n8n Workflows:\n' +
+                               '3. Student Attendance Processing (Ollama + n8n)\n' +
+                               '4. Telegram News Aggregator Scraper\n' +
+                               '5. Unified Webhook Notifications Hub\n' +
+                               '6. AI Lead Generator & Cold Outreach (Gemini + GPT-4)\n' +
+                               '7. Task Management AI Agent (Google Sheets + GPT-4o)\n' +
+                               '8. Telegram Gmail Assistant Agent (Gemini)\n\n' +
+                               'GitHub Repositories:\n' +
+                               '9. linkedin_ai.skill  - Content creation automation for LinkedIn\n' +
+                               '10. n8n_master.skill - Advanced n8n workflow templates\n' +
+                               '11. PayFlow          - Financial flow & payment management system\n\n' +
+                               'Type "puretouch", "salttime", or "github" to open them.');
+            break;
+          case 'puretouch':
+            appendTerminalLine('Opening Pure Touch Plus...');
+            window.open('https://puretouchplus.com/', '_blank');
+            break;
+          case 'salttime':
+          case 'ashraf':
+            appendTerminalLine('Opening Salt Time News...');
+            window.open('https://ashrafaldbas.com/', '_blank');
+            break;
+          case 'contact':
+            if (arg === '-wa') {
+              appendTerminalLine('Opening WhatsApp chat 1...');
+              window.open('https://wa.me/962775858328', '_blank');
+            } else if (arg === '-wa2') {
+              appendTerminalLine('Opening WhatsApp chat 2...');
+              window.open('https://wa.me/962779511729', '_blank');
+            } else if (arg === '-mail') {
+              appendTerminalLine('Opening email composer...');
+              window.open('mailto:alsalehhiary@gmail.com', '_self');
+            } else if (arg === '-git') {
+              appendTerminalLine('Opening GitHub profile...');
+              window.open('https://github.com/alsaleh20', '_blank');
+            } else if (arg === '-link') {
+              appendTerminalLine('Opening LinkedIn profile...');
+              window.open('https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/', '_blank');
+            } else if (arg === '-insta') {
+              appendTerminalLine('Opening Instagram profile...');
+              window.open('https://instagram.com/k_alsaleh20_', '_blank');
+            } else if (arg === '-x') {
+              appendTerminalLine('Opening X profile...');
+              window.open('https://x.com/k_alsaleh20', '_blank');
+            } else if (arg === '-yt') {
+              appendTerminalLine('Opening YouTube channel...');
+              window.open('https://www.youtube.com/@alsaleh20', '_blank');
+            } else if (arg === '-fb') {
+              appendTerminalLine('Opening Facebook profile...');
+              window.open('https://www.facebook.com/alsaleh.hiary.2025', '_blank');
+            } else {
+              appendTerminalLine('Usage: contact [option]\n' +
+                                 'Options:\n' +
+                                 '  -wa    : Open WhatsApp chat 1 (+962775858328)\n' +
+                                 '  -wa2   : Open WhatsApp chat 2 (+962779511729)\n' +
+                                 '  -mail  : Send an Email (alsalehhiary@gmail.com)\n' +
+                                 '  -git   : Open GitHub profile\n' +
+                                 '  -link  : Open LinkedIn profile\n' +
+                                 '  -insta : Open Instagram profile\n' +
+                                 '  -x     : Open X (Twitter) profile\n' +
+                                 '  -yt    : Open YouTube channel\n' +
+                                 '  -fb    : Open Facebook profile\n' +
+                                 'Example: contact -mail');
+            }
+            break;
+          case 'github':
+            appendTerminalLine('Opening GitHub profile...');
+            window.open('https://github.com/alsaleh20', '_blank');
+            break;
+          case 'clear':
+            // Clear all terminal lines except the input line
+            const lines = cliBody.querySelectorAll('.terminal-line, .terminal-welcome');
+            lines.forEach(line => line.remove());
+            break;
+          default:
+            appendTerminalLine(`bash: command not found: ${cmd}. Type 'help' for options.`, 'terminal-error');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        fetchProjects();
+        fetchN8NWorkflows();
+      });
     </script>
   </body>
 </html>

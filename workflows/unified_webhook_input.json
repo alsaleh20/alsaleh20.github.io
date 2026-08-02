@@ -1,0 +1,316 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook/all",
+        "options": {}
+      },
+      "name": "Webhook - Unified Input1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        912
+      ],
+      "id": "3df3e02a-9a7e-45d3-b190-ffce5ec0021e",
+      "webhookId": "placeholder_webhook_id"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.type}}",
+              "value2": "error"
+            }
+          ]
+        }
+      },
+      "name": "If Error1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        624
+      ],
+      "id": "fb4934e8-cb74-4c35-ad7c-803c8f68eccd"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.type}}",
+              "value2": "success"
+            }
+          ]
+        }
+      },
+      "name": "If Success1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        816
+      ],
+      "id": "db5a31e5-a013-4199-b521-ee37f2f051d3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.type}}",
+              "value2": "contact"
+            }
+          ]
+        }
+      },
+      "name": "If Contact1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        1008
+      ],
+      "id": "88282638-c7cc-41e6-9501-7b62a9002146"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.type}}",
+              "value2": "order"
+            }
+          ]
+        }
+      },
+      "name": "If Order1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        1296
+      ],
+      "id": "36c9fa25-9484-4d85-8bc9-c56de1bf58ec"
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "⚠️ *خطأ في الموقع*\n\n{{$json.body.message}}\n\n📋 التفاصيل:\n{{$json.body.details}}",
+        "additionalFields": {}
+      },
+      "name": "Send Error to Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        624
+      ],
+      "id": "755e7113-1df2-44ee-9c3d-c0f0835f0fae",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "✅ *نجاح*\n\n{{$json.body.message}}\n\n📋 التفاصيل:\n{{$json.body.details}}",
+        "additionalFields": {}
+      },
+      "name": "Send Success to Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        816
+      ],
+      "id": "2dbedebd-3002-42a7-bde0-36627e59493b",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "💬 *رسالة من نموذج التواصل*\n\n👤 الاسم: {{$json.body.name}}\n📧 البريد: {{$json.body.email}}\n\n💭 الرسالة:\n{{$json.body.message}}",
+        "additionalFields": {}
+      },
+      "name": "Send Contact to Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        1008
+      ],
+      "id": "24c4a61d-f681-42d6-8288-db78072a419f",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "📦 *طلب جديد!*\n\n👤 *العميل:* {{$json.body.customerName}}\n📞 *الهاتف:* {{$json.body.phone}}\n📧 *البريد:* {{$json.body.email}}\n📍 *العنوان:* {{$json.body.address}}\n\n━━━━━━━━━━━━━━━━\n📋 *تفاصيل الطلب:*\n🔢 *رقم الطلب:* #{{$json.body.orderId}}\n🛍️ *المنتج:* {{$json.body.product}}\n📦 *الكمية:* {{$json.body.quantity}}\n💰 *السعر:* {{$json.body.price}} د.ا\n💵 *الإجمالي:* {{$json.body.totalPrice}} د.ا\n\n━━━━━━━━━━━━━━━━\n🧾 *الفاتورة:* {{$json.body.invoiceUrl}}\n✅ *الحالة:* جديد\n⏰ *الوقت:* {{now.toFormat(\"yyyy-MM-dd HH:mm:ss\")}}",
+        "additionalFields": {}
+      },
+      "name": "Send Order to Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        1200
+      ],
+      "id": "a083b117-04ae-48fb-8db7-59b5d39c72d0",
+      "webhookId": "placeholder_webhook_id",
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "options": {}
+      },
+      "name": "Save Order to Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        -832,
+        1392
+      ],
+      "id": "61b507f1-3d57-4abd-b9b7-513f307ab312",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "placeholder_sheets_creds",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "Webhook - Unified Input1": {
+      "main": [
+        [
+          {
+            "node": "If Error1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If Success1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If Contact1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If Order1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Error1": {
+      "main": [
+        [
+          {
+            "node": "Send Error to Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Success1": {
+      "main": [
+        [
+          {
+            "node": "Send Success to Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Contact1": {
+      "main": [
+        [
+          {
+            "node": "Send Contact to Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Order1": {
+      "main": [
+        [
+          {
+            "node": "Send Order to Telegram1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save Order to Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Error to Telegram1": {
+      "main": [
+        []
+      ]
+    },
+    "Send Success to Telegram1": {
+      "main": [
+        []
+      ]
+    },
+    "Send Contact to Telegram1": {
+      "main": [
+        []
+      ]
+    },
+    "Send Order to Telegram1": {
+      "main": [
+        []
+      ]
+    },
+    "Save Order to Google Sheets1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "placeholder_instance_id"
+  }
+}

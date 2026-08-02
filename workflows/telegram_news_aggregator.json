@@ -1,0 +1,553 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://t.me/s/source_channel_1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1152,
+        128
+      ],
+      "id": "8c84e870-984a-4d9c-9423-9133368a1d90",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://t.me/s/source_channel_2",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1152,
+        320
+      ],
+      "id": "8872571a-286b-4ee2-a4e6-80cf76197a8d",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst htmlData = (Array.isArray(input) ? input[0]?.data : input?.data) || '';\n\nconst regex = /data-post=\"([^\"]+)\"[\\s\\S]*?tgme_widget_message_text[^>]*>([\\s\\S]*?)<\\/div>/; \nconst match = regex.exec(htmlData);\n\nif (!match) return [];\n\nconst currentPostId = match[1];\nconst staticData = $getWorkflowStaticData('node');\n\nif (staticData.lastPostId === currentPostId) {\n  return []; \n}\nstaticData.lastPostId = currentPostId;\n\nlet text = match[2]\n  .replace(/<br\\s*\\/?>/gi, '\\n')\n  .replace(/<[^>]+>/g, '')\n  .replace(/&rlm;/gi, '') \n  .replace(/&\\w+;/g, m => ({\n    '&nbsp;': ' ', '&quot;': '\"', '&amp;': '&',\n    '&lt;': '<', '&gt;': '>', '&#39;': \"'\"\n  }[m] || m))\n  .replace(/\\s+/g, ' ')\n  .trim();\n\nreturn [{\n  json: {\n    post_id: currentPostId,\n    content: text,\n    word_count: text.split(/\\s+/).length,\n    ready: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        320
+      ],
+      "id": "72860f0a-f2a8-4696-b9f6-b37e0c7e8d0c",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "url": "https://t.me/s/source_channel_3",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1152,
+        512
+      ],
+      "id": "bae0894d-31b1-47ce-9274-9078174dc9fc",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1376,
+        608
+      ],
+      "id": "8f02aa84-dac8-4cf1-b3c7-9e3730941d0f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1376,
+        -112
+      ],
+      "id": "7103da7f-e214-4039-bb83-c0354d31d10f",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "TARGET_TELEGRAM_CHANNEL_ID",
+        "text": "={{ $json.content }}\n\n📢 القناة التلقائية لنشر الأخبار",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -704,
+        320
+      ],
+      "id": "486c1044-7a7a-450e-a30e-f66e30aa391d",
+      "name": "Send a text message",
+      "webhookId": "placeholder_webhook_id",
+      "alwaysOutputData": false,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst htmlData = (Array.isArray(input) ? input[0]?.data : input?.data) || '';\n\nconst regex = /data-post=\"([^\"]+)\"[\\s\\S]*?tgme_widget_message_text[^>]*>([\\s\\S]*?)<\\/div>/; \nconst match = regex.exec(htmlData);\n\nif (!match) return [];\n\nconst currentPostId = match[1];\nconst staticData = $getWorkflowStaticData('node');\n\nif (staticData.lastPostId === currentPostId) {\n  return []; \n}\nstaticData.lastPostId = currentPostId;\n\nlet text = match[2]\n  .replace(/<br\\s*\\/?>/gi, '\\n')\n  .replace(/<[^>]+>/g, '')\n  .replace(/&rlm;/gi, '') \n  .replace(/&\\w+;/g, m => ({\n    '&nbsp;': ' ', '&quot;': '\"', '&amp;': '&',\n    '&lt;': '<', '&gt;': '>', '&#39;': \"'\"\n  }[m] || m))\n  .replace(/\\s+/g, ' ')\n  .trim();\n\nreturn [{\n  json: {\n    post_id: currentPostId,\n    content: text,\n    word_count: text.split(/\\s+/).length,\n    ready: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        128
+      ],
+      "id": "127c8539-04e5-4966-b5dc-8023e632c27a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst htmlData = (Array.isArray(input) ? input[0]?.data : input?.data) || '';\n\nconst regex = /data-post=\"([^\"]+)\"[\\s\\S]*?tgme_widget_message_text[^>]*>([\\s\\S]*?)<\\/div>/; \nconst match = regex.exec(htmlData);\n\nif (!match) return [];\n\nconst currentPostId = match[1];\nconst staticData = $getWorkflowStaticData('node');\n\nif (staticData.lastPostId === currentPostId) {\n  return []; \n}\nstaticData.lastPostId = currentPostId;\n\nlet text = match[2]\n  .replace(/<br\\s*\\/?>/gi, '\\n')\n  .replace(/<[^>]+>/g, '')\n  .replace(/&rlm;/gi, '') \n  .replace(/&\\w+;/g, m => ({\n    '&nbsp;': ' ', '&quot;': '\"', '&amp;': '&',\n    '&lt;': '<', '&gt;': '>', '&#39;': \"'\"\n  }[m] || m))\n  .replace(/\\s+/g, ' ')\n  .trim();\n\nreturn [{\n  json: {\n    post_id: currentPostId,\n    content: text,\n    word_count: text.split(/\\s+/).length,\n    ready: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        512
+      ],
+      "id": "61894779-f645-4771-96c3-6a1f306e2141",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "url": "https://t.me/s/source_channel_4",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1152,
+        704
+      ],
+      "id": "977d5537-b82a-44ce-9854-1b829e6bd38e",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "url": "https://t.me/s/source_channel_5",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1152,
+        896
+      ],
+      "id": "0c3234c1-c1c2-48eb-a07a-4e0646a45752",
+      "name": "HTTP Request4"
+    },
+    {
+      "parameters": {
+        "url": "https://t.me/s/source_channel_6",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1152,
+        1088
+      ],
+      "id": "68fdf841-4e56-49f4-908b-5f5c216734f0",
+      "name": "HTTP Request5"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst htmlData = (Array.isArray(input) ? input[0]?.data : input?.data) || '';\n\nconst regex = /data-post=\"([^\"]+)\"[\\s\\S]*?tgme_widget_message_text[^>]*>([\\s\\S]*?)<\\/div>/; \nconst match = regex.exec(htmlData);\n\nif (!match) return [];\n\nconst currentPostId = match[1];\nconst staticData = $getWorkflowStaticData('node');\n\nif (staticData.lastPostId === currentPostId) {\n  return []; \n}\nstaticData.lastPostId = currentPostId;\n\nlet text = match[2]\n  .replace(/<br\\s*\\/?>/gi, '\\n')\n  .replace(/<[^>]+>/g, '')\n  .replace(/&rlm;/gi, '') \n  .replace(/&\\w+;/g, m => ({\n    '&nbsp;': ' ', '&quot;': '\"', '&amp;': '&',\n    '&lt;': '<', '&gt;': '>', '&#39;': \"'\"\n  }[m] || m))\n  .replace(/\\s+/g, ' ')\n  .trim();\n\nreturn [{\n  json: {\n    post_id: currentPostId,\n    content: text,\n    word_count: text.split(/\\s+/).length,\n    ready: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        704
+      ],
+      "id": "77e73a0e-9940-4362-a497-0b8ebcf70ad3",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst htmlData = (Array.isArray(input) ? input[0]?.data : input?.data) || '';\n\nconst regex = /data-post=\"([^\"]+)\"[\\s\\S]*?tgme_widget_message_text[^>]*>([\\s\\S]*?)<\\/div>/; \nconst match = regex.exec(htmlData);\n\nif (!match) return [];\n\nconst currentPostId = match[1];\nconst staticData = $getWorkflowStaticData('node');\n\nif (staticData.lastPostId === currentPostId) {\n  return []; \n}\nstaticData.lastPostId = currentPostId;\n\nlet text = match[2]\n  .replace(/<br\\s*\\/?>/gi, '\\n')\n  .replace(/<[^>]+>/g, '')\n  .replace(/&rlm;/gi, '') \n  .replace(/&\\w+;/g, m => ({\n    '&nbsp;': ' ', '&quot;': '\"', '&amp;': '&',\n    '&lt;': '<', '&gt;': '>', '&#39;': \"'\"\n  }[m] || m))\n  .replace(/\\s+/g, ' ')\n  .trim();\n\nreturn [{\n  json: {\n    post_id: currentPostId,\n    content: text,\n    word_count: text.split(/\\s+/).length,\n    ready: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        896
+      ],
+      "id": "507d3542-1dca-4281-a59f-bf22d8eb78b1",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst htmlData = (Array.isArray(input) ? input[0]?.data : input?.data) || '';\n\nconst regex = /data-post=\"([^\"]+)\"[\\s\\S]*?tgme_widget_message_text[^>]*>([\\s\\S]*?)<\\/div>/; \nconst match = regex.exec(htmlData);\n\nif (!match) return [];\n\nconst currentPostId = match[1];\nconst staticData = $getWorkflowStaticData('node');\n\nif (staticData.lastPostId === currentPostId) {\n  return []; \n}\nstaticData.lastPostId = currentPostId;\n\nlet text = match[2]\n  .replace(/<br\\s*\\/?>/gi, '\\n')\n  .replace(/<[^>]+>/g, '')\n  .replace(/&rlm;/gi, '') \n  .replace(/&\\w+;/g, m => ({\n    '&nbsp;': ' ', '&quot;': '\"', '&amp;': '&',\n    '&lt;': '<', '&gt;': '>', '&#39;': \"'\"\n  }[m] || m))\n  .replace(/\\s+/g, ' ')\n  .trim();\n\nreturn [{\n  json: {\n    post_id: currentPostId,\n    content: text,\n    word_count: text.split(/\\s+/).length,\n    ready: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        1088
+      ],
+      "id": "825a84de-877e-41cc-a6bb-761dbff5427a",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "chatId": "TARGET_TELEGRAM_CHANNEL_ID",
+        "text": "={{ $json.content }}\n\n📢 القناة التلقائية لنشر الأخبار",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -704,
+        896
+      ],
+      "id": "3e16f1b6-65bb-44fc-9f20-ca45bd942239",
+      "name": "Send a text message1",
+      "webhookId": "placeholder_webhook_id",
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "maxTries": 5,
+      "executeOnce": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "placeholder_telegram_creds_2",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1376,
+        1328
+      ],
+      "id": "1bbbd3fb-0317-4b9d-805d-f1011ee54c51",
+      "name": "Schedule Trigger1",
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
