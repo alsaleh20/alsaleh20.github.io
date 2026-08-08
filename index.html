@@ -24,14 +24,72 @@
           <a href="mailto:alsalehhiary@gmail.com" class="icon-link" title="إيميل alsalehhiary@gmail.com">✉️</a>
         </div>
 
+        <!-- زر حفظ بطاقة جهة الاتصال vCard و QR Code -->
+        <div class="vcard-action-bar">
+          <button class="vcard-btn" onclick="downloadVCard()" title="حفظ جهة الاتصال مباشرة في هاتفك">
+            📇 حفظ الكرت بالهاتف (.vcf)
+          </button>
+          <button class="vcard-btn qr-btn" onclick="openQrModal()" title="عرض رمز QR مسح">
+            📱 QR Code
+          </button>
+        </div>
+
         <nav class="links">
           <a class="link" href="https://github.com/alsaleh20" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="link" href="https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="link" href="https://khamsat.com/user/alsaleh20" target="_blank" rel="noopener noreferrer">خمسات</a>
+          <a class="link" href="https://mostaql.com/u/k_alsaleh20" target="_blank" rel="noopener noreferrer">مستقل</a>
+          <a class="link" href="https://baaeed.com/u/alsaleh20" target="_blank" rel="noopener noreferrer">بعيد</a>
+          <a class="link" href="https://academy.hsoub.com/profile/4433240-alsaleh-hiary/" target="_blank" rel="noopener noreferrer">أكاديمية حسوب</a>
+          <a class="link" href="https://unicoders.co/profile/alsaleh20" target="_blank" rel="noopener noreferrer">Unicoders</a>
           <a class="link" href="https://instagram.com/k_alsaleh20_" target="_blank" rel="noopener noreferrer">Instagram</a>
           <a class="link" href="https://x.com/k_alsaleh20" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
           <a class="link" href="https://www.youtube.com/@alsaleh20" target="_blank" rel="noopener noreferrer">YouTube</a>
           <a class="link" href="https://www.facebook.com/alsaleh.hiary.2025" target="_blank" rel="noopener noreferrer">Facebook</a>
         </nav>
+
+        <!-- بوكس حاسبة ومنشئ طلبات الخدمة المباشر عبر الواتساب (موقع المربع الأحمر) -->
+        <div class="sidebar-inquiry-card">
+          <h2 class="sidebar-inquiry-title">طلب خدمة سريع عبر WhatsApp 💬</h2>
+          <form id="wa-inquiry-form" onsubmit="sendWhatsAppInquiry(event)">
+            <div class="inquiry-group">
+              <label for="wa-service">الخدمة المطلوبة:</label>
+              <select id="wa-service" class="inquiry-select" required>
+                <option value="أتمتة المهام والعمليات (n8n Automations)">⚡ أتمتة المهام والعمليات (n8n)</option>
+                <option value="تجهيز وإدارة السيرفرات (Linux Server Setup & Management)">🖥️ تجهيز وإدارة السيرفرات (Linux/VPS)</option>
+                <option value="تطوير موقع ويب إلكتروني (Web Development)">🌐 تطوير موقع ويب إلكتروني</option>
+                <option value="ربط وتكامل API (API Integration & Webhooks)">🔗 ربط وتكامل API و Webhooks</option>
+                <option value="استشارة تقنية شاملة (Technical Consultation)">💡 استشارة تقنية شاملة</option>
+              </select>
+            </div>
+
+            <div class="inquiry-group" style="margin-top: 0.75rem;">
+              <label for="wa-phone-choice">الرقم المفصل للتواصل:</label>
+              <select id="wa-phone-choice" class="inquiry-select">
+                <option value="962775858328">واتساب 1: 0775858328</option>
+                <option value="962779511729">واتساب 2: 0779511729</option>
+              </select>
+            </div>
+
+            <div class="inquiry-group" style="margin-top: 0.75rem;">
+              <label for="wa-timeline">الإطار الزمني المتوقع:</label>
+              <select id="wa-timeline" class="inquiry-select">
+                <option value="عاجل (خلال 24-48 ساعة)">⚡ عاجل (خلال 24-48 ساعة)</option>
+                <option value="خلال أسبوع">📅 خلال أسبوع</option>
+                <option value="مرن / حسب حجم المشروع">⏳ مرن / حسب حجم المشروع</option>
+              </select>
+            </div>
+
+            <div class="inquiry-group" style="margin-top: 0.75rem;">
+              <label for="wa-details">تفاصيل أو وصف مختصر للمشروع:</label>
+              <textarea id="wa-details" class="inquiry-textarea" rows="3" placeholder="أكتب هنا ملخص الفكرة..."></textarea>
+            </div>
+
+            <button type="submit" class="wa-send-btn">
+              <i class="fab fa-whatsapp"></i> إرسال الطلب عبر WhatsApp الآن
+            </button>
+          </form>
+        </div>
       </main>
 
       <!-- العمود الأيسر للمحتوى (بوكس نبذة عني + بوكس المشاريع) -->
@@ -95,18 +153,53 @@
             <p class="about-text" style="margin-bottom: 0.75rem;">
               واجهة تفاعلية لاستكشاف مشاريعي ومهاراتي في الأتمتة وإدارة السيرفرات. اكتب <code dir="ltr">help</code> للبدء.
             </p>
-            <div class="terminal-window" onclick="document.getElementById('cli-input').focus()">
+            <div class="terminal-window" id="main-terminal-window" onclick="document.getElementById('cli-input').focus()">
               <div class="terminal-header">
-                <span class="terminal-btn btn-red"></span>
-                <span class="terminal-btn btn-yellow"></span>
-                <span class="terminal-btn btn-green"></span>
+                <div class="terminal-dots">
+                  <span class="terminal-btn btn-red" title="مسح التيرمينال" onclick="event.stopPropagation(); clearTerminal();"></span>
+                  <span class="terminal-btn btn-yellow" title="تصغير" onclick="event.stopPropagation(); toggleMinimizeTerminal('main-terminal-window');"></span>
+                  <span class="terminal-btn btn-green" title="ملء الشاشة / تكبير" onclick="event.stopPropagation(); toggleFullscreenTerminal('main-terminal-window');"></span>
+                </div>
                 <span class="terminal-title">guest@alhayari: ~</span>
+                <button class="terminal-expand-btn" title="توسيع / تكبير الشاشة (Fullscreen)" onclick="event.stopPropagation(); toggleFullscreenTerminal('main-terminal-window');">
+                  ⛶ تكبير الشاشة
+                </button>
               </div>
               <div class="terminal-body" id="cli-body">
                 <div class="terminal-welcome">مرحباً بك في نظام الصالح حياري! اكتب 'help' للبدء.</div>
                 <div class="terminal-input-line">
                   <span class="terminal-prompt">guest@alhayari:~$</span>
                   <input type="text" id="cli-input" class="terminal-input" autocomplete="off" spellcheck="false">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- بوكس واجهة السيرفر الثانية المخصصة (Server CLI Terminal) مخفية وتظهر عند طلب apt servar -->
+        <section class="projects-section" id="server-cli-section" style="display: none;">
+          <h2 class="section-title" style="color: #00f3ff;">Server CLI Dashboard 🖥️</h2>
+          <div class="about-card-body">
+            <p class="about-text" style="margin-bottom: 0.75rem; color: #00f3ff;">
+              تيرمينال إدارة السيرفرات المتقدمة (Server Management Node). اكتب <code dir="ltr" style="color: #00ff66;">help</code> لرؤية أوامر السيرفر.
+            </p>
+            <div class="terminal-window server-cli-window" id="server-terminal-window" onclick="document.getElementById('server-cli-input').focus()">
+              <div class="terminal-header" style="background-color: #112233;">
+                <div class="terminal-dots">
+                  <span class="terminal-btn btn-red" title="إغلاق" onclick="event.stopPropagation(); closeServerTerminal();"></span>
+                  <span class="terminal-btn btn-yellow" title="تصغير" onclick="event.stopPropagation(); toggleMinimizeTerminal('server-terminal-window');"></span>
+                  <span class="terminal-btn btn-green" title="ملء الشاشة / تكبير" onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');"></span>
+                </div>
+                <span class="terminal-title" style="color: #00f3ff;">root@alsaleh-server-node: ~</span>
+                <button class="terminal-expand-btn" style="border-color: #00f3ff; color: #00f3ff;" title="توسيع / تكبير الشاشة (Fullscreen)" onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');">
+                  ⛶ تكبير الشاشة
+                </button>
+              </div>
+              <div class="terminal-body" id="server-cli-body">
+                <div class="terminal-welcome" style="color: #00f3ff;">[SERVER NODE CONNECTED] أهلاً بك في تيرمينال إدارة السيرفرات (Server CLI)!</div>
+                <div class="terminal-input-line">
+                  <span class="terminal-prompt" style="color: #00f3ff;">root@alsaleh-server:~$</span>
+                  <input type="text" id="server-cli-input" class="terminal-input" autocomplete="off" spellcheck="false">
                 </div>
               </div>
             </div>
@@ -120,6 +213,209 @@
             <div class="loading">جاري تحميل أتمتة n8n...</div>
           </div>
         </section>
+
+        <!-- بوكس مشاريع جانبية (Side Projects) المنفصل (في أسفل الموقع تحت n8n) -->
+        <section class="projects-section">
+          <h2 class="section-title">مشاريع جانبية</h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/a/x.html" target="_blank" rel="noopener noreferrer">أشرف الدباس</a>
+              </h3>
+              <p class="project-desc">خبير الإعلام الرقمي وتطوير المحتوى الصحفي والإخباري.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/r/x.html" target="_blank" rel="noopener noreferrer">رعد عربيات</a>
+              </h3>
+              <p class="project-desc">مدير عمليات وضيافة. استعراض الخبرات العملية والمهارات القيادية.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/k/x.html" target="_blank" rel="noopener noreferrer">إيهاب الخالدي</a>
+              </h3>
+              <p class="project-desc">استعراض السيرة الذاتية المهنية والمشاريع المنجزة.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>CV Site</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/n/x.html" target="_blank" rel="noopener noreferrer">رناد الكلوب</a>
+              </h3>
+              <p class="project-desc">أخصائية اجتماعية. تمكين الأفراد والعمل المجتمعي والتمكين الشبابي.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/e/x.html" target="_blank" rel="noopener noreferrer">د. إيمان العلي</a>
+              </h3>
+              <p class="project-desc">أستاذ مساعد في كلية الحقوق. مسيرة أكاديمية وبحثية وقانونية حافلة.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Academic</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/y/x.html" target="_blank" rel="noopener noreferrer">آية حامد</a>
+              </h3>
+              <p class="project-desc">استعراض السيرة الذاتية والمهارات التدريبية والأكاديمية.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Trainer CV</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="p/b/x.html" target="_blank" rel="noopener noreferrer">عمر الحوارات (بريصي)</a>
+              </h3>
+              <p class="project-desc">عرض السيرة الذاتية والمهارات بتصميم مبسط وفعال.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
+                <span class="project-stars">🌐 Live</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- بوكس حاسبة وفر وتوفير الأتمتة التفاعلية (Automation ROI & Time Saved Calculator) -->
+        <section class="projects-section">
+          <h2 class="section-title">حاسبة توفير الوقت والمال بالأتمتة 🧮</h2>
+          <div class="about-card-body inquiry-builder-box">
+            <p class="about-text">
+              احسب كم من الوقت والمبالغ المالية يمكنك توفيرها شهرياً عند تحويل المهام الروتينية إلى أتمتة ذكية باستخدام n8n:
+            </p>
+            <div class="inquiry-grid">
+              <div class="inquiry-group">
+                <label for="roi-employees">عدد الموظفين / فريق العمل:</label>
+                <input type="number" id="roi-employees" class="inquiry-select" value="3" min="1" max="100" oninput="calculateAutomationRoi()">
+              </div>
+
+              <div class="inquiry-group">
+                <label for="roi-hours">ساعات المهام اليدوية يومياً (لكل شخص):</label>
+                <input type="number" id="roi-hours" class="inquiry-select" value="2" min="0.5" step="0.5" max="12" oninput="calculateAutomationRoi()">
+              </div>
+
+              <div class="inquiry-group">
+                <label for="roi-hourly-rate">متوسط أجر الساعة التقديري ($):</label>
+                <input type="number" id="roi-hourly-rate" class="inquiry-select" value="10" min="1" max="500" oninput="calculateAutomationRoi()">
+              </div>
+            </div>
+
+            <!-- النتيجة المباشرة للحاسبة -->
+            <div class="roi-result-card">
+              <div class="roi-stat-item">
+                <span class="roi-label">الساعات الموفرة شهرياً:</span>
+                <span class="roi-value" id="roi-saved-hours">96 ساعة ⏳</span>
+              </div>
+              <div class="roi-stat-item highlight">
+                <span class="roi-label">التوفير المالي الشري التقديري:</span>
+                <span class="roi-value" id="roi-saved-money">$960 دولار 💰</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        </section>
+      </div>
+    </div>
+
+    <!-- كود الجافا سكربت الخارجي الخاص بالميزة السرية -->
+    <script src="sudo-deployer.js"></script>
+
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="rgb-modal-overlay" style="display: none;">
+      <div class="rgb-modal-card" style="max-width: 400px; text-align: center;">
+        <div class="rgb-modal-header">
+          <h3>📱 مسح QR Code للتواصل الحقيقي</h3>
+          <span class="rgb-modal-close" onclick="closeQrModal()">&times;</span>
+        </div>
+        <div class="rgb-modal-body" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+          <p>افتح كاميرا هاتفك وامسح الرمز للتواصل المباشر عبر WhatsApp:</p>
+          <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F962775858328&color=c4f82a&bgcolor=1f1f1f" alt="QR Code - Alsaleh Al-Hayari" style="border: 4px solid var(--green); border-radius: 12px; width: 200px; height: 200px;">
+          <p style="font-size: 0.8rem; color: var(--green); font-weight: 700;">الصالح أحمد الحياري - 0775858328</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RGB Color Customizer Modal -->
+    <div id="rgb-modal" class="rgb-modal-overlay" style="display: none;">
+      <div class="rgb-modal-card">
+        <div class="rgb-modal-header">
+          <h3>🎨 تخصيص ألوان الموقع (RGB Customizer)</h3>
+          <span class="rgb-modal-close" onclick="closeRgbModal()">&times;</span>
+        </div>
+        <div class="rgb-modal-body">
+          <p>اختر الألوان المفضلة لديك لتخصيص الواجهة بالكامل حياً:</p>
+          
+          <div class="rgb-picker-group">
+            <label>اللون الأساسي (Primary Accent / Green):</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="picker-green" value="#c4f82a" oninput="updateRgbColor('--green', this.value)">
+              <span id="hex-green">#c4f82a</span>
+            </div>
+          </div>
+
+          <div class="rgb-picker-group">
+            <label>خلفية الصفحة (Background Color):</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="picker-black" value="#0d0d0d" oninput="updateRgbColor('--black', this.value)">
+              <span id="hex-black">#0d0d0d</span>
+            </div>
+          </div>
+
+          <div class="rgb-picker-group">
+            <label>خلفية البطاقات (Card Container):</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="picker-dark-grey" value="#1f1f1f" oninput="updateRgbColor('--dark-grey', this.value)">
+              <span id="hex-dark-grey">#1f1f1f</span>
+            </div>
+          </div>
+
+          <div class="rgb-picker-group">
+            <label>خلفية العناصر الإضافية (Off Black):</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="picker-off-black" value="#141414" oninput="updateRgbColor('--off-black', this.value)">
+              <span id="hex-off-black">#141414</span>
+            </div>
+          </div>
+
+          <div class="rgb-picker-group">
+            <label>لون النصوص (Text Color):</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="picker-white" value="#ffffff" oninput="updateRgbColor('--white', this.value)">
+              <span id="hex-white">#ffffff</span>
+            </div>
+          </div>
+
+          <div class="rgb-presets-bar">
+            <span>نماذج سريعة:</span>
+            <button class="preset-btn" onclick="applyRgbPreset('cyberpunk')" style="background: #ff0055; color: #fff;">Cyberpunk</button>
+            <button class="preset-btn" onclick="applyRgbPreset('matrix')" style="background: #00ff66; color: #000;">Matrix</button>
+            <button class="preset-btn" onclick="applyRgbPreset('neon-blue')" style="background: #00f3ff; color: #000;">Neon Blue</button>
+            <button class="preset-btn" onclick="applyRgbPreset('sunset')" style="background: #ff9900; color: #fff;">Sunset</button>
+            <button class="preset-btn" onclick="resetRgbColors()" style="background: #444; color: #fff;">إعادة الضبط 🔄</button>
+          </div>
+        </div>
       </div>
     </div>
 

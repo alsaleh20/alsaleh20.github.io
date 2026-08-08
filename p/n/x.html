@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="site_title">رناد الكلوب - أخصائية اجتماعية</title>
+    <meta name="description"
+        content="البورتفوليو الشخصي لرناد الكلوب، أخصائية اجتماعية شغوفة بالعمل المجتمعي وتمكين الأفراد.">
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content="رناد الكلوب - أخصائية اجتماعية">
+    <meta property="og:description" content="البورتفوليو الشخصي لرناد الكلوب. احجز استشارتك الآن.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+    <!-- JSON-LD Structured Data Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "رناد الكلوب",
+      "jobTitle": "أخصائية اجتماعية",
+      "description": "طالبة بكالوريوس في الخدمة الاجتماعية في جامعة البلقاء التطبيقية، شغوفة بالعمل المجتمعي وتمكين الأفراد.",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "جامعة البلقاء التطبيقية"
+      }
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- Controls (Language & Theme) -->
+    <div class="top-controls">
+        <div class="lang-switcher">
+            <button onclick="setLanguage('ar')" class="lang-btn" id="btn-ar">AR</button>
+            <button onclick="setLanguage('en')" class="lang-btn" id="btn-en">EN</button>
+            <button onclick="setLanguage('tr')" class="lang-btn" id="btn-tr">TR</button>
+            <button onclick="setLanguage('de')" class="lang-btn" id="btn-de">DE</button>
+        </div>
+        <button id="theme-toggle" onclick="toggleTheme()" class="control-btn" aria-label="Toggle Theme">
+            <svg id="theme-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Default to Moon (Light Mode Active) -->
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header / Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-image-container">
+                <div class="hero-image-wrapper">
+                    <img src="assets/images/profile.jpg" alt="رناد الكلوب - أخصائية اجتماعية"
+                        data-i18n-alt="profile_alt" id="profile-img" class="hero-image">
+                </div>
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title" data-i18n="hero_name">رناد الكلوب</h1>
+                <h2 class="hero-subtitle" data-i18n="hero_role">أخصائية اجتماعية</h2>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="openChat()" data-i18n="btn_consult">ابدأ استشارتك</button>
+                    <a href="assets/cv.pdf" target="_blank" class="btn btn-secondary" data-i18n="btn_cv">عرض
+                        السيرة الذاتية</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Section -->
+        <section class="about fade-in-section" id="about">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_about">من أنا</h2>
+                <p class="about-text" data-i18n="txt_about">
+                    طالبة بكالوريوس في الخدمة الاجتماعية في جامعة البلقاء التطبيقية، شغوفة بالعمل المجتمعي وتمكين
+                    الأفراد، وأسعى لإحداث أثر إيجابي من خلال العمل التطوعي والتدريب والتطوير المستمر.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services fade-in-section" id="services">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_services">الخدمات</h2>
+                <div class="services-grid">
+                    <div class="card service-card">
+                        <div class="service-icon">🤝</div>
+                        <h3 class="card-title" data-i18n="srv_1_title">الاستشارات الفردية</h3>
+                        <p class="card-subtitle" data-i18n="srv_1_desc">تقديم الدعم والمشورة للحالات الفردية لفهم
+                            التحديات وإيجاد حلول فعالة.</p>
+                    </div>
+                    <div class="card service-card">
+                        <div class="service-icon">📋</div>
+                        <h3 class="card-title" data-i18n="srv_2_title">إدارة الحالات</h3>
+                        <p class="card-subtitle" data-i18n="srv_2_desc">المتابعة المستمرة للحالات لضمان استقرارها وتحقيق
+                            أهداف الخطة العلاجية.</p>
+                    </div>
+                    <div class="card service-card">
+                        <div class="service-icon">💡</div>
+                        <h3 class="card-title" data-i18n="srv_3_title">التدريب وورش العمل</h3>
+                        <p class="card-subtitle" data-i18n="srv_3_desc">تقديم جلسات توعوية وتدريبية لتعزيز الصحة النفسية
+                            وتطوير المهارات المجتمعية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education fade-in-section" id="education">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_edu">التعليم</h2>
+                <a href="https://www.bau.edu.jo/" target="_blank" class="card"
+                    style="display: block; text-decoration: none; color: inherit;">
+                    <h3 class="card-title" data-i18n="edu_uni">جامعة البلقاء التطبيقية</h3>
+                    <p class="card-subtitle" style="color: var(--text-muted); margin-top: 0.5rem;" data-i18n="edu_deg">
+                        بكالوريوس خدمة اجتماعية</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="certifications fade-in-section" id="certifications">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_certs">الدورات والشهادات</h2>
+                <ul class="experience-list">
+                    <li data-i18n="cert_1">تطبيقات الذكاء الاصطناعي وبناء السيرة الذاتية (أكاديمية طلال أبو غزالة)</li>
+                    <li data-i18n="cert_2">دورة TOT (تدريب المدربين)</li>
+                    <li data-i18n="cert_3">دورة إدارة المشاريع المجتمعية</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience fade-in-section" id="experience">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_exp">الخبرات والتطوع</h2>
+                <ul class="experience-list">
+                    <li>
+                        <span data-i18n="exp_1" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">مبادرة
+                            بادر ونحن معك</span>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <a href="https://www.instagram.com/bader_nahno/" target="_blank"
+                                class="btn btn-secondary"
+                                style="padding: 0.3rem 0.8rem; font-size: 0.85rem; border-width: 1px; background: #E1306C; color: white; border-color: #E1306C;"
+                                data-i18n="exp_1_ig">
+                                انستغرام المبادرة
+                            </a>
+                            <a href="https://www.nahno.org/opportunity-initiative-details/1126" target="_blank"
+                                class="btn btn-secondary"
+                                style="padding: 0.3rem 0.8rem; font-size: 0.85rem; border-width: 1px; background: #00BFA5; color: white; border-color: #00BFA5;"
+                                data-i18n="exp_1_nahno">
+                                صفحة المبادرة على نحن
+                            </a>
+                        </div>
+                    </li>
+                    <li style="list-style-type: none; margin: 0.5rem 0;">
+                        <a href="https://www.nahno.org/user/%D8%B1%D9%86%D8%A7%D8%AF-%D8%A7%D9%84%D9%83%D9%84%D9%88%D8%A8-167680"
+                            target="_blank" class="btn btn-primary"
+                            style="padding: 0.4rem 1rem; font-size: 0.9rem; display: inline-block; text-decoration: none;"
+                            data-i18n="exp_2">
+                            سفيرة ومتطوعة (700+ ساعة)
+                        </a>
+                    </li>
+                    <li data-i18n="exp_3">تدريب بالصحة النفسية لـ 40 شاب وشابة</li>
+                    <li data-i18n="exp_4">مدربة برنامج داخل جامعة البلقاء</li>
+                    <li data-i18n="exp_5">تطوع مع منظمة iDare</li>
+                    <li data-i18n="exp_6">تسويق لوجستي</li>
+                    <li data-i18n="exp_7">تسجيل كتب صوتية لمكفوفين</li>
+                    <li data-i18n="exp_8">فعاليات وطنية ومجتمعية</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills fade-in-section" id="skills">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_skills">المهارات</h2>
+                <div class="tags-container">
+                    <span class="tag" data-i18n="sk_1">إدارة الوقت</span>
+                    <span class="tag" data-i18n="sk_2">العمل تحت الضغط</span>
+                    <span class="tag" data-i18n="sk_3">التواصل الفعال</span>
+                    <span class="tag" data-i18n="sk_4">القيادة</span>
+                    <span class="tag" data-i18n="sk_5">العمل الجماعي</span>
+                    <span class="tag" data-i18n="sk_6">استخدام التكنولوجيا</span>
+                    <span class="tag" data-i18n="sk_7">الإبداع وحل المشكلات</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section class="languages fade-in-section" id="languages">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_langs">اللغات</h2>
+                <div class="tags-container">
+                    <span class="tag" data-i18n="lang_ar">العربية (ممتاز)</span>
+                    <span class="tag" data-i18n="lang_en">الإنجليزية (جيد)</span>
+                    <span class="tag" data-i18n="lang_tr">التركية (جيد)</span>
+                    <span class="tag" data-i18n="lang_de">الألمانية (جيد)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials fade-in-section" id="testimonials">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_testimonials">آراء المستفيدين</h2>
+                <div class="testimonials-grid">
+                    <div class="card testimonial-card">
+                        <p class="testimonial-text" data-i18n="test_1_txt">"رناد تتميز بشغفها الكبير واحترافيتها العالية
+                            في التعامل، وكان لها أثر واضح في مبادراتنا."</p>
+                        <h4 class="testimonial-author" data-i18n="test_1_author">- زميل متطوع</h4>
+                    </div>
+                    <div class="card testimonial-card">
+                        <p class="testimonial-text" data-i18n="test_2_txt">"التدريب كان ملهماً جداً، أسلوب رناد في إيصال
+                            المعلومات سلس ومؤثر."</p>
+                        <h4 class="testimonial-author" data-i18n="test_2_author">- متدرب في ورشة العمل</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog/Tips Section -->
+        <section class="blog fade-in-section" id="blog">
+            <div class="container">
+                <h2 class="section-title" data-i18n="sec_blog">مقطوفات ونصائح</h2>
+                <div class="blog-grid">
+                    <div class="card blog-card">
+                        <h3 class="card-title" data-i18n="blog_1_title">أهمية الصحة النفسية للشباب</h3>
+                        <p class="card-subtitle" style="margin-top: 0.5rem;" data-i18n="blog_1_desc">خطوات بسيطة يومية
+                            تساعد في الحفاظ على التوازن النفسي في ظل ضغوط الدراسة والعمل.</p>
+                    </div>
+                    <div class="card blog-card">
+                        <h3 class="card-title" data-i18n="blog_2_title">العمل التطوعي وتطوير الذات</h3>
+                        <p class="card-subtitle" style="margin-top: 0.5rem;" data-i18n="blog_2_desc">كيف يمكن للتطوع أن
+                            يصقل مهاراتك الشخصية ويفتح لك آفاقاً مهنية جديدة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / Social Links -->
+    <footer class="footer fade-in-section">
+        <div class="container text-center">
+            <h2 class="section-title" data-i18n="sec_contact">تواصل معي</h2>
+            <div class="social-links">
+                <a href="https://wa.me/962776602353" target="_blank" class="social-btn" aria-label="WhatsApp">
+                    <!-- WhatsApp SVG Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.4 8.38 8.38 0 0 1 3.8.9L21 4.25z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="mailto:renadkloub66@gmail.com" class="social-btn" aria-label="Email">
+                    <!-- Email SVG Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/renadalkloub?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <!-- LinkedIn SVG Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/renad_kl04?igsh=bWpiZzJuZWVuYnZq" target="_blank" class="social-btn"
+                    aria-label="Instagram">
+                    <!-- Instagram SVG Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Developer Credit -->
+        <div class="developer-credit">
+            <span data-i18n="dev_credit" style="font-size: 0.9rem; color: var(--text-muted);">تم تطوير هذه الصفحة من
+                قبل</span><br>
+            <a href="https://www.instagram.com/k_alsaleh20_/" target="_blank"
+                style="font-size: 1.2rem; display: inline-block; margin-top: 0.3rem; font-weight: bold; color: var(--primary-color); text-decoration: none;">الصالح
+                حياري</a><br>
+            <a href="https://wa.me/962779511729" target="_blank" dir="ltr"
+                style="font-size: 1.1rem; display: inline-block; margin-top: 0.2rem; font-weight: bold; color: var(--primary-color); text-decoration: none;">0779511729</a>
+        </div>
+    </footer>
+
+    <!-- Chat Assistant Widget -->
+    <div id="chat-widget" class="chat-widget hidden">
+        <div class="chat-header">
+            <h3 data-i18n="chat_title">المساعد الذكي</h3>
+            <button onclick="closeChat()" class="close-chat" aria-label="إغلاق">&times;</button>
+        </div>
+        <div class="chat-body" id="chat-messages">
+            <!-- Messages will be injected here via JS -->
+        </div>
+        <div class="chat-footer">
+            <form id="chat-form" onsubmit="handleChatSubmit(event)">
+                <input type="text" id="chat-input" placeholder="اكتب ردك هنا..." autocomplete="off"
+                    data-i18n-placeholder="chat_placeholder">
+                <button type="submit" id="chat-submit" class="send-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <button class="chat-fab" onclick="openChat()" aria-label="فتح المحادثة">
+        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <!-- Vanilla JS -->
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

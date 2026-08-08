@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أشرف الدباس | خبير الإعلام الرقمي</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #000510;
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --text: #ffffff;
+            --muted: #a4b0be;
+            --card: rgba(255, 255, 255, 0.05);
+            --border: rgba(0, 210, 255, 0.2);
+            --gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 10%, rgba(0, 210, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+
+        /* Header */
+        header {
+            padding: 25px 0;
+            background: rgba(0, 5, 16, 0.9);
+            backdrop-filter: blur(20px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            text-align: center;
+            position: relative;
+        }
+        .hero::after {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 600px; height: 600px; background: var(--primary); opacity: 0.1; filter: blur(150px); z-index: -1;
+        }
+
+        .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.2; margin-bottom: 25px; }
+        .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.3rem; color: var(--muted); max-width: 800px; margin: 0 auto 40px; }
+
+        .btn-media {
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--gradient);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.3);
+            transition: 0.4s;
+        }
+        .btn-media:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 20px 45px rgba(0, 210, 255, 0.4); }
+
+        /* Services Grid */
+        section { padding: 120px 0; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 15px; }
+        .section-header h2 span { color: var(--primary); }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 45px;
+            border-radius: 30px;
+            text-align: center;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+        .service-card:hover { background: rgba(0, 210, 255, 0.05); border-color: var(--primary); transform: translateY(-10px); }
+        .service-card i { font-size: 3rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px; }
+        .service-card h3 { font-size: 1.6rem; margin-bottom: 15px; }
+
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); }
+        .back-hub { color: var(--primary); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ASHRAF DABAS</div>
+                <ul style="display: flex; gap: 30px; list-style: none;">
+                    <li><a href="#services" style="color: #fff; text-decoration: none; font-weight: 700;">خدماتي</a></li>
+                    <li><a href="../../index.html" style="color: var(--primary); text-decoration: none; font-weight: 900;">المركز الرئيسي <i class="fas fa-th"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div style="display: inline-block; padding: 10px 25px; border: 1px solid var(--primary); border-radius: 50px; color: var(--primary); font-weight: 900; font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 2px;">
+                نحن نصنع التأثير الرقمي ⚡
+            </div>
+            <h1>رؤية <span>إعلامية</span> تصنع الفرق.. ومحتوى يتصدر المشهد!</h1>
+            <p>الإعلامي وخبير السوشال ميديا أشرف الدباس. أساعدك على بناء حضور رقمي قوي، إدارة منصاتك باحترافية، وتوثيق حساباتك للوصول إلى القمة.</p>
+            <a href="#" class="btn-media">ابدأ رحلة النجاح الآن <i class="fas fa-arrow-left"></i></a>
+        </div>
+    </section>
+
+    <section id="experience" style="background: rgba(0, 210, 255, 0.02);">
+        <div class="container">
+            <div class="section-header">
+                <h2>المسار <span>الإعلامي</span></h2>
+                <p>خبرة مهنية في كبرى المؤسسات الإعلامية والتقنية</p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                <div class="service-card" style="text-align: right; padding: 30px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <h3 style="color: var(--primary);">خبير صناعة محتوى - Freelance</h3>
+                        <span style="color: var(--muted);">2020 - الحاضر</span>
+                    </div>
+                    <p>إدارة الحسابات الشخصية للمشاهير والشركات، بناء الهوية الرقمية، وتوثيق الحسابات بالعلامة الزرقاء.</p>
+                </div>
+                <div class="service-card" style="text-align: right; padding: 30px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <h3 style="color: var(--primary);">معد ومقدم برامج</h3>
+                        <span style="color: var(--muted);">2018 - 2022</span>
+                    </div>
+                    <p>تقديم برامج إذاعية وتلفزيونية متنوعة تركز على قضايا الشباب والتكنولوجيا، والقيام بمقابلات حصرية مع شخصيات مؤثرة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>من هو <span>أشرف الدباس</span>؟</h2>
+            </div>
+            <div style="background: var(--card); border: 1px solid var(--border); padding: 50px; border-radius: 40px;">
+                <p style="font-size: 1.2rem; color: var(--muted); margin-bottom: 30px;">أنا شخص مبتكر وخبير في عالم الإعلام والتواصل الاجتماعي، لدي شغف كبير بكتابة المحتوى والمونتاج. أتمتع بشهرة على منصات التواصل الاجتماعي، وأعشق تصميم الجرافيك وتقديم الأفكار الجديدة والمتنوعة.</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                        <span>مدرب معتمد TOT</span>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                        <span>خبير مونتاج احترافي</span>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                        <span>إدارة حملات ممولة</span>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                        <span>بناء هويات بصرية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 الإعلامي أشرف الدباس. جميع الحقوق محفوظة.</p>
+            <a href="../../index.html" class="back-hub">العودة للموقع الرئيسي <i class="fas fa-long-arrow-alt-left"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

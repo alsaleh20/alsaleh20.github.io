@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root {
+    --primary: #5C4033; /* Deep Roast */
+    --accent: #D4A373; /* Golden Crema */
+    --bg-dark: #1A0F0A; /* Espresso Black */
+    --bg-light: #F5E6CA; /* Latte Beige */
+    --text-main: #E5E5E5;
+    --text-muted: #AFAFAF;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+}
+
+/* --- Layout --- */
+
+section {
+    padding: 100px 10%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition);
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Header & Hero --- */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(26, 15, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(26, 15, 10, 0.7), rgba(26, 15, 10, 0.9)), url('./coffee_hero.png') center/cover no-repeat;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    color: var(--text-muted);
+}
+
+.cta-btn {
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: var(--accent);
+    color: var(--bg-dark);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    border: 2px solid var(--accent);
+}
+
+.cta-btn:hover {
+    background: transparent;
+    color: var(--accent);
+}
+
+/* --- Content Cards --- */
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* --- Skills & badges --- */
+
+.skill-tag {
+    display: inline-block;
+    padding: 8px 15px;
+    background: rgba(212, 163, 115, 0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 10px;
+    margin: 5px;
+    font-size: 0.85rem;
+}
+
+.experience-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* --- Footer --- */
+
+footer {
+    padding: 50px 10%;
+    background: #000;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+}
+
+.contact-links {
+    margin-top: 20px;
+}
+
+.contact-links a {
+    color: var(--accent);
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+/* --- Animations --- */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 3rem; }
+    section { padding: 60px 5%; }
+}

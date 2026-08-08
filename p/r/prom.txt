@@ -1,0 +1,124 @@
+Project Overview:
+You are tasked with building a high-end, dynamic, and fully responsive Portfolio and CV Website for "Raad Yaser Al Arabiyat", an experienced Hospitality and Operations Manager.
+This project must be built entirely from scratch using Native PHP 8+ (OOP approach), MySQL (PDO), HTML5, CSS3 (Vanilla, CSS Variables), and Vanilla JavaScript. NO external frameworks like Laravel, React, or Bootstrap are allowed.
+
+Core Directives & Coding Standards:
+
+Code Explanations (CRITICAL): For every block of code you write, you MUST provide a detailed explanatory comment explaining what the code does and why it was written this way.
+
+Security First: You must implement PDO with prepared statements to prevent SQL Injection, htmlspecialchars() to prevent XSS, and basic CSRF token protection for the contact form and dashboard login.
+
+Clean Architecture: Implement a modular MVC-like structure (Separation of logic from presentation).
+
+1. Features & Mechanics
+A. Advanced Dual Language System (i18n):
+
+Full support for Arabic (RTL) and English (LTR).
+
+Language files must be stored as PHP Arrays (lang/ar.php, lang/en.php).
+
+Language preference saved via PHP $_SESSION and a fallback to browser default.
+
+The entire DOM structure (dir, CSS alignments) must dynamically flip based on the active language.
+
+B. Advanced Theme Toggle (Dark/Light Mode):
+
+Dark Mode (Hospitality Luxury): Charcoal blacks, gold accents, and elegant typography.
+
+Light Mode (Modern Clean): Crisp whites, soft grays, and navy blue accents.
+
+Managed via CSS Variables (:root and [data-theme="dark"]).
+
+Toggled via Vanilla JS and persisted in the browser's localStorage.
+
+C. Dynamic Backend & Admin Dashboard:
+
+A secure, password-protected admin area (hashed passwords using password_hash).
+
+Full CRUD (Create, Read, Update, Delete) capabilities for:
+
+Work Experience Timeline.
+
+Skills & Core Competencies.
+
+Gallery (Uploading images of managed restaurants/cafes).
+
+Basic Settings (Updating phone, email, bio, and uploading a new PDF CV).
+
+D. Frontend Layout (Single Page Application feel):
+
+Hero Section: Profile image (image_fb1467.jpg), dynamic greeting, title, and "Download CV" button pointing to a dynamic PDF path.
+
+About Section: Professional summary focused on food & beverage operations, upselling, and team leadership.
+
+Skills Grid: Dynamic progress bars or tags.
+
+Experience Timeline: Vertical chronological timeline fetched from the database.
+
+Contact Section: Secure form (Name, Email, Subject, Message) storing messages in the DB and optionally sending an email via mail().
+
+2. Project Directory Structure
+You must strictly follow this file architecture:
+
+Plaintext
+/raad_portfolio
+│
+├── /admin                  # Dashboard logic & views
+│   ├── index.php           # Admin login
+│   ├── dashboard.php       # Main dashboard hub
+│   └── actions.php         # Handlers for CRUD operations
+│
+├── /assets
+│   ├── /css
+│   │   ├── style.css       # Core styling & Variables
+│   │   ├── rtl.css         # RTL overrides for Arabic
+│   │   └── admin.css       # Dashboard styles
+│   ├── /js
+│   │   ├── main.js         # Theme toggle & UI interactions
+│   │   └── ajax.js         # Form submissions
+│   ├── /img                # Profile, Gallery, Icons
+│   └── /cv                 # Uploaded PDF files
+│
+├── /includes
+│   ├── db.php              # PDO Connection & Singleton
+│   ├── functions.php       # Helper functions (security, routing)
+│   ├── header.php          # Frontend Header (Nav, i18n, Theme toggles)
+│   └── footer.php          # Frontend Footer
+│
+├── /lang
+│   ├── ar.php              # Arabic dictionary
+│   └── en.php              # English dictionary
+│
+├── index.php               # Main Frontend Entry Point
+└── db_schema.sql           # Database creation queries
+3. Database Schema Blueprint
+You will need to create the following tables:
+
+users (id, username, password_hash) - For admin access.
+
+experiences (id, title_ar, title_en, company_ar, company_en, start_date, end_date, is_current).
+
+skills (id, skill_name_ar, skill_name_en, percentage).
+
+settings (id, key_name, value) - For email, phone, CV file path.
+
+messages (id, name, email, message, created_at).
+
+4. Execution & Delivery Protocol
+This is a massive project, so DO NOT write all the code at once. We will execute this step-by-step.
+
+For your first response, you must ONLY complete STEP 1:
+
+STEP 1: Database & Core Configuration
+
+Provide the complete db_schema.sql file.
+
+Provide the /includes/db.php file using a secure PDO connection with comprehensive Arabic/English comments explaining the connection parameters.
+
+Provide the /lang/ar.php and /lang/en.php files containing the initial dictionary.
+
+Provide the logic in functions.php to handle Language detection and switching.
+
+Wait for my command ("Proceed to Step 2") before writing the HTML/CSS layout and the Theme Toggle logic.
+
+Remember: Detailed code explanations are strictly mandatory for every snippet you write.
