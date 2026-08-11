@@ -3,16 +3,24 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d0d0d">
     <meta name="description" content="الصفحة الشخصية ومعرض المشاريع الخاصة بالصالح أحمد الحياري - خبير إدارة سيرفرات، أتمتة n8n، وتطوير الويب.">
+    <meta property="og:title" content="الصفحة الشخصية والمشاريع - الصالح حياري">
+    <meta property="og:description" content="خبير إدارة سيرفرات، أتمتة n8n، وتطوير الويب.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images.jpeg">
     <title>الصفحة الشخصية والمشاريع - الصالح حياري</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="wrapper">
       <!-- البطاقة التعريفية -->
       <main class="card">
-        <img class="avatar" src="images.jpeg" onerror="this.onerror=null; this.src='https://github.com/alsaleh20.png';" alt="الصورة الشخصية - الصالح أحمد الحياري">
+        <img class="avatar" loading="lazy" decoding="async" src="images.jpeg" onerror="this.onerror=null; this.src='https://github.com/alsaleh20.png';" alt="الصورة الشخصية - الصالح أحمد الحياري">
         <h1 class="name">الصالح أحمد الحياري</h1>
         <p class="location">الأردن</p>
         <p class="bio">"إدارة سيرفرات | أتمتة n8n | تطوير ويب"</p>
@@ -35,6 +43,7 @@
         </div>
 
         <nav class="links">
+          <a class="link" href="#random-creations" style="border: 1px solid var(--green); color: var(--green); background-color: rgba(196, 248, 42, 0.1);">🎨 إبداعات مختارة (4 مشاريع)</a>
           <a class="link" href="https://github.com/alsaleh20" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="link" href="https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a class="link" href="https://khamsat.com/user/alsaleh20" target="_blank" rel="noopener noreferrer">خمسات</a>
@@ -297,6 +306,56 @@
           </div>
         </section>
 
+        <!-- بوكس إبداعات عشوائية الخفيف والسريع -->
+        <section class="projects-section" id="random-creations">
+          <h2 class="section-title">إبداعات عشوائية 🎨</h2>
+          <div class="projects-grid" id="random-creations-grid">
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="pro_frontends/goldenmeal/index.html" target="_blank" rel="noopener noreferrer">Golden Meal</a>
+              </h3>
+              <p class="project-desc">تطبيق وجبات طعام وتصميم واجهة تفاعلية.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
+                <span class="project-stars">🌐 معاينة المباشرة</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="pro_frontends/ZO1/index.html" target="_blank" rel="noopener noreferrer">ZO1 - الأكاديمية</a>
+              </h3>
+              <p class="project-desc">تصميم واجهة المنصة التعليمية والأكاديمية.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
+                <span class="project-stars">🌐 معاينة المباشرة</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="pro_frontends/ide cood/frontend/index.html" target="_blank" rel="noopener noreferrer">IDE Code</a>
+              </h3>
+              <p class="project-desc">واجهة بيئة تطوير برمجية كود ومحرر نصوص.</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
+                <span class="project-stars">🌐 معاينة المباشرة</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <h3 class="project-title">
+                <a href="pro_frontends/alsalseh_paey/" target="_blank" rel="noopener noreferrer">alsalseh_paey</a>
+              </h3>
+              <p class="project-desc">مشروع إدارة وتسهيل عمليات الدفع والتدفق المالي (PayFlow).</p>
+              <div class="project-meta">
+                <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
+                <span class="project-stars">🌐 معاينة المباشرة</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- بوكس حاسبة وفر وتوفير الأتمتة التفاعلية (Automation ROI & Time Saved Calculator) -->
         <section class="projects-section">
           <h2 class="section-title">حاسبة توفير الوقت والمال بالأتمتة 🧮</h2>
@@ -321,21 +380,20 @@
               </div>
             </div>
 
-            <!-- النتيجة المباشرة للحاسبة -->
             <div class="roi-result-card">
               <div class="roi-stat-item">
-                <span class="roi-label">الساعات الموفرة شهرياً:</span>
-                <span class="roi-value" id="roi-saved-hours">96 ساعة ⏳</span>
+                <span class="roi-label">الوقت الموفر شهرياً:</span>
+                <span class="roi-value" id="roi-saved-hours">0 ساعة ⏳</span>
               </div>
               <div class="roi-stat-item highlight">
-                <span class="roi-label">التوفير المالي الشري التقديري:</span>
-                <span class="roi-value" id="roi-saved-money">$960 دولار 💰</span>
+                <span class="roi-label">التوفير المالي الشهري:</span>
+                <span class="roi-value" id="roi-saved-money">$0 دولار 💰</span>
               </div>
             </div>
           </div>
         </section>
 
-        </section>
+        <!-- نهاية العمود الأيسر -->
       </div>
     </div>
 
@@ -351,7 +409,7 @@
         </div>
         <div class="rgb-modal-body" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
           <p>افتح كاميرا هاتفك وامسح الرمز للتواصل المباشر عبر WhatsApp:</p>
-          <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F962775858328&color=c4f82a&bgcolor=1f1f1f" alt="QR Code - Alsaleh Al-Hayari" style="border: 4px solid var(--green); border-radius: 12px; width: 200px; height: 200px;">
+          <img id="qr-img" loading="lazy" decoding="async" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F962775858328&color=c4f82a&bgcolor=1f1f1f" alt="QR Code - Alsaleh Al-Hayari" style="border: 4px solid var(--green); border-radius: 12px; width: 200px; height: 200px;">
           <p style="font-size: 0.8rem; color: var(--green); font-weight: 700;">الصالح أحمد الحياري - 0775858328</p>
         </div>
       </div>

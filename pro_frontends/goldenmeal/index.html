@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوجبة الذهبية - Golden Meal | تجربة خارجة عن المألوف</title>
+    <meta name="description" content="الوجبة الذهبية - الموقع الفاخر بنظام بينتو التفاعلي ومحاكي الأطباق ثلاثي الأبعاد. اطلب الآن مباشرة لواتساب.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="immersive-theme">
+
+    <!-- Immersive Interactive Custom Cursor & Glow effects -->
+    <div class="glow-point" id="ambient-mouse-glow"></div>
+    <div class="cyber-cursor" id="custom-cursor"></div>
+    <div class="cyber-cursor-dot" id="custom-cursor-dot"></div>
+
+    <!-- Floating Food Ingredients (Parallax Elements) -->
+    <div class="floating-ingredient leaf-1">🍃</div>
+    <div class="floating-ingredient chili-1">🌶️</div>
+    <div class="floating-ingredient seed-1">✨</div>
+    <div class="floating-ingredient garlic-1">🧄</div>
+
+    <!-- Interactive Navigation Bar (Glassmorphic Floating Navbar) -->
+    <header class="cyber-navbar">
+        <div class="nav-container">
+            <a href="#" class="cyber-logo">
+                <span class="logo-glow-text" data-key="brand-name">الوجبة الذهبية</span>
+                <span class="logo-dot">.</span>
+            </a>
+            
+            <nav class="nav-links-wrap">
+                <ul>
+                    <li><a href="#hero-bento" class="active" data-key="nav-home">الرئيسية</a></li>
+                    <li><a href="#showcase-bento" data-key="nav-showcase">الطبق الدوار</a></li>
+                    <li><a href="#menu-bento" data-key="nav-menu">قائمة الطعام</a></li>
+                    <li><a href="#branches-bento" data-key="nav-branches">الفروع</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-buttons">
+                <!-- Search Box -->
+                <div class="nav-search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="bento-search" placeholder="ابحث..." data-key="search-placeholder">
+                </div>
+                <!-- Language switcher -->
+                <button id="lang-switch" class="lang-switch-btn">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="lang-text">EN</span>
+                </button>
+                <!-- Cart widget trigger -->
+                <button class="cart-trigger-btn" id="open-cart-btn">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-count-badge" id="cart-counter">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN IMMERSIVE BENTO GRID LAYOUT -->
+    <main class="bento-wrapper container">
+        
+        <!-- BENTO ITEM 1: HERO DISPLAY (Wide) -->
+        <section class="bento-card bento-hero" id="hero-bento">
+            <div class="bento-hero-inner">
+                <span class="cyber-badge" data-key="hero-welcome">🔥 طعم أصيل بلون الموجة الذهبية</span>
+                <h1 class="hero-main-title">
+                    <span data-key="hero-title-1">الوجبة الذهبية</span>
+                    <span class="red-gold-gradient" data-key="hero-title-2">اختبر الطعم الأصلي</span>
+                </h1>
+                <p class="hero-lead" data-key="hero-subtitle">
+                    مرحباً بك في عالم المذاق المبتكر. شاورما مشوية بامتياز، بروستد ذهبي فائق القرمشة، ومشاوي بنكهات شرقية مميزة.
+                </p>
+                <div class="hero-actions">
+                    <a href="#menu-bento" class="btn-cyber-primary" data-key="hero-cta-order">اطلب الآن 🚀</a>
+                    <a href="#branches-bento" class="btn-cyber-outline" data-key="hero-cta-branches">الفروع 📍</a>
+                </div>
+            </div>
+            <div class="bento-card-bg-glow"></div>
+        </section>
+
+        <!-- BENTO ITEM 2: ROTATING GOLDEN PLATTER SHOWCASE (Large visual center) -->
+        <section class="bento-card bento-showcase" id="showcase-bento">
+            <h3 class="bento-title"><i class="fa-solid fa-circle-notch fa-spin text-red"></i> <span data-key="showcase-title">الطبق الدوار التفاعلي</span></h3>
+            
+            <div class="platter-interactive-container">
+                <div class="platter-orbit">
+                    <div class="platter-glow"></div>
+                    <!-- CSS Food Platter Mockup -->
+                    <div class="golden-plate" id="interactive-plate">
+                        <div class="plate-inner">
+                            <img src="assets/chicken_hero.jpg" alt="Active Food" id="plate-food-img">
+                            <span class="plate-steam"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="platter-info-box">
+                    <h4 id="platter-item-title">دجاج بروستد الموجة الذهبية</h4>
+                    <p id="platter-item-desc">قطع دجاج طازجة مقرمشة محضرة بالتوابل السرية اللذيذة.</p>
+                    <div class="platter-item-meta">
+                        <span class="platter-price" id="platter-item-price">8.50 د.ا</span>
+                        <button class="btn-cyber-primary add-platter-btn" id="add-platter-to-cart"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENTO ITEM 3: DYNAMIC STATISTICS (Small stats grid) -->
+        <section class="bento-card bento-stats">
+            <div class="stats-grid-inner">
+                <div class="stat-box">
+                    <span class="stat-value text-red">100%</span>
+                    <span class="stat-label" data-key="stat-fresh">طازج يومياً</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value text-gold">15+</span>
+                    <span class="stat-label" data-key="stat-experience">عاماً من الخبرة</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value text-white">4.9★</span>
+                    <span class="stat-label" data-key="stat-reviews">تقييم العملاء</span>
+                </div>
+            </div>
+            <div class="bento-card-bg-glow"></div>
+        </section>
+
+        <!-- BENTO ITEM 4: INTERACTIVE MENU CATEGORIES (Horizontal Selector) -->
+        <section class="bento-card bento-categories">
+            <h3 class="bento-title" data-key="cats-title">اختر الفئة المفضلة</h3>
+            <div class="bento-cats-scroll" id="bento-categories-list">
+                <!-- Dynamically populated categories -->
+            </div>
+        </section>
+
+        <!-- BENTO ITEM 5: FOOD ITEMS MENU DISPLAY -->
+        <section class="bento-card bento-menu" id="menu-bento">
+            <div class="menu-header-bento">
+                <h3 class="bento-title" data-key="products-title">قائمة الطعام</h3>
+                <span class="bento-count-badge" id="menu-items-count">6 وجبات</span>
+            </div>
+            <div class="bento-products-grid" id="bento-products-container">
+                <!-- Products loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- BENTO ITEM 6: WHATSAPP QUICK ORDER BUILDER (Live Sidebar Widget) -->
+        <section class="bento-card bento-cart-preview">
+            <h3 class="bento-title"><i class="fa-solid fa-basket-shopping text-gold"></i> <span data-key="cart-title">سلة المشتريات</span></h3>
+            
+            <div class="bento-cart-items" id="bento-cart-wrapper">
+                <div class="cart-empty-state" data-key="cart-empty">السلة فارغة حالياً. اضف وجبتك المفضلة!</div>
+            </div>
+
+            <div class="bento-cart-totals">
+                <div class="total-row">
+                    <span data-key="cart-total">المجموع الإجمالي:</span>
+                    <span class="total-price-val text-gold" id="bento-cart-total">0.00 د.ا</span>
+                </div>
+                <button class="btn-whatsapp-checkout btn-block" id="bento-checkout-btn">
+                    <i class="fa-brands fa-whatsapp"></i> <span data-key="btn-checkout">إرسال الطلب للواتساب</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- BENTO ITEM 7: BRANCH LOCATIONS MAP SIMULATOR -->
+        <section class="bento-card bento-locations" id="branches-bento">
+            <h3 class="bento-title" data-key="branches-title">فروعنا</h3>
+            <div class="bento-locations-split">
+                <div class="locations-btns" id="bento-locations-list">
+                    <div class="bento-loc-btn active" data-branch="amman">
+                        <h4>فرع عمان الرئيسي</h4>
+                        <p>شارع المدينة المنورة - دوار الواحة</p>
+                    </div>
+                    <div class="bento-loc-btn" data-branch="salt">
+                        <h4>فرع السلط</h4>
+                        <p>شارع الستين - إطلالة بانورامية</p>
+                    </div>
+                </div>
+                
+                <div class="loc-map-preview">
+                    <!-- Map Simulation Visuals -->
+                    <div class="map-visual-box active" id="bento-map-amman">
+                        <span class="cyber-pin"><i class="fa-solid fa-location-crosshairs text-red"></i></span>
+                        <div class="map-mini-popup">عمان - دوار الواحة</div>
+                    </div>
+                    <div class="map-visual-box" id="bento-map-salt">
+                        <span class="cyber-pin"><i class="fa-solid fa-location-crosshairs text-gold"></i></span>
+                        <div class="map-mini-popup">السلط - شارع الستين</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENTO ITEM 8: NEWSLETTER & EMPLOYMENT WIDGET (Compact Box) -->
+        <section class="bento-card bento-newsletter">
+            <h3 class="bento-title" data-key="footer-news-title">النشرة البريدية</h3>
+            <p class="desc" data-key="footer-news-desc">اشترك لتلقي أحدث العروض والوجبات الحصرية.</p>
+            <form id="bento-news-form" class="cyber-form">
+                <div class="form-row">
+                    <input type="email" placeholder="بريدك الإلكتروني..." required id="bento-news-email">
+                    <button type="submit" class="btn-cyber-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </form>
+            <div id="news-status-msg" class="news-status"></div>
+        </section>
+
+    </main>
+
+    <!-- IMMERSIVE FOOTER -->
+    <footer class="cyber-footer">
+        <div class="container footer-content-inner">
+            <div class="footer-left">
+                <h3>الوجبة الذهبية<span class="text-red">.</span></h3>
+                <p>&copy; 2026 الوجبة الذهبية. جميع الحقوق محفوظة لـ OS.losefar (alsaleh20)</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-social-wrap">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Core -->
+    <script src="app.js"></script>
+</body>
+</html>

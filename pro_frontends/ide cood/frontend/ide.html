@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiary cood - IDE</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .ide-container {
+            display: grid;
+            grid-template-rows: 60px 1fr 200px;
+            height: 100vh;
+            color: white;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .topbar {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .editor-section {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+
+        #monaco-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .metrics-section {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .metric-card {
+            text-align: center;
+        }
+
+        .metric-title {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            font-family: monospace;
+        }
+
+        /* Chart SVG Styling */
+        svg.chart {
+            width: 300px;
+            height: 100px;
+            border-bottom: 1px solid var(--glass-border);
+            border-left: 1px solid var(--glass-border);
+        }
+
+        polyline {
+            fill: none;
+            stroke: var(--accent-orange);
+            stroke-width: 2;
+        }
+
+        .ram-line {
+            stroke: #8b5cf6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ide-container">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div>
+                <strong data-i18n="ide_workspace">Workspace:</strong> <span id="workspaceId"
+                    style="color: var(--accent-orange);">loading...</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <button class="btn-secondary" onclick="window.location.href='/dashboard.html'" data-i18n="ide_back">Back
+                    to Dashboard</button>
+            </div>
+        </header>
+
+        <!-- Editor Server -->
+        <main class="editor-section spatial-container" style="height: auto; flex-direction: column;">
+            <div
+                style="padding: 10px 15px; background: rgba(0,0,0,0.4); border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 15px;">
+                    <span
+                        style="font-family: monospace; color: var(--text-muted); font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 6px;">index.js</span>
+                </div>
+                <!-- Language Switcher moved directly above the code editor -->
+                <div id="langContainerIde"></div>
+            </div>
+            <div id="monaco-container" style="flex: 1; width: 100%;"></div>
+            <!-- Notification Overlay -->
+            <div id="lspNotification"
+                style="position: absolute; bottom: 20px; right: 20px; background: rgba(0, 122, 255, 0.2); border: 1px solid rgba(0, 122, 255, 0.5); padding: 10px 20px; border-radius: 8px; display: none; color: #fff; backdrop-filter: blur(10px);">
+                Connected to LSP Tunnel
+            </div>
+        </main>
+
+        <!-- Live Metrics via WebSockets -->
+        <footer class="metrics-section">
+            <div class="metric-card">
+                <div class="metric-title" data-i18n="ide_cpu">CPU USAGE (%)</div>
+                <div class="metric-value" id="cpuValue">--</div>
+                <svg class="chart" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polyline id="cpuChartLine" points="0,100" />
+                </svg>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title" data-i18n="ide_ram">RAM USAGE (MB)</div>
+                <div class="metric-value" id="ramValue" style="color: #8b5cf6;">--</div>
+                <svg class="chart" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polyline class="ram-line" id="ramChartLine" points="0,100" />
+                </svg>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Monaco Editor Scripts via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const containerId = params.get('containerId') || 'Default';
+        document.getElementById('workspaceId').innerText = containerId;
+
+        // Check Auth using n8n-like /api/users/me logic
+        async function checkAuth() {
+            try {
+                const res = await fetch('/api/users/me');
+                if (!res.ok) throw new Error("Not Authenticated");
+            } catch (e) {
+                console.warn("Not authenticated. Redirecting.");
+                window.location.href = '/index.html';
+            }
+        }
+        checkAuth();
+
+        // Initialize Monaco
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            window.editor = monaco.editor.create(document.getElementById('monaco-container'), {
+                value: [
+                    '// Welcome to hiary cood.',
+                    '// This editor is bridged to a secure Docker sandbox.',
+                    '',
+                    'function runAgent() {',
+                    '    console.log("Agent started...");',
+                    '}',
+                    '',
+                    'runAgent();'
+                ].join('\n'),
+                language: 'javascript',
+                theme: 'vs-dark',
+                automaticLayout: true,
+                minimap: { enabled: false },
+                fontFamily: 'SF Pro Display, Consolas, monospace'
+            });
+
+            // Setup LSP Tunnel WebSockets
+            setupLSP();
+        });
+
+        function setupLSP() {
+            const wsLsp = new WebSocket(`ws://${window.location.host}/api/lsp/bridge?id=${containerId}`);
+
+            wsLsp.onopen = () => {
+                console.log("LSP Tunnel Open");
+                wsLsp.send(JSON.stringify({ init: true, workspace: containerId }));
+            };
+
+            wsLsp.onmessage = (e) => {
+                try {
+                    const msg = JSON.parse(e.data);
+                    if (msg.method === "window/logMessage") {
+                        const notif = document.getElementById('lspNotification');
+                        notif.innerText = msg.params.message;
+                        notif.style.display = 'block';
+                        setTimeout(() => notif.style.opacity = 0, 3000);
+                    }
+                } catch (e) { }
+            };
+
+            // Simulate typing sending sync
+            let timeout;
+            window.editor?.onDidChangeModelContent(() => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    if (wsLsp.readyState === WebSocket.OPEN) {
+                        wsLsp.send(JSON.stringify({ method: 'textDocument/didChange' }));
+                    }
+                }, 500);
+            });
+        }
+
+        // Live Metrics Implementation
+        const wsMetrics = new WebSocket(`ws://${window.location.host}/api/metrics/stream?id=${containerId}`);
+        let cpuData = [];
+        let ramData = [];
+
+        wsMetrics.onmessage = (e) => {
+            try {
+                const msg = JSON.parse(e.data);
+                if (msg.event === 'metrics') {
+                    document.getElementById('cpuValue').innerText = msg.data.cpu;
+                    document.getElementById('ramValue').innerText = msg.data.ram;
+
+                    // Update SVG Charts
+                    updateChart(cpuData, msg.data.cpu, 'cpuChartLine', 100);
+                    updateChart(ramData, msg.data.ram, 'ramChartLine', 1000); // assume max 1000MB for scaling
+                }
+            } catch (error) { }
+        };
+
+        function updateChart(dataArr, val, elementId, maxScale) {
+            dataArr.push(parseFloat(val));
+            if (dataArr.length > 20) dataArr.shift(); // Keep last 20 points
+
+            const points = dataArr.map((v, i) => {
+                const x = (i / 19) * 100;
+                // invert y for SVG (0 is top)
+                const y = 100 - ((v / maxScale) * 100);
+                return `${x},${y}`;
+            }).join(' ');
+
+            document.getElementById(elementId).setAttribute('points', `0,100 ${points}`);
+        }
+    </script>
+    <script src="./js/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initGlassmorphismLangSwitcher('#langContainerIde');
+        });
+    </script>
+</body>
+
+</html>

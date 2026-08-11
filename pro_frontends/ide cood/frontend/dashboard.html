@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiary cood - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Dashboard Specific Styles (Spatial UI & Glassmorphism 2.0) */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            height: 100vh;
+            color: white;
+            background: radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.15), transparent 70%),
+                var(--bg-dark);
+            overflow: hidden;
+            /* perspective: 1200px; removed to fix viewport clipping */
+        }
+
+        .sidebar {
+            background: rgba(10, 5, 18, 0.4);
+            border-right: 1px solid var(--glass-border);
+            padding: 30px 20px;
+            backdrop-filter: blur(25px) saturate(180%);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar-nav {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            transform: translateZ(10px);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: var(--accent-orange);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 10px var(--accent-orange);
+        }
+
+        .main-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid transparent;
+            background: linear-gradient(90deg, var(--glass-border) 0%, transparent 100%);
+            background-size: 100% 1px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
+        /* Glassmorphism 2.0 Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+        }
+
+        /* Metallic shine border effect */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: conic-gradient(from 180deg at 50% 50%, rgba(255, 255, 255, 0.1) 0deg, rgba(255, 255, 255, 0.01) 180deg, rgba(255, 255, 255, 0.1) 360deg);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            transform: translateZ(20px) translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .server-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-dot {
+            height: 12px;
+            width: 12px;
+            background-color: #ff453a;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            box-shadow: 0 0 10px #ff453a;
+        }
+
+        .status-dot.online {
+            background-color: #32d74b;
+            box-shadow: 0 0 15px #32d74b;
+        }
+
+        /* Metrics Area */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .metric-chart {
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .metric-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--accent-blue) 0%, rgba(0, 122, 255, 0.1) 100%);
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+        }
+
+        .metric-bar.ram {
+            background: linear-gradient(180deg, var(--accent-purple) 0%, rgba(139, 92, 246, 0.1) 100%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="18" r="3"></circle>
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                        <line x1="6" y1="9" x2="6" y2="21"></line>
+                    </svg>
+                </span>
+                hiary cood
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span data-i18n="dashboard_nav">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showToast(translations[currentLang].containers_msg, 'info')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <span data-i18n="containers_nav">Containers</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showToast(translations[currentLang].metrics_msg, 'info')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span data-i18n="metrics_nav">Metrics</span>
+                </a>
+                <a href="/ide.html" class="nav-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <span data-i18n="editor_nav">محرر الأكواد</span>
+                </a>
+                <div style="flex: 1;"></div>
+
+                <!-- Language Switcher -->
+                <div style="margin-bottom: 15px; padding: 0 15px;">
+                    <div id="langContainerDash"></div>
+                </div>
+
+                <a href="#" class="nav-item" id="logoutBtn" style="color: #ff453a;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span data-i18n="logout_nav">Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content (Spatial Z-Axis Area) -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 5px;">
+                        <span data-i18n="overview_welcome">Welcome,</span> <span id="authUserName"
+                            style="color: var(--accent-orange);">Builder</span>
+                    </h2>
+                    <p style="color: var(--text-muted);" data-i18n="overview_desc">Manage your isolated n8n hubs and
+                        real-time metrics.</p>
+                </div>
+                <button class="primary-btn" id="provisionBtn" style="width: auto; padding: 12px 25px; font-size: 1rem;">
+                    <span style="margin-right: 5px;">+</span> <span data-i18n="provision_btn">Provision New Host</span>
+                </button>
+            </div>
+
+            <!-- Instance List -->
+            <div class="glass-card server-card" id="n8nInstance" style="display: none;">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div
+                        style="background: rgba(255, 80, 26, 0.1); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 80, 26, 0.2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)"
+                            stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 5px;" id="instanceName">Alpha-Node-01</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center;">
+                            <span class="status-dot"></span> <span id="instanceStatus">Initializing Container...</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <a href="#" id="openN8n" target="_blank" class="btn-secondary"
+                        style="display: none; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+                        <span style="color: var(--accent-orange);">◈</span> الدخول لـ n8n
+                    </a>
+                    <a href="#" id="openIDE" class="btn-primary"
+                        style="display: none; align-items: center; justify-content: center; gap: 8px; text-decoration: none; background: linear-gradient(135deg, #007AFF, #0056b3); box-shadow: 0 4px 14px 0 rgba(0, 122, 255, 0.39);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        محرر الأكواد
+                    </a>
+                    <button class="btn-secondary" id="deleteBtn" onclick="destroySandbox()"
+                        style="display: none; align-items: center; justify-content: center; gap: 8px; border-color: #ff453a; color: #ff453a; margin-left: auto;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Metrics Dashboard -->
+            <div class="metrics-grid" id="metricsPanel" style="display: none;">
+                <div class="glass-card">
+                    <h3 style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 10px;" data-i18n="cpu_title">
+                        CPU Load (Real-time)</h3>
+                    <div style="font-size: 2rem; font-weight: 700;" id="cpuValue">0%</div>
+                    <div class="metric-chart" id="cpuChart">
+                        <!-- Bars injected via JS -->
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <h3 style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 10px;" data-i18n="ram_title">
+                        Memory Usage</h3>
+                    <div style="font-size: 2rem; font-weight: 700;" id="ramValue">0 MB</div>
+                    <div class="metric-chart" id="ramChart">
+                        <!-- Bars injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="./js/i18n.js"></script>
+    <script>
+
+        // Check Auth using n8n-like /api/users/me logic
+        async function checkAuth() {
+            try {
+                const res = await fetch('/api/users/me');
+                if (!res.ok) throw new Error("Not Authenticated");
+                const userData = await res.json();
+
+                // Set the user's name in the UI
+                const nameSpan = document.getElementById('authUserName');
+                if (nameSpan && userData.name) {
+                    nameSpan.textContent = userData.name;
+                }
+            } catch (e) {
+                console.warn("Not authenticated. Redirecting.");
+                window.location.href = '/index.html';
+            }
+        }
+        checkAuth();
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = '/index.html';
+        });
+
+        const provisionBtn = document.getElementById('provisionBtn');
+        const n8nInstance = document.getElementById('n8nInstance');
+        const instanceStatus = document.getElementById('instanceStatus');
+        const instanceName = document.getElementById('instanceName');
+        const statusDot = document.querySelector('.status-dot');
+        const openIDE = document.getElementById('openIDE');
+        const openN8n = document.getElementById('openN8n');
+        const metricsPanel = document.getElementById('metricsPanel');
+        const deleteBtn = document.getElementById('deleteBtn');
+
+        let metricsInterval;
+
+        // Lang bindings when lang changes inside dashboard
+        document.addEventListener('langChanged', (e) => {
+            const lang = e.detail;
+            if (provisionBtn.disabled && translations.active) {
+                provisionBtn.innerHTML = translations.active[lang];
+            } else if (!provisionBtn.disabled && translations.provision_btn) {
+                provisionBtn.innerHTML = `<span style="margin-right: 5px;">+</span> <span data-i18n="provision_btn">${translations.provision_btn[lang]}</span>`;
+            }
+        });
+
+        // Toast Notification System
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.right = '30px';
+            toast.style.background = type === 'error' ? 'rgba(255, 69, 58, 0.9)' : (type === 'success' ? 'rgba(50, 215, 75, 0.9)' : 'rgba(0, 122, 255, 0.9)');
+            toast.style.color = 'white';
+            toast.style.padding = '15px 25px';
+            toast.style.borderRadius = '12px';
+            toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+            toast.style.zIndex = '9999';
+            toast.style.fontWeight = '600';
+            toast.style.backdropFilter = 'blur(10px)';
+            toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            toast.style.transform = 'translateY(50px) scale(0.9)';
+            toast.style.opacity = '0';
+            toast.innerText = message;
+
+            document.body.appendChild(toast);
+
+            // Animate In
+            setTimeout(() => {
+                toast.style.transform = 'translateY(0) scale(1)';
+                toast.style.opacity = '1';
+            }, 10);
+
+            // Animate Out
+            setTimeout(() => {
+                toast.style.transform = 'translateY(20px) scale(0.9)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // Destroy Sandbox Function
+        async function destroySandbox() {
+            const confirmDelText = translations.confirm_del ? translations.confirm_del[currentLang] : "Are you sure you want to stop and delete this workspace?";
+            const deletingText = translations.deleting ? translations.deleting[currentLang] : "Deleting... ⏳";
+            const provisionText = translations.provision_btn ? translations.provision_btn[currentLang] : "Provision New Host";
+            const delSuccessText = translations.del_success ? translations.del_success[currentLang] : "Container wiped successfully!";
+
+            if (!confirm(confirmDelText)) return;
+
+            clearInterval(metricsInterval);
+            deleteBtn.innerHTML = deletingText;
+
+            try {
+                await fetch('/api/docker/stop', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ containerId: window.currentContainerId })
+                });
+            } catch (e) { console.error(e); }
+
+            if (window.wsDashMetrics) {
+                window.wsDashMetrics.close();
+                window.wsDashMetrics = null;
+            }
+
+            setTimeout(() => {
+                n8nInstance.style.display = 'none';
+                metricsPanel.style.display = 'none';
+                provisionBtn.innerHTML = `<span style="margin-right: 5px;">+</span> <span data-i18n="provision_btn">${provisionText}</span>`;
+                provisionBtn.style.background = '';
+                provisionBtn.disabled = false;
+                showToast(delSuccessText, 'success');
+                deleteBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6 19 20a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>`;
+            }, 1500);
+        }
+
+        provisionBtn.addEventListener('click', async () => {
+            const allocText = translations.allocating ? translations.allocating[currentLang] : "Allocating Nodes...";
+            provisionBtn.innerHTML = `<span style="animation: spin 1s linear infinite; display: inline-block;">⏳</span> ${allocText}`;
+            provisionBtn.disabled = true;
+            n8nInstance.style.display = 'flex';
+            metricsPanel.style.display = 'none';
+            statusDot.className = 'status-dot';
+            instanceStatus.innerText = translations.initializing ? translations.initializing[currentLang] : 'Creating Sandbox Environment...';
+
+            try {
+                // Call Custom Backend (Cookie sent automatically)
+                const res = await fetch('/api/docker/start', {
+                    method: 'POST'
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+
+                    // Haptic feedback simulation
+                    if (navigator.vibrate) navigator.vibrate(200);
+
+                    instanceStatus.innerText = translations.running ? translations.running[currentLang] : "Container Running";
+                    statusDot.classList.add('online');
+                    instanceName.innerText = data.containerId || 'Aether-Node-01';
+                    window.currentContainerId = data.containerId;
+
+                    openIDE.style.display = 'flex';
+                    openN8n.style.display = 'flex';
+                    metricsPanel.style.display = 'grid';
+
+                    openN8n.href = data.url || 'http://localhost:5678';
+                    openIDE.href = '/ide.html?containerId=' + (data.containerId || 'demo');
+                    deleteBtn.style.display = 'flex';
+
+                    provisionBtn.innerHTML = translations.active ? translations.active[currentLang] : "Workspace Active";
+                    provisionBtn.style.background = 'rgba(255,255,255,0.1)';
+
+                    showToast(translations.prov_success ? translations.prov_success[currentLang] : "Workspace Launched Successfully!", 'success');
+
+                    startLiveMetrics();
+                } else {
+                    throw new Error("API Failed");
+                }
+            } catch (e) {
+                instanceStatus.innerText = translations.prov_failed ? translations.prov_failed[currentLang] : "Provisioning Failed";
+                const provText = translations.provision_btn ? translations.provision_btn[currentLang] : "Provision New Host";
+                provisionBtn.innerHTML = `<span style="margin-right: 5px;">+</span> <span data-i18n="provision_btn">${provText}</span>`;
+                provisionBtn.disabled = false;
+            }
+        });
+
+        // Live Metrics System
+        function startLiveMetrics() {
+            if (metricsInterval) clearInterval(metricsInterval);
+            if (window.wsDashMetrics) window.wsDashMetrics.close();
+
+            const cpuChart = document.getElementById('cpuChart');
+            const ramChart = document.getElementById('ramChart');
+
+            // Initialize empty bars
+            cpuChart.innerHTML = Array(20).fill('<div class="metric-bar" style="height: 0%"></div>').join('');
+            ramChart.innerHTML = Array(20).fill('<div class="metric-bar ram" style="height: 0%"></div>').join('');
+
+            const updateChart = (chart, val) => {
+                const bars = chart.children;
+                for (let i = 0; i < bars.length - 1; i++) {
+                    bars[i].style.height = bars[i + 1].style.height;
+                }
+                bars[bars.length - 1].style.height = `${val}%`;
+            };
+
+            window.wsDashMetrics = new WebSocket(`ws://${window.location.host}/api/metrics/stream?id=${window.currentContainerId}`);
+
+            window.wsDashMetrics.onmessage = (e) => {
+                try {
+                    const msg = JSON.parse(e.data);
+                    if (msg.event === 'metrics') {
+                        document.getElementById('cpuValue').innerText = msg.data.cpu;
+                        document.getElementById('ramValue').innerText = msg.data.ram;
+
+                        const cpuPercent = parseFloat(msg.data.cpu);
+                        // Scale RAM to a 1GB ceiling for chart
+                        const ramPercent = Math.min((parseFloat(msg.data.ram) / 1000) * 100, 100);
+
+                        updateChart(cpuChart, cpuPercent);
+                        updateChart(ramChart, ramPercent);
+                    }
+                } catch (error) { }
+            };
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            initGlassmorphismLangSwitcher('#langContainerDash');
+
+            // Re-call the showToast bindings to ensure valid scoping since they used old objects
+            const containersNav = document.querySelector('a[data-i18n="containers_nav"]');
+            if (containersNav) {
+                containersNav.parentElement.setAttribute('onclick', `showToast(translations.containers_msg[currentLang], 'info')`);
+            }
+            const metricsNav = document.querySelector('a[data-i18n="metrics_nav"]');
+            if (metricsNav) {
+                metricsNav.parentElement.setAttribute('onclick', `showToast(translations.metrics_msg[currentLang], 'info')`);
+            }
+
+            // Restore Active Workspace State
+            try {
+                const res = await fetch('/api/docker/list');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.containers && data.containers.length > 0) {
+                        const active = data.containers[0];
+
+                        instanceStatus.innerText = translations.running ? translations.running[currentLang] : "Container Running";
+                        statusDot.classList.add('online');
+                        instanceName.innerText = active.containerId;
+                        window.currentContainerId = active.containerId;
+
+                        openIDE.style.display = 'flex';
+                        openN8n.style.display = 'flex';
+                        metricsPanel.style.display = 'grid';
+                        n8nInstance.style.display = 'flex';
+
+                        openN8n.href = active.url;
+                        openIDE.href = '/ide.html?containerId=' + active.containerId;
+                        deleteBtn.style.display = 'flex';
+
+                        provisionBtn.innerHTML = translations.active ? translations.active[currentLang] : "Workspace Active";
+                        provisionBtn.style.background = 'rgba(255,255,255,0.1)';
+                        provisionBtn.disabled = true;
+
+                        startLiveMetrics();
+                    }
+                }
+            } catch (e) { console.error("Failed to load active workspace", e); }
+        });
+    </script>
+</body>
+
+</html>

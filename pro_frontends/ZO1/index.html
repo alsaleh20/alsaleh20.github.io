@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبادرة موجة | WAVE INITIATIVE</title>
+    
+    <!-- خطوط جوجل لتحسين المظهر البصري باللغة العربية (Cairo و Tajawal) مع خيار الخطوط الافتراضية في حال عدم الاتصال -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           1. نظام الألوان والأنماط الأساسية (CSS Variables)
+           ========================================== */
+        :root {
+            /* النمط الداكن (الافتراضي والمستوحى من العرض التقديمي) */
+            --bg-primary: #0f172a;      /* Slate 900 */
+            --bg-secondary: #1e293b;    /* Slate 800 */
+            --bg-tertiary: #334155;     /* Slate 700 */
+            
+            --text-primary: #f1f5f9;     /* Slate 100 */
+            --text-secondary: #cbd5e1;   /* Slate 300 */
+            --text-muted: #94a3b8;       /* Slate 400 */
+            
+            --accent-primary: #fbbf24;   /* Amber 400 (العناوين الرئيسية) */
+            --accent-secondary: #06b6d4; /* Cyan 500 (العناوين الفرعية والإنكليزية) */
+            --accent-glow: rgba(6, 182, 212, 0.15);
+            
+            --border-color: #334155;     /* Slate 700 */
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --transition-speed: 0.5s;
+            --font-title: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-body: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* أنماط النمط المضيء (Light Mode) */
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;      /* Slate 50 */
+            --bg-secondary: #ffffff;    /* White */
+            --bg-tertiary: #f1f5f9;     /* Slate 100 */
+            
+            --text-primary: #1e293b;     /* Slate 800 */
+            --text-secondary: #475569;   /* Slate 600 */
+            --text-muted: #64748b;       /* Slate 500 */
+            
+            --accent-primary: #d97706;   /* Amber 600 */
+            --accent-secondary: #0891b2; /* Cyan 600 */
+            --accent-glow: rgba(8, 145, 178, 0.1);
+            
+            --border-color: #e2e8f0;     /* Slate 200 */
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ==========================================
+           2. التنسيق العام وتهيئة الصفحة
+           ========================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            font-weight: 700;
+        }
+
+        /* خلفية جزيئات متحركة خفيفة (CSS Animation Background) */
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .bg-particles span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--accent-secondary), transparent);
+            border-radius: 50%;
+            bottom: -50px;
+            animation: animateParticles 15s linear infinite;
+        }
+
+        @keyframes animateParticles {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* ==========================================
+           3. هيكل العرض التقديمي (Slides Container)
+           ========================================== */
+        .presentation-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .slides-viewport {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            max-width: 100%;
+            height: 100%;
+            padding: 4% 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-y: auto;
+            opacity: 0.3;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ==========================================
+           4. الهيكل والتنسيق الداخلي للشرائح (Slide Templates)
+           ========================================== */
+        
+        /* شريحة البداية / العنوان الرئيسي */
+        .slide-hero {
+            text-align: center;
+            justify-content: center;
+        }
+
+        .hero-glow-title {
+            font-size: clamp(3rem, 6vw, 6rem);
+            color: var(--accent-primary);
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
+            margin-bottom: 15px;
+            font-family: var(--font-title);
+            font-weight: 900;
+            letter-spacing: -1px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--accent-secondary);
+            font-family: var(--font-title);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
+            color: var(--text-primary);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* العنوان العام للشرائح */
+        .slide-title-wrapper {
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+            color: var(--accent-primary);
+            position: relative;
+        }
+
+        .slide-subtitle {
+            font-size: clamp(1rem, 1.2vw, 1.4rem);
+            color: var(--accent-secondary);
+            font-family: var(--font-title);
+            font-weight: 500;
+        }
+
+        /* البطاقات والشبكة الإرشادية */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto 0;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 15px 30px -10px var(--accent-glow);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-num {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+            font-family: var(--font-title);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--accent-secondary);
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* تفاصيل التأسيس والفريق (من الملف docx) */
+        .info-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .info-box {
+            background-color: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-label {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* التبويبات التفاعلية (Tabs) لمجالات العمل */
+        .tabs-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1100px;
+            gap: 20px;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-muted);
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-primary);
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .domain-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .domain-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .domain-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .domain-list li {
+            position: relative;
+            padding-right: 25px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .domain-list li::before {
+            content: '►';
+            position: absolute;
+            right: 0;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+        }
+
+        .domain-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-primary));
+            border: 1px solid var(--border-color);
+            position: relative;
+            min-height: 200px;
+        }
+
+        .domain-svg-icon {
+            width: 100px;
+            height: 100px;
+            fill: var(--accent-secondary);
+            filter: drop-shadow(0 0 15px var(--accent-glow));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* ==========================================
+           5. جدول الخطة التدريبية التفاعلي (Curriculum Slide)
+           ========================================== */
+        .curriculum-section {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .search-filter-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .filter-tag {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-tag:hover, .filter-tag.active {
+            background-color: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
+            font-weight: 600;
+        }
+
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--bg-secondary);
+            box-shadow: var(--card-shadow);
+        }
+
+        .curriculum-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .curriculum-table th, .curriculum-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .curriculum-table th {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-primary);
+            font-family: var(--font-title);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .curriculum-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .curriculum-table tbody tr:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .track-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-prog { background-color: rgba(6, 182, 212, 0.15); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .badge-ai { background-color: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .badge-social { background-color: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .badge-ent { background-color: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+
+        /* الشراكات */
+        .partners-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .partners-card {
+            background-color: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .partners-card h3 {
+            color: var(--accent-secondary);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* ==========================================
+           6. عناصر التحكم والملاحة (Navigation & Control)
+           ========================================== */
+        
+        /* شريط التحكم السفلي */
+        .controls-bar {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+            transition: background-color var(--transition-speed);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-nav {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background-color: var(--accent-secondary);
+            color: var(--bg-primary);
+            border-color: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .slide-indicator-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background-color: var(--accent-primary);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        .utility-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-utility {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-utility:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-secondary);
+            background-color: var(--bg-tertiary);
+        }
+
+        /* القائمة الجانبية للتنقل المباشر (Right Sidebar Drawer) */
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--bg-secondary);
+            border-left: 1px solid var(--border-color);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+            z-index: 100;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-drawer.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .sidebar-title {
+            color: var(--accent-primary);
+            font-size: 1.3rem;
+        }
+
+        .btn-close-sidebar {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .sidebar-item {
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-item:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .sidebar-item.active {
+            background-color: var(--accent-glow);
+            color: var(--accent-secondary);
+            border-right: 4px solid var(--accent-secondary);
+            font-weight: 600;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 99;
+            display: none;
+        }
+
+        .sidebar-overlay.open {
+            display: block;
+        }
+
+        /* دليل لوحة المفاتيح الصغير */
+        .keyboard-tooltip {
+            position: fixed;
+            bottom: 85px;
+            left: 20px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+            box-shadow: var(--card-shadow);
+            z-index: 50;
+            opacity: 0.8;
+        }
+
+        .keyboard-key {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           7. الحركات والمؤثرات البصرية (Animations)
+           ========================================== */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* متجاوب مع جميع الشاشات */
+        @media (max-width: 900px) {
+            .info-layout, .partners-layout, .domain-layout {
+                grid-template-columns: 1fr;
+            }
+            .slide {
+                padding: 6% 5%;
+            }
+            .controls-bar {
+                padding: 10px 20px;
+            }
+            .keyboard-tooltip {
+                display: none; /* إخفاء الدليل على الجوال */
+            }
+        }
+
+        /* متجاوب مع الهواتف الذكية */
+        @media (max-width: 600px) {
+            .controls-bar {
+                padding: 10px 15px;
+            }
+            .btn-nav span:not([dir]) {
+                display: none; /* إخفاء النص (السابق/التالي) وإبقاء الأسهم فقط */
+            }
+            .btn-nav {
+                padding: 8px 14px;
+                font-size: 1rem;
+            }
+            .slide-indicator-container {
+                gap: 5px;
+            }
+            .indicator-dot {
+                width: 7px;
+                height: 7px;
+            }
+            /* تجاوب جدول الخطة التدريبية */
+            .curriculum-table th, .curriculum-table td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+            /* إخفاء الأعمدة غير الحيوية على الهواتف */
+            .curriculum-table th:nth-child(4),
+            .curriculum-table td:nth-child(4),
+            .curriculum-table th:nth-child(5),
+            .curriculum-table td:nth-child(5) {
+                display: none;
+            }
+            /* عناوين الشرائح */
+            .slide-title-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+            .slide-title {
+                font-size: 1.5rem;
+            }
+            .slide-subtitle {
+                font-size: 0.9rem;
+            }
+            /* تباعد البطاقات والشبكات */
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .card {
+                padding: 15px;
+            }
+            .card-title {
+                font-size: 1.1rem;
+            }
+            .card-text {
+                font-size: 0.9rem;
+            }
+            /* تباعد صناديق المعلومات والتبويبات */
+            .info-box {
+                padding: 15px;
+                gap: 10px;
+            }
+            .info-value {
+                font-size: 0.95rem;
+            }
+            .domain-layout {
+                padding: 15px;
+                gap: 15px;
+            }
+            .domain-list li {
+                font-size: 0.95rem;
+            }
+            .tab-btn {
+                padding: 8px 12px;
+                font-size: 0.95rem;
+            }
+            .hero-glow-title {
+                font-size: 2.5rem;
+            }
+            .hero-sub {
+                font-size: 1.3rem;
+            }
+            .hero-desc {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide-indicator-container {
+                display: none; /* إخفاء نقاط التنقل في الهواتف الصغيرة جداً لتفادي الازدحام */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية جزيئات جمالية متطايرة باستخدام CSS -->
+    <div class="bg-particles" id="particles-container">
+        <!-- يتم ملء الجزيئات ديناميكياً بواسطة JS -->
+    </div>
+
+    <!-- تراكب القائمة الجانبية -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar(false)"></div>
+
+    <!-- القائمة الجانبية للتنقل المباشر -->
+    <aside class="sidebar-drawer" id="sidebar-drawer">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">فهرس الشرائح</h3>
+            <button class="btn-close-sidebar" onclick="toggleSidebar(false)">&times;</button>
+        </div>
+        <ul class="sidebar-menu" id="sidebar-menu">
+            <!-- يتم تعبئة القائمة ديناميكياً بواسطة JS -->
+        </ul>
+    </aside>
+
+    <!-- منطقة عرض الشرائح الرئيسية -->
+    <main class="presentation-container">
+        <div class="slides-viewport">
+            <div class="slides-wrapper" id="slides-wrapper">
+                <!-- يتم بناء الشرائح ديناميكياً هنا عبر كائن التكوين بالأسفل -->
+            </div>
+        </div>
+    </main>
+
+    <!-- دليل استخدام لوحة المفاتيح -->
+    <div class="keyboard-tooltip">
+        <span>استخدم الأسهم </span>
+        <span class="keyboard-key">→</span>
+        <span class="keyboard-key">←</span>
+        <span> أو </span>
+        <span class="keyboard-key">مسافة</span>
+        <span> للتنقل</span>
+    </div>
+
+    <!-- شريط التحكم والملاحة السفلي -->
+    <footer class="controls-bar">
+        <!-- أزرار التنقل -->
+        <div class="nav-buttons">
+            <button class="btn-nav" id="btn-next" onclick="nextSlide()">
+                <span>التالي</span>
+                <span dir="ltr">→</span>
+            </button>
+            <button class="btn-nav" id="btn-prev" onclick="prevSlide()" disabled>
+                <span dir="ltr">←</span>
+                <span>السابق</span>
+            </button>
+        </div>
+
+        <!-- مؤشرات النقاط -->
+        <div class="slide-indicator-container" id="slide-indicators">
+            <!-- يتم ملؤها ديناميكياً -->
+        </div>
+
+        <!-- أدوات مفيدة (الوضع المضيء/الداكن، الفهرس، وضع ملء الشاشة) -->
+        <div class="utility-controls">
+            <!-- وضع ملء الشاشة -->
+            <button class="btn-utility" onclick="toggleFullscreen()" title="ملء الشاشة">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+            <!-- الوضع الداكن / المضيء -->
+            <button class="btn-utility" onclick="toggleTheme()" id="btn-theme-toggle" title="تغيير المظهر">
+                <svg id="sun-icon" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                <svg id="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <!-- فتح القائمة الجانبية -->
+            <button class="btn-utility" onclick="toggleSidebar(true)" title="قائمة الشرائح">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       8. البرمجة التفاعلية (JavaScript) كائن التكوين والبيانات
+       ========================================== -->
+    <script>
+        /**
+         * كائن تكوين البيانات الرئيسي - WAVE_PRESENTATION_DATA
+         * يمكنك تعديل النصوص والتفاصيل والبيانات هنا مباشرة لتحديث العرض بالكامل.
+         */
+        const WAVE_PRESENTATION_DATA = {
+            // بيانات المبادرة العامة (مستخرجة من Word & PPTX)
+            info: {
+                name: "مبادرة موجة",
+                englishName: "WAVE INITIATIVE",
+                tagline: "تطوير الشباب في المجالات الرقمية والذكاء الاصطناعي",
+                foundedYear: "2026",
+                representative: "أشرف عبد اللطيف إبراهيم الدباس",
+                repTitle: "ممثل المبادرة ومدرب السوشيال ميديا والمونتاج (دبلوم إعلام)",
+                membersCount: "18 عضو (7 ذكور / 11 إناث)",
+                teamAges: "ما بين 20 إلى 35 سنة",
+                location: "محافظة البلقاء وكافة مناطق المملكة الاردنية الهاشمية",
+                hq: "لا يوجد مقر في الوقت الحالي (عمل مرن وتدريب ميداني)",
+                isRegisteredNahno: "نعم (مسجلون كفريق مبادرة على منصة نحن)"
+            },
+            
+            // قائمة أهداف المبادرة (مستخرجة من PPTX)
+            objectives: [
+                { id: "1", title: "زيادة الإمكانيات الرقمية", text: "تمكين فئات الشباب من الفهم المتكامل للأدوات والمنصات التكنولوجية الحديثة." },
+                { id: "2", title: "محو الأمية الرقمية كلياً", text: "تقديم تدريب تفاعلي يستهدف جميع الفئات والأعمار من الصغر حتى الكبر." },
+                { id: "3", title: "تعليم البرمجة والذكاء الاصطناعي", text: "تأهيل وتدريب الشباب على بناء المواقع البرمجية وفهم نماذج الذكاء الاصطناعي وكتابة الأكواد." },
+                { id: "4", title: "مهارات التصوير والمونتاج", text: "صناعة محتوى مرئي احترافي يتناسب مع خوارزميات السوشيال ميديا الحديثة." },
+                { id: "5", title: "مشاريع رقمية مستدامة", text: "تمكين المجتمع من تأسيس متاجر إلكترونية وتحويل الأفكار والمهارات إلى مشاريع إنتاجية مدرة للدخل." },
+                { id: "6", title: "التمكين في سوق العمل", text: "تجهيز جيل يجمع بين المهارة التقنية المتقدمة والفهم الريادي والقدرة على تلبية المتطلبات الحديثة." }
+            ],
+
+            // مجالات العمل والتبويبات التفاعلية (مستخرجة من Word & PPTX)
+            domains: [
+                {
+                    key: "tech",
+                    title: "البرمجة والبيانات",
+                    subtitle: "تطوير الويب وقواعد البيانات",
+                    description: "تهتم المبادرة بتأسيس بنية تحتية برمجية قوية للشباب لتمكينهم من بناء تطبيقات الويب وإدارة قواعد البيانات بكفاءة.",
+                    list: [
+                        "لغات البرمجة الأساسية لتطوير المواقع: HTML, CSS, JavaScript",
+                        "لغات البرمجة المتقدمة وإدارة البيانات: Python, SQL, PLSQL",
+                        "تصميم وتطوير واجهات المستخدم التفاعلية السريعة",
+                        "منصات التطوير السريع منخفضة الأكواد (No-Code / Low-Code)",
+                        "ربط أدوات تتبع البيانات مثل Google Analytics وإجراء المراجعات البرمجية وضمان جودة المنتج (QA)"
+                    ],
+                    // رسم SVG تعبيري يمثل البرمجة
+                    svgIcon: `<svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>`
+                },
+                {
+                    key: "ai",
+                    title: "الذكاء الاصطناعي (AI)",
+                    subtitle: "الجيل القادم وأنظمة الوكلاء الذكية",
+                    description: "ننقل المتدربين من مستخدمين عاديين إلى مطورين لأدوات الذكاء الاصطناعي وبناء أنظمة الأتمتة المتقدمة.",
+                    list: [
+                        "الذكاء الاصطناعي التوليدي (Generative AI): توليد المحتوى، الأكواد البرمجية، والمواد البصرية لتسريع المهام",
+                        "الذكاء الاصطناعي الوكيلي (Agentic AI): بناء وكلاء قادرين على التخطيط، اتخاذ القرارات، وأتمتة العمليات بشكل مستقل",
+                        "هندسة الأوامر (Prompt Engineering) المتقدمة واستخلاص البيانات",
+                        "أتمتة المهام والعمليات المعقدة بربط الأنظمة (مثل Zapier / n8n)",
+                        "دمج الذكاء الاصطناعي في مسارات العمل وخدمة العملاء"
+                    ],
+                    svgIcon: `<svg viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 10h3l-4-5-4 5h3v4h2v-4z"/></svg>`
+                },
+                {
+                    key: "social",
+                    title: "السوشيال ميديا وإدارتها",
+                    subtitle: "إدارة المنصات وصناعة المحتوى الرقمي",
+                    description: "يركز هذا المجال على تمكين الشباب من إدارة منصات التواصل الاجتماعي المختلفة باحترافية وصناعة محتوى جذاب يتوافق مع الخوارزميات.",
+                    list: [
+                        "إدارة منصات التواصل الاجتماعي (Facebook, Instagram, TikTok) باحترافية وأمان.",
+                        "صناعة المحتوى الرقمي الجذاب (Copywriting) وكتابة النصوص الإعلانية والسرد القصصي (Storytelling).",
+                        "تصوير ومونتاج وإنتاج الفيديوهات القصيرة (Reels & Shorts) وتعديلها.",
+                        "توعية الفئات بحماية الحسابات وبناء السمعة الرقمية وإدارة الأزمات والسمعة الرقمية.",
+                        "بناء وتخطيط خطة المحتوى الشهرية وجداول النشر وتحسين محركات البحث الاجتماعي (Social SEO)."
+                    ],
+                    svgIcon: `<svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>`
+                },
+                {
+                    key: "marketing",
+                    title: "الريادة والأعمال الرقمية",
+                    subtitle: "التجارة الإلكترونية وتأسيس المشاريع الناشئة",
+                    description: "يهدف هذا المسار لمساعدة الشباب على تحويل مهاراتهم الرقمية إلى مشاريع تجارية منتجة وإنشاء متاجر إلكترونية ناجحة.",
+                    list: [
+                        "تأسيس المتاجر الإلكترونية وفهم أساسيات التجارة الإلكترونية الرقمية.",
+                        "التفكير التصميمي ونموذج العمل التجاري (BMC) والتموضع الاستراتيجي للمشاريع.",
+                        "منهجية الحد الأدنى للمنتج (MVP) وبناء وتصميم خطط العمل والمشاريع التكنولوجية.",
+                        "الإدارة المالية المبسطة للمشاريع الناشئة والتسعير وقراءة الميزانيات باستخدام AI.",
+                        "التسويق الإلكتروني، إطلاق وإدارة الحملات الإعلانية الممولة (Ads)، وتحليل بيانات الجمهور."
+                    ],
+                    svgIcon: `<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>`
+                }
+            ],
+
+            // خطة الأنشطة الكاملة - 36 نشاطاً (مستخرجة بالكامل من Excel)
+            curriculum: [
+                { id: 1, title: "أساسيات الخوارزميات في منصات التواصل", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 2, title: "بناء الهوية البصرية للعلامة التجارية", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 3, title: "مفاهيم الذكاء الاصطناعي وتطبيقاته", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 4, title: "التفاعل مع النماذج اللغوية (ChatGPT)", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 5, title: "أساسيات الويب وهيكلة الصفحات (HTML)", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 6, title: "التنسيق البصري للويب (CSS)", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 7, title: "التفكير التصميمي والتعاطف مع المستخدم", track: "ريادة أعمال", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 8, title: "صناعة المحتوى الجذاب (Copywriting)", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 9, title: "نموذج العمل التجاري (BMC) والتموضع", track: "ريادة أعمال", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 10, title: "استراتيجيات التسويق عبر انستغرام وتيك توك", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 11, title: "هندسة الأوامر الأساسية (Prompt Engineering)", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 12, title: "تقنيات الاستخلاص والتحليل المتقدم بالأوامر", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 13, title: "منهجية الحد الأدنى للمنتج (MVP)", track: "ريادة أعمال", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 14, title: "تصوير ومونتاج الفيديو القصير (Reels/Shorts)", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 15, title: "بناء الواجهات التفاعلية السريعة (No-Code/Low-Code)", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 16, title: "إدارة قواعد البيانات المبسطة وربطها", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 17, title: "أتمتة المهام المتكررة (Zapier/n8n)", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 18, title: "دمج الذكاء الاصطناعي في مسارات العمل", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 19, title: "إطلاق وإدارة الحملات الإعلانية (Ads)", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 20, title: "بناء وتقويم خطة المحتوى الشهرية", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 21, title: "التسويق عبر المؤثرين والعلاقات العامة", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 22, title: "توليد المحتوى الإعلاني والبصري عبر AI", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 23, title: "تحليل بيانات الحملات التسويقية باستخدام AI", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 24, title: "ربط أدوات التتبع وتحليل البيانات (Google Analytics)", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 25, title: "إدارة المسائل المالية المبسطة للمشاريع والتسعير", track: "ريادة أعمال", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 26, title: "السرد القصصي الرقمي (Storytelling)", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 27, title: "إدارة المجتمعات والرد على العملاء", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 28, title: "قراءة وتحليل بيانات السوشيال ميديا", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 29, title: "تحسين محركات البحث الاجتماعي (Social SEO)", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 30, title: "تحسين العروض والبيانات المالية باستخدام AI", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 31, title: "التعامل مع الأزمات وإدارة السمعة الرقمية", track: "سوشيال ميديا", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 32, title: "المراجعة التقنية وضمان جودة المنتج (QA)", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 33, title: "إطلاق المبادرة التقني والاستضافة", track: "برمجة", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 34, title: "توظيف وكلاء الذكاء (AI Agents) لخدمة العملاء", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 35, title: "تجهيز العروض الحية والمحاكاة بـ AI", track: "ذكاء اصطناعي", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" },
+                { id: 36, title: "يوم العرض (Demo Day) والتقييم النهائي", track: "ريادة أعمال", age: "كافة الأعمار", gender: "ذكور وإناث", location: "حسب التدريب" }
+            ],
+
+            // الشراكات (مستخرجة من PPTX & Word)
+            partners: {
+                gov: [
+                    "وزارة التربية والتعليم والتعليم العالي",
+                    "وزارة الشباب الأردنية",
+                    "وزارة الاقتصاد الرقمي والريادة (الاتصالات سابقاً)"
+                ],
+                local: [
+                    "شركات التكنولوجيا والبرمجيات المحلية",
+                    "الجماعات والنوادي الشبابية الناشطة",
+                    "مؤسسات المجتمع المدني والجمعيات الشريكة"
+                ]
+            },
+
+            // الهيكل التنظيمي (جديد)
+            admin: {
+                title: "الهيكل التنظيمي وتوزيع الأدوار",
+                subtitle: "آلية إدارة العمل والتدريبات الداخلية",
+                structure: [
+                    { role: "أشرف عبد اللطيف إبراهيم الدباس (ممثل المبادرة)", desc: "مدرب ومسؤول المبادرة الرئيسي في مجالات السوشيال ميديا وتصوير ومونتاج الفيديوهات القصيرة والتحرير الإعلامي." },
+                    { role: "الصالح أحمد الحياري (عضو إداري ومدرب)", desc: "مسؤول عن التنسيق الإداري العام والتنظيم اللوجستي للورش، ومدرب متخصص في مجالات البرمجة والذكاء الاصطناعي." },
+                    { role: "أعضاء المبادرة (18 مدرباً ومنتسباً)", desc: "يتولى أعضاء المبادرة التدريب العملي المتبادل ونقل المعرفة والخبرات بين الفرق بناءً على التخصص والموضوع." },
+                    { role: "آلية العمل والتوزيع", desc: "يتم تقسيم المهام وورش العمل بشكل مرن ومستمر داخل الفريق لضمان شمولية وجاهزية التدريب." }
+                ]
+            },
+
+            // النتائج المتوقعة وأدوات التقييم (جديد)
+            outcomes: {
+                title: "النتائج المتوقعة وأدوات التقييم",
+                subtitle: "رصد الأثر وقياس نجاح المبادرة",
+                expected: [
+                    "زيادة كفاءة الشباب الرقمية وتمكينهم لدخول سوق العمل التكنولوجي والحديث بثقة واحترافية.",
+                    "بناء مجتمع رقمي واعٍ قادر على توظيف لغات البرمجة والذكاء الاصطناعي بفاعلية وأمان.",
+                    "تحويل المتلقين والمستهلكين للتكنولوجيا والمنصات الرقمية إلى صناع محتوى ومبتكرين ورواد أعمال."
+                ],
+                metrics: [
+                    "الاختبارات القبلية والبعدية للمشاركين لقياس مدى تطور المهارات المكتسبة.",
+                    "تقييم مشاريع المبتكرين في يوم العرض (Demo Day) من قبل لجان متخصصة.",
+                    "استبيانات دورية ومقاييس الأثر لقياس الرضا والتوظيف بعد الورش."
+                ]
+            },
+
+            // شكر وتقدير خاص (جديد)
+            specialThanks: {
+                title: "شكر وتقدير خاص",
+                subtitle: "إلى شركاء التوطين والتمكين الشبابي",
+                text: "تتقدم أسرة مبادرة (موجة) ببالغ الشكر وعظيم الامتنان وعميق التقدير لداعمي وشركاء نجاح المبادرة في تمكين وتوطين قدرات الشباب الأردني:",
+                targets: [
+                    { name: "مديرية شباب السلط", note: "لرعايتهم الكريمة ودعمهم المستمر للمبادرات الشبابية، واحتضانهم المتميز وتوفير المساحات والإمكانيات الكفيلة بإنجاح وتوطين مبادرة موجة." },
+                    { name: "السيد أحمد حديدي (مدير مديرية شباب السلط)", note: "لرعايته الكريمة وجهوده المثمرة في احتضان ودعم طاقات الشباب ومتابعته المستمرة لتذليل الصعاب وتسهيل أعمال المبادرة." },
+                    { name: "السيد أحمد صمادي", note: "لجهوده الاستثنائية وإيمانه الراسخ بقدرات الشباب، ودعمه وتسهيله المستمر لكافة خطوات مسار عمل وتوطين المبادرة." },
+                    { name: "جميع الحضور الموجودين", note: "لتشريفهم ودعمهم المعنوي ومشاركتهم الفعالة التي تشكل الركيزة الأساسية لنجاح واستمرارية وتفاعل مبادرة موجة." }
+                ]
+            },
+
+            // الاستدامة والاستمرارية
+            sustainability: [
+                "الموائمة الكاملة للمبادرة مع محاور الاستراتيجية الوطنية للشباب وأهداف التنمية المستدامة (SDGs).",
+                "نقل الشباب والمجتمعات من مجرد مستهلكين للتكنولوجيا ومواقع التواصل إلى صناع للمحتوى، مبرمجين، ومستثمرين فيها.",
+                "بناء بيئة تدريبية وتطويرية مرنة وتفاعلية، تجمع بين الجودة في التعليم والابتكار والتطوير المستمر للفريق."
+            ],
+
+            // المتطلبات والدعم المأمول (مستخرجة من Word الملحق 1)
+            requirements: {
+                title: "المتطلبات وأوجه الدعم",
+                subtitle: "الدعم المالي، الفني، واللوجستي المطلوب",
+                cards: [
+                    { icon: "💰", title: "الدعم المالي (الميزانية الكلية)", desc: "تغطية التكاليف التشغيلية، المكافآت الرمزية للمدربين، وحملات التسويق، سيتم تزويد الكلف التقديرية التفصيلية حسب مراحل التوطين." },
+                    { icon: "🏢", title: "الدعم اللوجستي والمكاني", desc: "توفير قاعات تدريب مجهزة تقنياً لاحتضان الورش، بالإضافة للضيافة الأساسية للمشاركين لتأمين بيئة مريحة." },
+                    { icon: "💻", title: "الدعم الفني والتقني", desc: "توفير أجهزة حاسوب أو أجهزة ذكية للمتدربين غير القادرين، وشاشات عرض حديثة لتطبيق التدريب التفاعلي." }
+                ]
+            },
+
+            // معرض الوسائط والأنشطة المصورة (مستخرجة من Word)
+            media: {
+                title: "النشاطات المصورة وعرض الفيديو",
+                subtitle: "جانب من أنشطتنا التدريبية",
+                videoPlaceholder: "اضغط هنا لعرض الفيديو التعريفي للمبادرة",
+                imagesText: "سيتم إرفاق صور النشاطات التفاعلية والورش التدريبية السابقة هنا."
+            }
+        };
+
+        // ==========================================
+        // 9. تشغيل منطق واجهة المستخدم وتوليد الشرائح
+        // ==========================================
+        let currentSlideIndex = 0;
+        const totalSlides = 11; // عدد الشرائح الكلي من 0 إلى 11 (12 شريحة)
+
+        document.addEventListener("DOMContentLoaded", () => {
+            generateSlides();
+            generateIndicators();
+            generateSidebarMenu();
+            initTabs();
+            initCurriculumFilter();
+            generateBackgroundParticles();
+            
+            // تهيئة حالة الشريحة الأولى وعناصر التحكم
+            updatePresentation();
+            
+            // مستمع للوحة المفاتيح
+            document.addEventListener("keydown", handleKeyDown);
+
+            // إضافة دعم إيماءات اللمس للهواتف الذكية (Swipe Gestures)
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50; // الحد الأدنى بالبكسل لاعتبار اللمسة سحبة
+
+            const presentationContainer = document.querySelector(".presentation-container");
+            if (presentationContainer) {
+                presentationContainer.addEventListener("touchstart", (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                presentationContainer.addEventListener("touchend", (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diffX = touchEndX - touchStartX;
+                    // التوجيه RTL: السحب لليسار يعني الانتقال للامام، السحب لليمين يعني الخلف
+                    if (diffX < -swipeThreshold) {
+                        nextSlide();
+                    } else if (diffX > swipeThreshold) {
+                        prevSlide();
+                    }
+                }, { passive: true });
+            }
+        });
+
+        // إنشاء الشرائح ديناميكياً
+        function generateSlides() {
+            const wrapper = document.getElementById("slides-wrapper");
+            const data = WAVE_PRESENTATION_DATA;
+
+            const slidesHTML = `
+                <!-- الشريحة 1: شريحة البداية والترحيب -->
+                <div class="slide slide-hero" id="slide-0">
+                    <h1 class="hero-glow-title">${data.info.name}</h1>
+                    <h2 class="hero-sub">${data.info.englishName}</h2>
+                    <p class="hero-desc">${data.info.tagline}</p>
+                </div>
+
+                <!-- الشريحة 2: فكرة المبادرة والتأسيس -->
+                <div class="slide" id="slide-1">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">فكرة المبادرة ورسالتها</h2>
+                        <span class="slide-subtitle">حول المبادرة والتأسيس</span>
+                    </div>
+                    <div class="info-layout">
+                        <div class="info-box">
+                            <h3 style="color: var(--accent-secondary); font-size: 1.4rem;">فكرة ورسالة المبادرة</h3>
+                            <p style="line-height: 1.7; color: var(--text-secondary); font-size: 1.05rem;">
+                                تطوير إمكانيات الشباب في المهارات التكنولوجية والذكاء الاصطناعي والمهارات الإعلامية، مع إعدادهم للدخول لسوق العمل الحديث بثقة واحترافية.
+                            </p>
+                            <ul class="domain-list" style="margin-top: 10px;">
+                                <li>محو الأمية الرقمية من جميع الأعمار</li>
+                                <li>تدريب على لغات البرمجة والذكاء الاصطناعي</li>
+                                <li>تطوير مهارات التسويق الرقمي والريادة</li>
+                                <li>بناء الثقة في استخدام التكنولوجيا بأمان</li>
+                            </ul>
+                        </div>
+                        <div class="info-box">
+                            <h3 style="color: var(--accent-secondary); font-size: 1.4rem;">القدرات التنظيمية والتأسيس</h3>
+                            <div class="info-item">
+                                <span class="info-label">سنة التأسيس:</span>
+                                <span class="info-value">${data.info.foundedYear}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">عدد الأعضاء:</span>
+                                <span class="info-value">${data.info.membersCount}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">الفئة العمرية للفريق:</span>
+                                <span class="info-value">${data.info.teamAges}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">مسؤول المبادرة:</span>
+                                <span class="info-value" style="font-size: 0.95rem; text-align: left;">${data.info.representative}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">مقر المبادرة:</span>
+                                <span class="info-value">${data.info.hq}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">منصة "نحن":</span>
+                                <span class="info-value" style="color: var(--accent-secondary); font-size: 0.95rem;">${data.info.isRegisteredNahno}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشريحة 3: أهداف المبادرة -->
+                <div class="slide" id="slide-2">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">أهداف المبادرة</h2>
+                        <span class="slide-subtitle">رؤية واضحة لمستقبل الشباب</span>
+                    </div>
+                    <div class="cards-grid">
+                        ${data.objectives.map(obj => `
+                            <div class="card">
+                                <div class="card-num">${obj.id}</div>
+                                <h3 class="card-title">${obj.title}</h3>
+                                <p class="card-text">${obj.text}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- الشريحة 4: مجالات العمل والتخصصات -->
+                <div class="slide" id="slide-3">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">مجالات العمل والتدريب</h2>
+                        <span class="slide-subtitle">تبويبات تفاعلية للمحاور التكنولوجية</span>
+                    </div>
+                    <div class="tabs-container">
+                        <div class="tabs-header">
+                            ${data.domains.map((dom, index) => `
+                                <button class="tab-btn ${index === 0 ? 'active' : ''}" onclick="switchTab('${dom.key}')">${dom.title}</button>
+                            `).join('')}
+                        </div>
+                        
+                        ${data.domains.map((dom, index) => `
+                            <div class="tab-content ${index === 0 ? 'active' : ''}" id="tab-content-${dom.key}">
+                                <div class="domain-layout">
+                                    <div class="domain-details">
+                                        <h3 style="color: var(--accent-primary); font-size: 1.4rem;">${dom.subtitle}</h3>
+                                        <p style="color: var(--text-secondary); line-height: 1.6;">${dom.description}</p>
+                                        <ul class="domain-list">
+                                            ${dom.list.map(li => `<li>${li}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                    <div class="domain-image-container">
+                                        <div class="domain-svg-icon">${dom.svgIcon}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- الشريحة 5: الخطة التدريبية والأنشطة -->
+                <div class="slide" id="slide-4">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">المنهج والخطة التدريبية</h2>
+                        <span class="slide-subtitle">36 موضوعاً متكاملاً (ابحث وفلتر)</span>
+                    </div>
+                    <div class="curriculum-section">
+                        <div class="search-filter-bar">
+                            <div class="search-box">
+                                <input type="text" id="curriculum-search" class="search-input" placeholder="ابحث عن نشاط أو تدريب معين..." oninput="filterCurriculum()">
+                            </div>
+                            <div class="filter-tags" id="curriculum-filter-tags">
+                                <span class="filter-tag active" onclick="setFilterTrack('الكل')">الكل</span>
+                                <span class="filter-tag" onclick="setFilterTrack('برمجة')">برمجة</span>
+                                <span class="filter-tag" onclick="setFilterTrack('ذكاء اصطناعي')">ذكاء اصطناعي</span>
+                                <span class="filter-tag" onclick="setFilterTrack('سوشيال ميديا')">سوشيال ميديا</span>
+                                <span class="filter-tag" onclick="setFilterTrack('ريادة أعمال')">ريادة أعمال</span>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="curriculum-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 8%">الرقم</th>
+                                        <th style="width: 45%">النشاط ووصفه</th>
+                                        <th style="width: 17%">المجال / المسار</th>
+                                        <th style="width: 15%">الفئة العمرية</th>
+                                        <th style="width: 15%">الجنس</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="curriculum-table-body">
+                                    <!-- يتم بناؤه عبر JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشريحة 6: الفئات المستهدفة والنطاق -->
+                <div class="slide" id="slide-5">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">الفئات المستهدفة والنطاق</h2>
+                        <span class="slide-subtitle">الفئات المشمولة بالمبادرة</span>
+                    </div>
+                    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                        <div class="card" style="align-items: center; text-align: center;">
+                            <div class="card-num" style="font-size: 3rem;">👥</div>
+                            <h3 class="card-title">العمر والجنس</h3>
+                            <p class="card-text">جميع الأعمار (15+ سنة)<br>الذكور والإناث بالتساوي</p>
+                        </div>
+                        <div class="card" style="align-items: center; text-align: center;">
+                            <div class="card-num" style="font-size: 3rem;">📍</div>
+                            <h3 class="card-title">النطاق الجغرافي</h3>
+                            <p class="card-text">محافظة البلقاء<br>وجميع مناطق المملكة الأردنية</p>
+                        </div>
+                        <div class="card" style="align-items: center; text-align: center;">
+                            <div class="card-num" style="font-size: 3rem;">🇯🇴</div>
+                            <h3 class="card-title">الجنسية</h3>
+                            <p class="card-text">الأردنيين وغير الأردنيين<br>(مفتوح للجميع)</p>
+                        </div>
+                        <div class="card" style="align-items: center; text-align: center;">
+                            <div class="card-num" style="font-size: 3rem;">🎓</div>
+                            <h3 class="card-title">الخلفية العلمية</h3>
+                            <p class="card-text">جميع المستويات الأكاديمية والتعليمية</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشريحة 7: الشراكات والدعم -->
+                <div class="slide" id="slide-6">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">الشراكات والدعم</h2>
+                        <span class="slide-subtitle">الجهات المساندة والحليفة للمبادرة</span>
+                    </div>
+                    <div class="partners-layout">
+                        <div class="partners-card">
+                            <h3>🏛️ الشركاء الحكوميون</h3>
+                            <ul class="domain-list">
+                                ${data.partners.gov.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="partners-card">
+                            <h3>🤝 الشركاء المحليون والقطاع الخاص</h3>
+                            <ul class="domain-list">
+                                ${data.partners.local.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشريحة 8: الهيكل التنظيمي وتوزيع الأدوار (جديد 1) -->
+                <div class="slide" id="slide-7">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">${data.admin.title}</h2>
+                        <span class="slide-subtitle">${data.admin.subtitle}</span>
+                    </div>
+                    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        ${data.admin.structure.map(s => `
+                            <div class="card">
+                                <h3 class="card-title" style="color: var(--accent-primary); font-size: 1.25rem;">${s.role}</h3>
+                                <p class="card-text" style="color: var(--text-secondary);">${s.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- الشريحة 9: النتائج المتوقعة وأدوات التقييم (جديد 2) -->
+                <div class="slide" id="slide-8">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">${data.outcomes.title}</h2>
+                        <span class="slide-subtitle">${data.outcomes.subtitle}</span>
+                    </div>
+                    <div class="info-layout">
+                        <div class="info-box">
+                            <h3 style="color: var(--accent-primary); font-size: 1.3rem;">🎯 الأثر والنتائج المتوقعة</h3>
+                            <ul class="domain-list">
+                                ${data.outcomes.expected.map(e => `<li>${e}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="info-box">
+                            <h3 style="color: var(--accent-secondary); font-size: 1.3rem;">📊 أدوات قياس التقييم والنجاح</h3>
+                            <ul class="domain-list">
+                                ${data.outcomes.metrics.map(m => `<li>${m}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشريحة 10: الاستمرارية والاستدامة (تم تغيير ترتيب المؤشر) -->
+                <div class="slide" id="slide-9">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">الاستمرارية والاستدامة</h2>
+                        <span class="slide-subtitle">ضمان النجاح طويل الأجل</span>
+                    </div>
+                    <div class="info-box" style="width: 100%; max-width: 900px; padding: 40px;">
+                        <ul class="domain-list" style="gap: 20px;">
+                            ${data.sustainability.map(s => `<li style="font-size: 1.2rem; line-height: 1.8;">${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- الشريحة 11: شكر وتقدير خاص -->
+                <div class="slide" id="slide-10">
+                    <div class="slide-title-wrapper">
+                        <h2 class="slide-title">${data.specialThanks.title}</h2>
+                        <span class="slide-subtitle">${data.specialThanks.subtitle}</span>
+                    </div>
+                    <div class="info-box" style="width: 100%; max-width: 950px; padding: 35px; border-color: var(--accent-primary);">
+                        <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 30px; text-align: center; font-weight: 500;">
+                            ${data.specialThanks.text}
+                        </p>
+                        <div class="info-layout" style="gap: 25px;">
+                            ${data.specialThanks.targets.map(t => `
+                                <div class="card" style="border-color: var(--accent-secondary); text-align: center; justify-content: center; background-color: var(--bg-tertiary); min-height: 180px;">
+                                    <h3 style="color: var(--accent-primary); font-size: 1.45rem; margin-bottom: 10px;">${t.name}</h3>
+                                    <p class="card-text" style="color: var(--text-primary); font-size: 1rem; line-height: 1.6;">${t.note}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الشريحة 12: خاتمة وشكر -->
+                <div class="slide slide-hero" id="slide-11">
+                    <h1 class="hero-glow-title" style="font-size: clamp(4rem, 8vw, 7.5rem);">شكراً لكم</h1>
+                    <h2 class="hero-sub" style="margin-bottom: 25px;">Thank You</h2>
+                    <h3 style="color: var(--accent-primary); font-size: 1.6rem; margin-bottom: 8px;">${data.info.name}</h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">تطوير وتدريب الشباب في المجالات الرقمية والذكاء الاصطناعي والإعلام لصناعة قادة الغد الرقمي.</p>
+                </div>
+            `;
+            wrapper.innerHTML = slidesHTML;
+        }
+
+        // إنشاء نقاط المؤشر السفلية
+        function generateIndicators() {
+            const container = document.getElementById("slide-indicators");
+            let indicatorsHTML = "";
+            for (let i = 0; i <= totalSlides; i++) {
+                indicatorsHTML += `<div class="indicator-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})" title="شريحة ${i+1}"></div>`;
+            }
+            container.innerHTML = indicatorsHTML;
+        }
+
+        // إنشاء قائمة الفهرس الجانبية ديناميكياً
+        function generateSidebarMenu() {
+            const menu = document.getElementById("sidebar-menu");
+            const slideNames = [
+                "شريحة البداية",
+                "عن المبادرة والرسالة",
+                "أهداف المبادرة",
+                "مجالات العمل والتدريب",
+                "المنهج والخطة التدريبية",
+                "الفئات المستهدفة",
+                "الشراكات والدعم",
+                "الهيكل التنظيمي والمهام",
+                "النتائج المتوقعة والأثر",
+                "الاستدامة والاستمرارية",
+                "شكر وتقدير خاص",
+                "الخاتمة والشكر"
+            ];
+            
+            let menuHTML = "";
+            slideNames.forEach((name, index) => {
+                menuHTML += `
+                    <li class="sidebar-item ${index === 0 ? 'active' : ''}" id="sidebar-item-${index}" onclick="goToSlide(${index}); toggleSidebar(false)">
+                        <span>${name}</span>
+                        <span style="color: var(--accent-secondary); font-size: 0.8rem;">${index + 1}</span>
+                    </li>
+                `;
+            });
+            menu.innerHTML = menuHTML;
+        }
+
+        // التنقل بين الشرايح
+        function updatePresentation() {
+            // تحريك شريط الشرايح أفقياً
+            const wrapper = document.getElementById("slides-wrapper");
+            wrapper.style.transform = `translateX(${currentSlideIndex * 100}%)`;
+
+            // تحديث فئة الشريحة النشطة لإطلاق حركات الدخول CSS
+            for (let i = 0; i <= totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                if (slide) {
+                    if (i === currentSlideIndex) {
+                        slide.classList.add("active");
+                    } else {
+                        slide.classList.remove("active");
+                    }
+                }
+            }
+
+            // تحديث أزرار التنقل
+            document.getElementById("btn-prev").disabled = (currentSlideIndex === 0);
+            document.getElementById("btn-next").disabled = (currentSlideIndex === totalSlides);
+
+            // تحديث نقاط المؤشرات السفلية
+            const dots = document.querySelectorAll(".indicator-dot");
+            dots.forEach((dot, index) => {
+                if (index === currentSlideIndex) {
+                    dot.classList.add("active");
+                } else {
+                    dot.classList.remove("active");
+                }
+            });
+
+            // تحديث الفهرس الجانبي
+            for (let i = 0; i <= totalSlides; i++) {
+                const item = document.getElementById(`sidebar-item-${i}`);
+                if (item) {
+                    if (i === currentSlideIndex) {
+                        item.classList.add("active");
+                    } else {
+                        item.classList.remove("active");
+                    }
+                }
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides) {
+                currentSlideIndex++;
+                updatePresentation();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updatePresentation();
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index <= totalSlides) {
+                currentSlideIndex = index;
+                updatePresentation();
+            }
+        }
+
+        // إدارة مفاتيح الكيبورد للتنقل السلس
+        function handleKeyDown(e) {
+            // تجنب الانتقال بين الشرائح أثناء الكتابة في صندوق البحث
+            if (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA") {
+                return;
+            }
+            
+            // دعم كامل للأسهم ومفاتيح الملاحة لعروض التقديم (PowerPoint style)
+            if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp") {
+                prevSlide();
+            } else if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || e.key === " " || e.key === "Enter") {
+                if (e.key === " ") {
+                    e.preventDefault(); // منع التمرير الافتراضي لزر المسافة
+                }
+                nextSlide();
+            }
+        }
+
+        // ==========================================
+        // 10. التبويبات والخطة التدريبية (Tabs & Filters)
+        // ==========================================
+        function switchTab(key) {
+            // إزالة نشاط جميع أزرار التبويب والمحتويات
+            const tabButtons = document.querySelectorAll(".tab-btn");
+            const tabContents = document.querySelectorAll(".tab-content");
+            
+            tabButtons.forEach(btn => btn.classList.remove("active"));
+            tabContents.forEach(content => content.classList.remove("active"));
+            
+            // تفعيل التبويب المحدد
+            event.currentTarget.classList.add("active");
+            document.getElementById(`tab-content-${key}`).classList.add("active");
+        }
+
+        let currentFilterTrack = "الكل";
+
+        function setFilterTrack(track) {
+            currentFilterTrack = track;
+            
+            // تحديث تصميم علامات التبويب للفلتر
+            const tags = document.querySelectorAll(".filter-tag");
+            tags.forEach(tag => {
+                if (tag.textContent.trim() === track) {
+                    tag.classList.add("active");
+                } else {
+                    tag.classList.remove("active");
+                }
+            });
+            
+            filterCurriculum();
+        }
+
+        function initCurriculumFilter() {
+            renderCurriculumTable(WAVE_PRESENTATION_DATA.curriculum);
+        }
+
+        // كتابة جدول الأنشطة الـ 36
+        function renderCurriculumTable(items) {
+            const tbody = document.getElementById("curriculum-table-body");
+            if (items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 30px;">لا يوجد أي نتائج تطابق البحث...</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = items.map(item => {
+                let badgeClass = "badge-prog";
+                if (item.track === "ذكاء اصطناعي") badgeClass = "badge-ai";
+                else if (item.track === "سوشيال ميديا") badgeClass = "badge-social";
+                else if (item.track === "ريادة أعمال") badgeClass = "badge-ent";
+
+                return `
+                    <tr>
+                        <td style="font-weight: 700; color: var(--accent-primary);">${item.id}</td>
+                        <td style="color: var(--text-primary); font-weight: 600;">${item.title}</td>
+                        <td><span class="track-badge ${badgeClass}">${item.track}</span></td>
+                        <td>${item.age}</td>
+                        <td>${item.gender}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // تصفية الأنشطة بناءً على البحث والتبويب
+        function filterCurriculum() {
+            const query = document.getElementById("curriculum-search").value.toLowerCase().trim();
+            const allItems = WAVE_PRESENTATION_DATA.curriculum;
+            
+            const filtered = allItems.filter(item => {
+                const matchesSearch = item.title.toLowerCase().includes(query) || item.track.toLowerCase().includes(query);
+                const matchesTrack = (currentFilterTrack === "الكل" || item.track === currentFilterTrack);
+                return matchesSearch && matchesTrack;
+            });
+            
+            renderCurriculumTable(filtered);
+        }
+
+        // ==========================================
+        // 11. عناصر الواجهة الجمالية والأدوات
+        // ==========================================
+        function toggleSidebar(open) {
+            const drawer = document.getElementById("sidebar-drawer");
+            const overlay = document.getElementById("sidebar-overlay");
+            if (open) {
+                drawer.classList.add("open");
+                overlay.classList.add("open");
+            } else {
+                drawer.classList.remove("open");
+                overlay.classList.remove("open");
+            }
+        }
+
+        // تغيير المظهر بين المضيء والداكن
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute("data-theme") || "dark";
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            
+            html.setAttribute("data-theme", newTheme);
+            
+            const sunIcon = document.getElementById("sun-icon");
+            const moonIcon = document.getElementById("moon-icon");
+            
+            if (newTheme === "light") {
+                sunIcon.style.display = "block";
+                moonIcon.style.display = "none";
+            } else {
+                sunIcon.style.display = "none";
+                moonIcon.style.display = "block";
+            }
+        }
+
+        // ملء الشاشة الكاملة
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`خطأ أثناء تفعيل ملء الشاشة: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // توليد الجزيئات المتحركة بالخلفية
+        function generateBackgroundParticles() {
+            const container = document.getElementById("particles-container");
+            const count = 12;
+            container.innerHTML = "";
+            for (let i = 0; i < count; i++) {
+                const span = document.createElement("span");
+                // مواقع عشوائية وتأخير حركة عشوائي
+                span.style.left = `${Math.random() * 100}%`;
+                span.style.width = `${Math.random() * 15 + 5}px`;
+                span.style.height = span.style.width;
+                span.style.animationDelay = `${Math.random() * 8}s`;
+                span.style.animationDuration = `${Math.random() * 12 + 8}s`;
+                container.appendChild(span);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1208,3 +1208,13 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchN8NWorkflows();
   calculateAutomationRoi();
 });
+
+// === قسم إبداعات عشوائية ===
+const remainingRandomProjects = [];
+
+function loadMoreRandomCreations() {
+  const container = document.getElementById('load-more-container');
+  if (container) {
+    container.style.display = 'none';
+  }
+}
