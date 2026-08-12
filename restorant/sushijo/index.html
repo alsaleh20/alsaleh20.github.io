@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فودو سوشي - Fugu Sushi | تجربة السوشي الياباني الفاخر في عمان</title>
+  <meta name="description" content="الموقع الرسمي لمطعم فودو سوشي (Fugu Sushi) في عمان الأردن. أرقى أطباق السوشي اليابانية والمأكولات الآسيوية المبتكرة بإشراف الشيف @mohmed_jan.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Navbar Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand">
+        <img src="img/480001387_1207352814296091_3781655036069493683_n.jpg" alt="Fugu Sushi Logo" class="nav-logo">
+        <div class="nav-title-group">
+          <span class="nav-title">فودو سوشي</span>
+          <span class="nav-subtitle">FUGU SUSHI</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active">الرئيسية</a></li>
+        <li><a href="#about" class="nav-link">عن المطعم</a></li>
+        <li><a href="#special-offer" class="nav-link">العروض العائلية</a></li>
+        <li><a href="#menu" class="nav-link">قائمة الطعام</a></li>
+        <li><a href="#branches" class="nav-link">الموقع والجغرافيا</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="cart-btn" aria-label="سلة التسوق">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+
+        <a href="tel:0791818100" class="btn btn-gold">
+          <i class="fa-solid fa-phone"></i> 0791818100
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="القائمة">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="nav-brand" style="margin-bottom: 2rem;">
+      <img src="img/480001387_1207352814296091_3781655036069493683_n.jpg" alt="Fugu Sushi Logo" class="nav-logo">
+      <div class="nav-title-group">
+        <span class="nav-title">فودو سوشي</span>
+        <span class="nav-subtitle">FUGU SUSHI</span>
+      </div>
+    </div>
+    <ul class="nav-links" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <li><a href="#hero" class="nav-link mobile-link">الرئيسية</a></li>
+      <li><a href="#about" class="nav-link mobile-link">عن المطعم</a></li>
+      <li><a href="#special-offer" class="nav-link mobile-link">العروض العائلية</a></li>
+      <li><a href="#menu" class="nav-link mobile-link">قائمة الطعام</a></li>
+      <li><a href="#branches" class="nav-link mobile-link">الموقع والجغرافيا</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-tag">
+            <i class="fa-solid fa-crown"></i> بإشراف الشيف المؤسس (@mohmed_jan)
+          </div>
+          <h1 class="hero-title">
+            فن السوشي الياباني <span class="gradient-text">الفاخر والآسيوي</span>
+          </h1>
+          <p class="hero-subtitle">
+            مرحباً بكم في فودو سوشي (Fugu Sushi). نقدم تجربة تذوق يابانية رفيعة المستوى تجمع بين أصالة النكهة الآسيوية وجودة المكونات البحرية الطازجة يومياً.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-gold">
+              <i class="fa-solid fa-utensils"></i> استعرض المنيو الفاخر
+            </a>
+            <a href="https://oddmenu.com/p/fugu-sushi" target="_blank" rel="noopener" class="btn btn-outline">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> القائمة الرقمية الرسمية (OddMenu)
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h3>12:00</h3>
+              <p>مستعدون يومياً (12 ظهراً - 12 ليلاً)</p>
+            </div>
+            <div class="stat-item">
+              <h3>80</h3>
+              <p>قطعة في العرض العائلي الفاخر</p>
+            </div>
+            <div class="stat-item">
+              <h3>100%</h3>
+              <p>مكونات آسيوية طازجة يومياً</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-img-card">
+            <img src="img/hero_sushi.png" alt="طبق فودو سوشي الفاخر" class="hero-img">
+            <div class="hero-floating-badge">
+              <div class="badge-icon"><i class="fa-solid fa-gem text-gold" style="font-size: 2rem;"></i></div>
+              <div class="badge-text">
+                <strong>أرقى مأكولات السوشي</strong>
+                <span>عمان - الأردن</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">عن فودو سوشي</span>
+        <h2 class="section-title">تجربة طعام تجمع بين <span class="gradient-text">الفخامة والأصالة</span></h2>
+        <p class="section-desc">
+          موقع **فودو سوشي (Fugu Sushi)** هو الوجهة الرائدة المتخصصة في تقديم أشهى وأرقى أطباق السوشي والمأكولات الآسيوية المبتكرة (Sushi & More) بإشراف مباشر من الشيف المؤسس (@mohmed_jan).
+        </p>
+      </div>
+
+      <div class="hero-grid" style="align-items: center;">
+        <div class="hero-img-card">
+          <img src="img/maki_rolls.png" alt="مبتكرات الشيف" class="hero-img">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div style="background: var(--surface-dark); border: 1px solid var(--card-border); padding: 1.5rem; border-radius: var(--radius-md);">
+            <h3 style="color: var(--gold-accent); margin-bottom: 0.5rem;"><i class="fa-solid fa-clock"></i> مواعيد العمل</h3>
+            <p>نستقبلكم يومياً من الساعة 12:00 ظهراً وحتى 12:00 منتصف الليل لخدمتكم بأعلى معايير الضيافة.</p>
+          </div>
+
+          <div style="background: var(--surface-dark); border: 1px solid var(--card-border); padding: 1.5rem; border-radius: var(--radius-md);">
+            <h3 style="color: var(--gold-accent); margin-bottom: 0.5rem;"><i class="fa-solid fa-headset"></i> الحجز والطلب المباشر</h3>
+            <p>يمكنكم الطلب والحجز المباشر عبر الهاتف المعتمد: <strong>0791818100</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Special Offer Banner -->
+  <section class="section" id="special-offer">
+    <div class="container">
+      <div class="special-offer-banner">
+        <div class="offer-content">
+          <span class="hero-badge-tag"><i class="fa-solid fa-fire"></i> العرض الأكثر إقبالاً وطلباً</span>
+          <h3>عرض السوشي العائلي الملكي (80 قطعة)</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+            تشكيلة فاخرة جداً تضمن أشهى لفائف الماكي، النيجيري، الساشيمي، والكاليفورنيا رول المحضرة يدويًا للشيف طازجة.
+          </p>
+          <div class="offer-price">50.00 <span>دينار أردني</span></div>
+          <button class="btn btn-gold" onclick="addToCart('عرض السوشي العائلي (80 قطعة)', 50.00, 'عائلي فاخر', 'img/family_combo.png')">
+            <i class="fa-solid fa-cart-plus"></i> أطلب العرض العائلي الآن
+          </button>
+        </div>
+
+        <div class="hero-img-card">
+          <img src="img/family_combo.png" alt="عرض 80 قطعة سوشي" class="hero-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">قائمة الطعام الفاخرة</span>
+        <h2 class="section-title">استكشف عالم <span class="gradient-text">فودو سوشي</span></h2>
+        <p class="section-desc">أطباق يابانية محددة بعناية فائقة وأسعار شفافة ومنافسة.</p>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="menu-controls">
+        <button class="menu-filter-btn active" data-filter="all">الكل</button>
+        <button class="menu-filter-btn" data-filter="combos">الباقات والعروض</button>
+        <button class="menu-filter-btn" data-filter="maki">لفائف الماكي</button>
+        <button class="menu-filter-btn" data-filter="nigiri">نيجيري وساشيمي</button>
+        <button class="menu-filter-btn" data-filter="hot">أطباق آسيوية ساخنة</button>
+      </div>
+
+      <!-- Dynamic Menu Grid -->
+      <div class="menu-grid" id="menu-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations & Branches Section -->
+  <section class="section" id="branches">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">الفروع والمواقع الجغرافية</span>
+        <h2 class="section-title">مواقع <span class="gradient-text">فودو سوشي</span> في عمان</h2>
+        <p class="section-desc">انقر للوصول المباشر عبر خرائط جوجل Mapped by Google Maps API.</p>
+      </div>
+
+      <div class="branches-grid">
+        <div class="branch-card">
+          <h3 class="branch-name"><i class="fa-solid fa-location-dot text-gold"></i> فرع فودو سوشي الرئيسي</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">عمان - موقع مميز لتقديم أفضل تجربة سوشي.</p>
+          <div style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            <span><i class="fa-solid fa-clock text-gold"></i> 12:00 ظهراً - 12:00 منتصف الليل</span>
+          </div>
+          <a href="https://www.google.com/maps/place/fugu+sushi/@31.957895,35.8614151,16z/data=!3m1!4b1!4m6!3m5!1s0x151ca170c8d1eb7f:0x85972613a596f2b4!8m2!3d31.957895!4d35.8614151" target="_blank" rel="noopener" class="btn btn-outline" style="width: 100%;">
+            <i class="fa-solid fa-map-location-dot"></i> فتح موقع الفرع على خرائط جوجل
+          </a>
+        </div>
+
+        <div class="branch-card">
+          <h3 class="branch-name"><i class="fa-solid fa-location-dot text-gold"></i> فرع / موقع خدمي مرتبط</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">عمان - نقطة خدمة وتوصيل سريعة.</p>
+          <div style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            <span><i class="fa-solid fa-clock text-gold"></i> 12:00 ظهراً - 12:00 منتصف الليل</span>
+          </div>
+          <a href="https://www.google.com/maps/place/%D9%85%D8%A7%D8%AC%D9%86%D9%88%D9%84%D9%8A%D8%A7+%D8%A8%D9%83%D9%8A%D8%B1%D9%8Y%E2%80%AD/@31.9658756,35.8450771,17z/data=!3m1!4b1!4m6!3m5!1s0x151ca17407e6826b:0x365e02dfe942e8fb!8m2!3d31.9658756!4d35.8450771" target="_blank" rel="noopener" class="btn btn-outline" style="width: 100%;">
+            <i class="fa-solid fa-map-location-dot"></i> فتح موقع الخدمة على خرائط جوجل
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-backdrop" id="cart-backdrop"></div>
+    <div class="cart-content">
+      <div class="cart-header">
+        <h3><i class="fa-solid fa-bag-shopping text-gold"></i> سلة طلبات فودو سوشي</h3>
+        <button class="cart-close-btn" id="cart-close-btn" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="cart-items" id="cart-items">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.8rem; font-size:1.2rem; font-weight:800; color:var(--gold-accent);">
+          <span>الإجمالي الكلي:</span>
+          <span id="cart-total">0.00 د.أ</span>
+        </div>
+
+        <button class="btn btn-gold" id="checkout-btn" style="width: 100%;">
+          <i class="fa-solid fa-paper-plane"></i> إرسال الطلب المباشر
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="nav-brand" style="margin-bottom: 1rem;">
+            <img src="img/480001387_1207352814296091_3781655036069493683_n.jpg" alt="Fugu Logo" class="nav-logo">
+            <div class="nav-title-group">
+              <span class="nav-title">فودو سوشي</span>
+              <span class="nav-subtitle">FUGU SUSHI</span>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            مطعم فودو سوشي (Fugu Sushi) - التجربة اليابانية الذهبية والفاخرة في عمان.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="color: var(--gold-accent); margin-bottom: 1rem;">روابط مهمة</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+            <li><a href="https://oddmenu.com/p/fugu-sushi" target="_blank" style="color:var(--text-secondary); text-decoration:none;">OddMenu القائمة الرقمية</a></li>
+            <li><a href="#menu" style="color:var(--text-secondary); text-decoration:none;">أحدث العروض</a></li>
+            <li><a href="#branches" style="color:var(--text-secondary); text-decoration:none;">فروع عمان</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: var(--gold-accent); margin-bottom: 1rem;">تواصل وتوصيل</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; color:var(--text-secondary); font-size:0.9rem;">
+            <li><i class="fa-solid fa-phone text-gold"></i> 0791818100</li>
+            <li><i class="fa-solid fa-user-ninja text-gold"></i> @mohmed_jan</li>
+            <li><i class="fa-solid fa-clock text-gold"></i> 12:00 م - 12:00 ص</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 فودو سوشي (Fugu Sushi). جميع الحقوق محفوظة | عمان الأردن.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script JS -->
+  <script src="script.js"></script>
+</body>
+</html>

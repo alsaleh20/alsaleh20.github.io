@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مطعم آرمي برقر - Army Burger | طعم التكتيك والتميز العسكري</title>
+  <meta name="description" content="الموقع الرسمي لمطعم آرمي برقر في عمان الأردن. نقدم أفضل ساندويشات ووجبات البرجر المشوية بطابع عسكري تكتيكي أسعار تنافسية وجودة عالية.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Navbar Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand">
+        <img src="img/489043046_1010505503855973_4500765626781001149_n.jpg" alt="Army Burger Logo" class="nav-logo">
+        <div class="nav-title-group">
+          <span class="nav-title">آرمي برقر</span>
+          <span class="nav-subtitle">ARMY BURGER</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active">الرئيسية</a></li>
+        <li><a href="#about" class="nav-link">عن المطعم</a></li>
+        <li><a href="#menu" class="nav-link">قائمة الطعام</a></li>
+        <li><a href="#branches" class="nav-link">فروعنا</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="cart-btn" aria-label="سلة التسوق">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+
+        <a href="#menu" class="btn btn-primary" id="order-now-nav">
+          <i class="fa-solid fa-utensils"></i> اطلب الآن
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="القائمة">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="nav-brand" style="margin-bottom: 2rem;">
+      <img src="img/489043046_1010505503855973_4500765626781001149_n.jpg" alt="Army Burger Logo" class="nav-logo">
+      <div class="nav-title-group">
+        <span class="nav-title">آرمي برقر</span>
+        <span class="nav-subtitle">ARMY BURGER</span>
+      </div>
+    </div>
+    <ul class="nav-links" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <li><a href="#hero" class="nav-link mobile-link">الرئيسية</a></li>
+      <li><a href="#about" class="nav-link mobile-link">عن المطعم</a></li>
+      <li><a href="#menu" class="nav-link mobile-link">قائمة الطعام</a></li>
+      <li><a href="#branches" class="nav-link mobile-link">فروعنا (7 فروع)</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-tag">
+            <i class="fa-solid fa-shield-halved"></i> هوية عسكرية • طعم تكتيكي فريد
+          </div>
+          <h1 class="hero-title">
+            التحدي في الجودة والطعم <span class="gradient-text">الجريء</span>
+          </h1>
+          <p class="hero-subtitle">
+            مرحباً بكم في مطعم آرمي برقر (Army Burger)! تجربة استثنائية تحضر بدقة عسكرية عالية، لحوم ودجاج طازجة 100%، بخلطات سرية وأحجام تلبي كل رغباتك.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary">
+              <i class="fa-solid fa-fire-flame-curry"></i> استعرض المنيو والأسعار
+            </a>
+            <a href="#branches" class="btn btn-secondary">
+              <i class="fa-solid fa-location-dot"></i> فروعنا في عمان
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h3>7</h3>
+              <p>فروع في العاصمة عمان</p>
+            </div>
+            <div class="stat-item">
+              <h3>100%</h3>
+              <p>لحم ودجاج بلدي طازج</p>
+            </div>
+            <div class="stat-item">
+              <h3>3.00+</h3>
+              <p>أسعار تبدأ من (د.أ)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-img-card">
+            <img src="img/hero_burger.png" alt="آرمي برقر التكتيكي" class="hero-img">
+            <div class="hero-floating-badge">
+              <div class="badge-icon"><i class="fa-solid fa-medal"></i></div>
+              <div class="badge-text">
+                <strong>أعلى معايير الجودة</strong>
+                <span>200g / 150g / 100g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <div class="hero-img-card">
+            <img src="img/beef_burger.png" alt="وجبات آرمي برقر" class="hero-img">
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="section-tag">هوية المطعم والتصميم</span>
+          <h2 class="section-title">تجربة طعام بروح <span class="gradient-text">عسكرية استثنائية</span></h2>
+          <p class="section-desc">
+            مطعم <strong>آرمي برقر (Army Burger)</strong> هو وجهتك المتخصصة في تقديم الوجبات السريعة، وتحديداً البرجر (لحم ودجاج) والمشويات، ويتميز بطابع عسكري فريد في التصميم والتقديم، يركز على تقديم تجربة طعام ذات جودة عالية بأسعار تنافسية.
+          </p>
+
+          <div class="about-features">
+            <div class="feature-box">
+              <i class="fa-solid fa-palette feature-icon"></i>
+              <h4>الهوية البصرية</h4>
+              <p>الأخضر العسكري (#4B5320) والذهبي (#D4AF37) والأسود الداكن لتباين فخم وضمان المقروئية.</p>
+            </div>
+
+            <div class="feature-box">
+              <i class="fa-solid fa-drumstick-bite feature-icon"></i>
+              <h4>جودة المكونات</h4>
+              <p>تحضير يومي طازج لشرائح اللحم والدجاج مع صلصات آرمي الخاصة المبتكرة.</p>
+            </div>
+
+            <div class="feature-box">
+              <i class="fa-solid fa-weight-scale feature-icon"></i>
+              <h4>أوزان متعددة</h4>
+              <p>خسارات وأوزان تناسب جميع الشهيات: وجبات 200 جرام، 150 جرام، و 100 جرام.</p>
+            </div>
+
+            <div class="feature-box">
+              <i class="fa-solid fa-tags feature-icon"></i>
+              <h4>أسعار موحدة</h4>
+              <p>شفافية كاملة في الأسعار الموحدة لكافة الفروع السبعة في العاصمة عمان.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">دليل قائمة الطعام والأسعار</span>
+        <h2 class="section-title">اختر وجبتك <span class="gradient-text">التكتيكية</span> المفضلة</h2>
+        <p class="section-desc">جميع الأسعار بالدينار الأردني (د.أ) وموحدة في كافة فروعنا الرسمية.</p>
+      </div>
+
+      <!-- Menu Category Filters -->
+      <div class="menu-controls">
+        <button class="menu-filter-btn active" data-filter="all">الكل</button>
+        <button class="menu-filter-btn" data-filter="beef">برجر لحم</button>
+        <button class="menu-filter-btn" data-filter="chicken">برجر دجاج</button>
+        <button class="menu-filter-btn" data-filter="appetizers">المقبلات والمشروبات</button>
+        <button class="menu-filter-btn" data-filter="kids">وجبات الأطفال</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="menu-grid" id="menu-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Branches Section -->
+  <section class="section" id="branches">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">الفروع والمواقع الجغرافية</span>
+        <h2 class="section-title">فروعنا السبعة في <span class="gradient-text">عمان</span></h2>
+        <p class="section-desc">نحن قريبون منك في أهم المناطق الحيوية لنقدم لك وجبتك الساخنة والسريعة.</p>
+      </div>
+
+      <div class="branches-grid" id="branches-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Drawer / Modal -->
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-backdrop" id="cart-backdrop"></div>
+    <div class="cart-content">
+      <div class="cart-header">
+        <h3><i class="fa-solid fa-bag-shopping text-gold"></i> سلة طلبات آرمي برقر</h3>
+        <button class="cart-close-btn" id="cart-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="cart-items" id="cart-items">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-summary-line">
+          <span>المجموع الفرعي:</span>
+          <span id="cart-subtotal">0.00 د.أ</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>فرع التوصيل / الاستلام:</span>
+          <select id="cart-branch-select" style="background: var(--bg-main); color: var(--gold-accent); border: 1px solid var(--card-border); padding: 0.3rem; border-radius: 4px; font-family: Cairo;">
+            <option value="الجبيهة">فرع الجبيهة</option>
+            <option value="مرج الحمام">فرع مرج الحمام</option>
+            <option value="الدوار السابع">فرع الدوار السابع</option>
+            <option value="تلاع العلي">فرع تلاع العلي</option>
+            <option value="طريق المطار">فرع طريق المطار</option>
+            <option value="سحاب">فرع سحاب</option>
+            <option value="ماركا">فرع ماركا</option>
+          </select>
+        </div>
+        <div class="cart-summary-line total">
+          <span>الإجمالي النهائي:</span>
+          <span id="cart-total">0.00 د.أ</span>
+        </div>
+
+        <button class="btn btn-primary" id="checkout-btn" style="width: 100%; margin-top: 1rem;">
+          <i class="fa-solid fa-check-circle"></i> تأكيد وإرسال الطلب
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-brand">
+            <img src="img/489043046_1010505503855973_4500765626781001149_n.jpg" alt="Logo" class="nav-logo">
+            <div class="nav-title-group">
+              <span class="nav-title">آرمي برقر</span>
+              <span class="nav-subtitle">ARMY BURGER</span>
+            </div>
+          </div>
+          <p>
+            المطعم الأول المتخصص في ساندويشات ووجبات البرجر بطابع عسكري مميز في الأردن. طعم لا يُنسى وجودة لا تُضاهى.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط السريعة</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#about">عن آرمي برقر</a></li>
+            <li><a href="#menu">قائمة الطعام</a></li>
+            <li><a href="#branches">فروع عمان</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>أبرز الفروع</h4>
+          <ul class="footer-links">
+            <li><a href="#branches">الجبيهة - عمان</a></li>
+            <li><a href="#branches">مرج الحمام - عمان</a></li>
+            <li><a href="#branches">الدوار السابع - عمان</a></li>
+            <li><a href="#branches">طريق المطار - عمان</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fa-solid fa-phone text-gold"></i> خدمة العملاء: 0790000000</a></li>
+            <li><a href="#"><i class="fa-brands fa-instagram text-gold"></i> Instagram</a></li>
+            <li><a href="#"><i class="fa-brands fa-facebook text-gold"></i> Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 مطعم آرمي برقر (Army Burger). جميع الحقوق محفوظة | وفق المعايير التقنية الرسمية.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>

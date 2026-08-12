@@ -233,14 +233,38 @@ const staticCreations = [
     metaIcon: '🌐 Preview'
   },
   {
-    id: 'create-5',
+    id: 'create-6',
     category: 'creations',
     badgeClass: 'badge-creation',
     badgeText: 'Creation',
-    name: 'alsalseh_paey (PayFlow)',
-    description_ar: 'مشروع إدارة وتسهيل عمليات الدفع والتدفق المالي (PayFlow).',
-    description_en: 'Payment management & financial flow system (PayFlow).',
-    url: 'pro_frontends/alsalseh_paey/',
+    name: 'مطعم عليز (Alis Restaurant)',
+    description_ar: 'موقع وتطبيق ويب لمطعم عليز (فرع أبو نصير) - وجبات البروستد، الشاورما، برجر اللحم والدجاج مع قائمة طعام وسلة شراء تفاعلية.',
+    description_en: 'Interactive website for Alis Restaurant (Abu Nseir branch) - Broasted, Shawarma, Burgers with menu & cart.',
+    url: 'restorant/alis/index.html',
+    metaLang: 'HTML/CSS/JS',
+    metaIcon: '🌐 Preview'
+  },
+  {
+    id: 'create-7',
+    category: 'creations',
+    badgeClass: 'badge-creation',
+    badgeText: 'Creation',
+    name: 'مطعم آرمي برقر (Army Burger)',
+    description_ar: 'موقع تفاعلي بطابع عسكري تكتيكي لمطعم آرمي برقر في عمان الأردن (قائمة الطعام والطلبات والفرع).',
+    description_en: 'Tactical military themed website for Army Burger restaurant in Amman (Menu, orders & branch).',
+    url: 'restorant/army/index.html',
+    metaLang: 'HTML/CSS/JS',
+    metaIcon: '🌐 Preview'
+  },
+  {
+    id: 'create-8',
+    category: 'creations',
+    badgeClass: 'badge-creation',
+    badgeText: 'Creation',
+    name: 'مطعم فودو سوشي (Fugu Sushi)',
+    description_ar: 'موقع فاخر لمطعم فودو سوشي (Fugu Sushi) تجربة السوشي الياباني والمأكولات الآسيوية في عمان.',
+    description_en: 'Luxury website for Fugu Sushi restaurant showcasing Japanese sushi and Asian cuisine in Amman.',
+    url: 'restorant/sushijo/index.html',
     metaLang: 'HTML/CSS/JS',
     metaIcon: '🌐 Preview'
   }

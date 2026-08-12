@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="مطعم عليز (Alis Restaurant) - فرع أبو نصير، الأردن. أشهى وجبات البروستد، التندر، الشاورما، برجر اللحم والدجاج والمقبلات الطازجة يومياً.">
+  <title>مطعم عليز | Alis Restaurant - فرع أبو نصير الأردن</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand-logo spa-link" data-target="homePage">
+        <img src="logo/604619105_17851863675607978_7038979655777435358_n.jpg" alt="شعار مطعم عليز" loading="lazy">
+        <span class="brand-name">مطعم عليز</span>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="القائمة">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a class="nav-link active" data-target="homePage">الرئيسية</a></li>
+        <li><a class="nav-link" data-target="menuPage">قائمة الطعام</a></li>
+        <li><a class="nav-link" data-target="aboutPage">عن عليز والجودة</a></li>
+        <li><a class="nav-link" data-target="contactPage">الفروع والتواصل</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="cart-btn-trigger">
+          <span>🛒 السلة</span>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER FOR SPA PAGES -->
+  <main>
+    
+    <!-- PAGE 1: HOME PAGE SECTION -->
+    <section id="homePage" class="page-section active">
+      <!-- Hero Banner -->
+      <div class="hero">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <div class="hero-badge">🍗 100% دجاج طازج يومياً دون تجميد - أبو نصير</div>
+            <h1 class="hero-title">طعم القرمشة <span>الفاخر والجودة</span> اليومية</h1>
+            <p class="hero-desc">في مطعم عليز فرع أبو نصير، نقدم لك أشهى وجبات البروستد، التندر، الشاورما، وبرجر اللحم المشوي على اللهب بتتبيلتنا السرية الممتازة.</p>
+            <div class="hero-cta">
+              <button class="btn-primary spa-link" data-target="menuPage">🍗 اطلب من القائمة</button>
+              <button class="btn-secondary spa-link" data-target="aboutPage">🛡️ معايير الجودة</button>
+            </div>
+          </div>
+          <div class="hero-img-wrapper">
+            <img src="images/crispy_chicken_bucket.png" alt="وجبة بروستد عليز المقرمش" loading="lazy">
+            <div class="floating-tag">
+              <span style="font-size: 1.8rem;">🔥</span>
+              <div>
+                <div style="font-weight: 800; font-size: 1rem;">سر القرمشة والشي</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">تحضير فوري وطازج لكل طلب</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fresh Chicken Standards -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-subtitle">Fresh Chicken Standards</div>
+          <h2 class="section-title">معايير الدجاج الطازج التقنية في عليز</h2>
+        </div>
+        <div class="standards-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Featured Dishes Teaser -->
+      <div class="section" style="background: rgba(255,255,255,0.015); border-radius: 24px;">
+        <div class="section-header">
+          <div class="section-subtitle">الأقوى والألذ في أبو نصير</div>
+          <h2 class="section-title">أشهر وجبات عليز الموصى بها</h2>
+        </div>
+        <div class="dishes-grid" id="featuredDishesGrid">
+          <!-- Rendered dynamically -->
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <button class="btn-secondary spa-link" data-target="menuPage">عرض القائمة الكاملة والتصنيفات (11 قسم) ←</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: MENU PAGE SECTION -->
+    <section id="menuPage" class="page-section">
+      <div class="section" style="padding-top: 3rem; padding-bottom: 1rem;">
+        <div class="section-header">
+          <div class="section-subtitle">طازج وسريع ومقرمش (فرع أبو نصير)</div>
+          <h1 class="section-title">قائمة أطباق مطعم عليز الرسمية</h1>
+        </div>
+
+        <!-- Search & Dynamic Categories -->
+        <div class="menu-controls">
+          <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن وجبتك المفضلة (بروستد، شاورما، تندر، بيف، ناجت...)" />
+          </div>
+
+          <div class="filter-categories" id="filterCategories">
+            <!-- Dynamic categories rendered here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="padding-top: 0;">
+        <div class="dishes-grid" id="dishesGrid">
+          <!-- All dishes rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: ABOUT PAGE SECTION -->
+    <section id="aboutPage" class="page-section">
+      <div class="hero" style="min-height: 45vh; padding: 3.5rem 1.5rem;">
+        <div class="hero-text" style="text-align: center; align-items: center; max-width: 800px;">
+          <div class="hero-badge">🏆 قصتنا والتزامنا التقني بالتميز</div>
+          <h1 class="hero-title">جودة <span>الدجاج واللحم المشوي</span> التي تثق بها دائماً</h1>
+          <p class="hero-desc">تأسس مطعم عليز على مبدأ ثابت: تقديم وجبات طازجة 100% يومياً، من بروستد وتندر الدجاج الصافي واللحم المشوي على اللهب، بأعلى معايير النظافة والسلامة.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-subtitle">الدستور التقني والجودة</div>
+          <h2 class="section-title">Fresh Chicken Standards - معايير مطعم عليز</h2>
+        </div>
+
+        <div class="standards-grid">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div style="margin-top: 3.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;">
+          <div class="standard-card" style="text-align: right;">
+            <h3 class="standard-title" style="color: var(--secondary-color);">✨ التزام الذبح الحلال 100%</h3>
+            <p class="standard-desc">جميع إمدادات الدجاج في عليز تأتي من مسالخ وطنية معتمدة تلتزم بأحكام الشريعة الإسلامية وأعلى معايير السلامة.</p>
+          </div>
+          <div class="standard-card" style="text-align: right;">
+            <h3 class="standard-title" style="color: var(--secondary-color);">🔥 150غ لحم صافي مشوي على اللهب</h3>
+            <p class="standard-desc">برجر البيف المحضر من 150 غرام من اللحم الصافي المشوي على اللهب يضمن طعماً مدخناً رائعاً.</p>
+          </div>
+          <div class="standard-card" style="text-align: right;">
+            <h3 class="standard-title" style="color: var(--secondary-color);">⏱️ سرعة فائقة والتوافقية الكاملة</h3>
+            <p class="standard-desc">موقعنا مصمم بأسلوب Mobile-First خفيف وسريع جداً جاهز للعرض على GitHub Pages والبورتفوليو الخاص بك.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="background: rgba(255,255,255,0.015); border-radius: 24px;">
+        <div class="section-header">
+          <div class="section-subtitle">شاهد الجودة بنفسك</div>
+          <h2 class="section-title">معرض أطباق ومأكولات عليز</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+          <img src="images/crispy_chicken_bucket.png" alt="وجبة بروستد عليز" style="width:100%; border-radius: 16px; height: 210px; object-fit: cover;" loading="lazy" />
+          <img src="images/grilled_chicken_plate.png" alt="دجاج عليز المشوي" style="width:100%; border-radius: 16px; height: 210px; object-fit: cover;" loading="lazy" />
+          <img src="images/chicken_burger_meal.png" alt="برجر عليز الكلاسيك" style="width:100%; border-radius: 16px; height: 210px; object-fit: cover;" loading="lazy" />
+          <img src="images/fresh_chicken_strips.png" alt="ستريپس عليز الطازج" style="width:100%; border-radius: 16px; height: 210px; object-fit: cover;" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: CONTACT PAGE SECTION -->
+    <section id="contactPage" class="page-section">
+      <div class="section" style="padding-top: 3rem; padding-bottom: 2rem;">
+        <div class="section-header">
+          <div class="section-subtitle">Google Maps & Locations</div>
+          <h1 class="section-title">موقع فرعنا والتواصل المباشر</h1>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Form -->
+          <div class="contact-card">
+            <h2 style="font-size: 1.4rem; margin-bottom: 1.2rem; font-weight: 800;">📩 تواصل معنا أو اطلب التوصيل</h2>
+            
+            <form id="contactForm">
+              <div class="form-group">
+                <label class="form-label" for="contactName">الاسم الكامل *</label>
+                <input type="text" id="contactName" class="form-control" placeholder="أدخل اسمك الكريم" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactPhone">رقم الهاتف / الجوال *</label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="079xxxxxxxx" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactBranch">الفرع</label>
+                <select id="contactBranch" class="form-control">
+                  <option value="abunseir">فرع أبو نصير - الأردن (الشارع الرئيسي)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactMsg">الرسالة / ملاحظات الطلب</label>
+                <textarea id="contactMsg" class="form-control" rows="4" placeholder="اكتب استفسارك أو موقع التوصيل هنا..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">إرسال الرسالة الآن 🚀</button>
+            </form>
+          </div>
+
+          <!-- Maps & Branch Card -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div class="map-container">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13532.18684784407!2d35.8825!3d32.0625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c9f4d1c1a1a1a%3A0x1a1a1a1a1a1a1a1a!2z2KPYqNmIINmG2LXZitiB2Iwg2LnZhdin2YY!5e0!3m2!1sar!2sjo!4v1650000000000" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="موقع مطعم عليز - أبو نصير على Google Maps">
+              </iframe>
+            </div>
+
+            <div class="contact-card" style="padding: 1.5rem;">
+              <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--secondary-color);">📍 فرع أبو نصير - عمان، الأردن</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.4rem;">الموقع: أبو نصير - الشارع الرئيسي</p>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.4rem;">الهاتف المباشر: +962 7 9000 0000</p>
+              <p style="color: var(--text-muted); font-size: 0.95rem;">أوقات العمل: 12:00 ظهراً - 2:00 صباحاً يومياً</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shopping Cart Side Drawer Overlay -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-header">
+        <h3 class="cart-title">🛒 سلة الطلبات (مطعم عليز - أبو نصير)</h3>
+        <button class="close-cart-btn" id="closeCartBtn">✕</button>
+      </div>
+      <div class="cart-body" id="cartItems">
+        <!-- Dynamic Cart Items -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>المجموع الكلي:</span>
+          <span id="cartTotalAmount">0.00 د.أ</span>
+        </div>
+        <button class="btn-primary" id="checkoutBtn" style="width: 100%; justify-content: center;">تأكيد الطلب الآن ⚡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand-logo spa-link" data-target="homePage" style="margin-bottom: 1rem;">
+          <img src="logo/604619105_17851863675607978_7038979655777435358_n.jpg" alt="مطعم عليز">
+          <span class="brand-name">مطعم عليز</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">فرع أبو نصير، الأردن - خدمتكم شرف لنا بألذ الوجبات الطازجة يومياً.</p>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul class="footer-links">
+          <li><a class="spa-link" data-target="homePage">الرئيسية</a></li>
+          <li><a class="spa-link" data-target="menuPage">قائمة الطعام</a></li>
+          <li><a class="spa-link" data-target="aboutPage">عن عليز والجودة</a></li>
+          <li><a class="spa-link" data-target="contactPage">الفروع والتواصل</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ساعات العمل</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">يومياً من الساعة 12:00 ظهراً وحتى الساعة 2:00 صباحاً</p>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">العنوان: أبو نصير، الشارع الرئيسي - الأردن</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">الهاتف: +962 7 9000 0000</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 مطعم عليز (Alis Restaurant - Abu Nseir). جميع الحقوق محفوظة.
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -14,7 +14,7 @@ const translations = {
     qrBtn: "📱 QR Code",
     
     // Sidebar Links
-    linkCreations: "🎨 إبداعات مختارة (5 مشاريع)",
+    linkCreations: "🎨 إبداعات مختارة (8 مشاريع)",
     linkAllProjects: "🚀 جميع المشاريع والأعمال",
     
     // WhatsApp Inquiry Box
@@ -85,6 +85,9 @@ const translations = {
     // Random Creations Section
     randomTitle: "إبداعات عشوائية 🎨",
     descFahm: "موقع تفاعلي متكامل لمطعم فحم ولحم (قائمة الطعام، الفروع، والطلبات).",
+    descAlis: "موقع وتطبيق ويب لمطعم عليز (فرع أبو نصير) - وجبات البروستد والشاورما والبرجر.",
+    descArmy: "موقع تفاعلي بطابع عسكري تكتيكي لمطعم آرمي برقر (Army Burger) في عمان.",
+    descSushi: "موقع فاخر لمطعم فودو سوشي (Fugu Sushi) تجربة السوشي الياباني في عمان.",
     descGolden: "تطبيق وجبات طعام وتصميم واجهة تفاعلية.",
     descZO1: "تصميم واجهة المنصة التعليمية والأكاديمية.",
     descIDE: "واجهة بيئة تطوير برمجية كود ومحرر نصوص.",
@@ -132,7 +135,7 @@ const translations = {
     qrBtn: "📱 QR Code",
     
     // Sidebar Links
-    linkCreations: "🎨 Selected Creations (5 Projects)",
+    linkCreations: "🎨 Selected Creations (8 Projects)",
     linkAllProjects: "🚀 All Projects & Automations",
     
     // WhatsApp Inquiry Box
@@ -203,6 +206,9 @@ const translations = {
     // Random Creations Section
     randomTitle: "Random Creations 🎨",
     descFahm: "Interactive website for Fahm & Lahm Restaurant (Menu, branches, orders).",
+    descAlis: "Interactive website for Alis Restaurant (Abu Nseir branch) - Broasted, Shawarma & Burgers.",
+    descArmy: "Tactical military themed website for Army Burger restaurant in Amman.",
+    descSushi: "Luxury website for Fugu Sushi restaurant showcasing Japanese sushi in Amman.",
     descGolden: "Food ordering app frontend and interactive layout.",
     descZO1: "Educational and academic platform interface.",
     descIDE: "Cloud IDE code editor & terminal layout.",
