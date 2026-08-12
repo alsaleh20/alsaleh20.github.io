@@ -83,7 +83,10 @@ const translations = {
         footerMainBranches: "الفروع الرئيسية",
         footerContactOrder: "تواصل واطلب",
         footerTalabat: "متوفر على تطبيقات التوصيل (طلبات)",
-        footerRights: "© 2026 مطعم فحم ولحم (شركة رائد وعصام العمايرة). جميع الحقوق محفوظة."
+        footerRights: "© 2026 مطعم فحم ولحم (شركة رائد وعصام العمايرة). جميع الحقوق محفوظة.",
+        quickCall: "اتصل الآن",
+        quickWhatsapp: "واتساب",
+        quickMenu: "المنيو"
     },
     en: {
         topBarPhone: "Unified Delivery & Order Number:",
@@ -96,6 +99,9 @@ const translations = {
         navContact: "Contact",
         phoneBtn: "053500600",
         langToggleBtn: "العربية",
+        quickCall: "Call Now",
+        quickWhatsapp: "WhatsApp",
+        quickMenu: "Menu",
         
         // Hero
         heroBadge: "Authentic Charcoal Grilled Flavour",
@@ -724,19 +730,18 @@ function highlightBranch(branchId) {
 
 function toggleMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
+    const mobileBtnIcon = document.querySelector('.mobile-menu-btn i');
     if (!navLinks) return;
-    if (navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-    } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.right = '0';
-        navLinks.style.width = '100%';
-        navLinks.style.background = '#171717';
-        navLinks.style.padding = '20px';
-        navLinks.style.borderBottom = '1px solid #333';
+    
+    const isOpen = navLinks.classList.toggle('active');
+    if (mobileBtnIcon) {
+        if (isOpen) {
+            mobileBtnIcon.classList.remove('fa-bars');
+            mobileBtnIcon.classList.add('fa-xmark');
+        } else {
+            mobileBtnIcon.classList.remove('fa-xmark');
+            mobileBtnIcon.classList.add('fa-bars');
+        }
     }
 }
 
@@ -749,4 +754,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetId = window.location.hash.substring(1);
         setTimeout(() => highlightBranch(targetId), 300);
     }
+
+    // Close mobile nav menu when clicking outside or clicking any nav link
+    document.addEventListener('click', (e) => {
+        const navLinks = document.querySelector('.nav-links');
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        if (!navLinks || !navLinks.classList.contains('active')) return;
+
+        const isClickInsideMenu = navLinks.contains(e.target);
+        const isClickOnBtn = mobileBtn && mobileBtn.contains(e.target);
+        const isLinkClick = e.target.tagName === 'A' || e.target.closest('a');
+
+        if (!isClickInsideMenu && !isClickOnBtn || (isClickInsideMenu && isLinkClick)) {
+            navLinks.classList.remove('active');
+            const mobileBtnIcon = document.querySelector('.mobile-menu-btn i');
+            if (mobileBtnIcon) {
+                mobileBtnIcon.classList.remove('fa-xmark');
+                mobileBtnIcon.classList.add('fa-bars');
+            }
+        }
+    });
 });
