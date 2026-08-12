@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0d0d0d">
+    <meta name="i18n-title" content="true">
     <meta name="description" content="الصفحة الشخصية ومعرض المشاريع الخاصة بالصالح أحمد الحياري - خبير إدارة سيرفرات، أتمتة n8n، وتطوير الويب.">
     <meta property="og:title" content="الصفحة الشخصية والمشاريع - الصالح حياري">
     <meta property="og:description" content="خبير إدارة سيرفرات، أتمتة n8n، وتطوير الويب.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="images.jpeg">
-    <title>الصفحة الشخصية والمشاريع - الصالح حياري</title>
+    <title data-i18n="pageTitle">الصفحة الشخصية والمشاريع - الصالح حياري</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -20,10 +21,13 @@
     <div class="wrapper">
       <!-- البطاقة التعريفية -->
       <main class="card">
+        <div style="display: flex; justify-content: flex-end; width: 100%; margin-bottom: 0.75rem;">
+          <button id="lang-toggle-btn" onclick="toggleLanguage()" class="lang-switcher-btn" title="تغيير اللغة / Switch Language">🌐 English</button>
+        </div>
         <img class="avatar" loading="lazy" decoding="async" src="images.jpeg" onerror="this.onerror=null; this.src='https://github.com/alsaleh20.png';" alt="الصورة الشخصية - الصالح أحمد الحياري">
-        <h1 class="name">الصالح أحمد الحياري</h1>
-        <p class="location">الأردن</p>
-        <p class="bio">"إدارة سيرفرات | أتمتة n8n | تطوير ويب"</p>
+        <h1 class="name" data-i18n="name">الصالح أحمد الحياري</h1>
+        <p class="location" data-i18n="location">الأردن 🇯🇴</p>
+        <p class="bio" data-i18n="bio">"إدارة سيرفرات | أتمتة n8n | تطوير ويب"</p>
         
         <!-- أيقونات التواصل السريعة فوق GitHub -->
         <div class="quick-icons-bar">
@@ -34,16 +38,17 @@
 
         <!-- زر حفظ بطاقة جهة الاتصال vCard و QR Code -->
         <div class="vcard-action-bar">
-          <button class="vcard-btn" onclick="downloadVCard()" title="حفظ جهة الاتصال مباشرة في هاتفك">
+          <button class="vcard-btn" onclick="downloadVCard()" title="حفظ جهة الاتصال مباشرة في هاتفك" data-i18n="vcardBtn">
             📇 حفظ الكرت بالهاتف (.vcf)
           </button>
-          <button class="vcard-btn qr-btn" onclick="openQrModal()" title="عرض رمز QR مسح">
+          <button class="vcard-btn qr-btn" onclick="openQrModal()" title="عرض رمز QR مسح" data-i18n="qrBtn">
             📱 QR Code
           </button>
         </div>
 
         <nav class="links">
-          <a class="link" href="#random-creations" style="border: 1px solid var(--green); color: var(--green); background-color: rgba(196, 248, 42, 0.1);">🎨 إبداعات مختارة (5 مشاريع)</a>
+          <a class="link" href="projects.html" style="border: 1px solid #00f3ff; color: #00f3ff; background-color: rgba(0, 243, 255, 0.1);" data-i18n="linkAllProjects">🚀 جميع المشاريع والأعمال</a>
+          <a class="link" href="#random-creations" style="border: 1px solid var(--green); color: var(--green); background-color: rgba(196, 248, 42, 0.1);" data-i18n="linkCreations">🎨 إبداعات مختارة (5 مشاريع)</a>
           <a class="link" href="https://github.com/alsaleh20" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="link" href="https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a class="link" href="https://khamsat.com/user/alsaleh20" target="_blank" rel="noopener noreferrer">خمسات</a>
@@ -59,21 +64,21 @@
 
         <!-- بوكس حاسبة ومنشئ طلبات الخدمة المباشر عبر الواتساب (موقع المربع الأحمر) -->
         <div class="sidebar-inquiry-card">
-          <h2 class="sidebar-inquiry-title">طلب خدمة سريع عبر WhatsApp 💬</h2>
+          <h2 class="sidebar-inquiry-title" data-i18n="waTitle">طلب خدمة سريع عبر WhatsApp 💬</h2>
           <form id="wa-inquiry-form" onsubmit="sendWhatsAppInquiry(event)">
             <div class="inquiry-group">
-              <label for="wa-service">الخدمة المطلوبة:</label>
+              <label for="wa-service" data-i18n="waServiceLabel">الخدمة المطلوبة:</label>
               <select id="wa-service" class="inquiry-select" required>
-                <option value="أتمتة المهام والعمليات (n8n Automations)">⚡ أتمتة المهام والعمليات (n8n)</option>
-                <option value="تجهيز وإدارة السيرفرات (Linux Server Setup & Management)">🖥️ تجهيز وإدارة السيرفرات (Linux/VPS)</option>
-                <option value="تطوير موقع ويب إلكتروني (Web Development)">🌐 تطوير موقع ويب إلكتروني</option>
-                <option value="ربط وتكامل API (API Integration & Webhooks)">🔗 ربط وتكامل API و Webhooks</option>
-                <option value="استشارة تقنية شاملة (Technical Consultation)">💡 استشارة تقنية شاملة</option>
+                <option value="أتمتة المهام والعمليات (n8n Automations)" data-i18n="waOptService1">⚡ أتمتة المهام والعمليات (n8n)</option>
+                <option value="تجهيز وإدارة السيرفرات (Linux Server Setup & Management)" data-i18n="waOptService2">🖥️ تجهيز وإدارة السيرفرات (Linux/VPS)</option>
+                <option value="تطوير موقع ويب إلكتروني (Web Development)" data-i18n="waOptService3">🌐 تطوير موقع ويب إلكتروني</option>
+                <option value="ربط وتكامل API (API Integration & Webhooks)" data-i18n="waOptService4">🔗 ربط وتكامل API و Webhooks</option>
+                <option value="استشارة تقنية شاملة (Technical Consultation)" data-i18n="waOptService5">💡 استشارة تقنية شاملة</option>
               </select>
             </div>
 
             <div class="inquiry-group" style="margin-top: 0.75rem;">
-              <label for="wa-phone-choice">الرقم المفصل للتواصل:</label>
+              <label for="wa-phone-choice" data-i18n="waPhoneLabel">الرقم المفصل للتواصل:</label>
               <select id="wa-phone-choice" class="inquiry-select">
                 <option value="962775858328">واتساب 1: 0775858328</option>
                 <option value="962779511729">واتساب 2: 0779511729</option>
@@ -81,21 +86,21 @@
             </div>
 
             <div class="inquiry-group" style="margin-top: 0.75rem;">
-              <label for="wa-timeline">الإطار الزمني المتوقع:</label>
+              <label for="wa-timeline" data-i18n="waTimelineLabel">الإطار الزمني المتوقع:</label>
               <select id="wa-timeline" class="inquiry-select">
-                <option value="عاجل (خلال 24-48 ساعة)">⚡ عاجل (خلال 24-48 ساعة)</option>
-                <option value="خلال أسبوع">📅 خلال أسبوع</option>
-                <option value="مرن / حسب حجم المشروع">⏳ مرن / حسب حجم المشروع</option>
+                <option value="عاجل (خلال 24-48 ساعة)" data-i18n="waOptTimeline1">⚡ عاجل (خلال 24-48 ساعة)</option>
+                <option value="خلال أسبوع" data-i18n="waOptTimeline2">📅 خلال أسبوع</option>
+                <option value="مرن / حسب حجم المشروع" data-i18n="waOptTimeline3">⏳ مرن / حسب حجم المشروع</option>
               </select>
             </div>
 
             <div class="inquiry-group" style="margin-top: 0.75rem;">
-              <label for="wa-details">تفاصيل أو وصف مختصر للمشروع:</label>
-              <textarea id="wa-details" class="inquiry-textarea" rows="3" placeholder="أكتب هنا ملخص الفكرة..."></textarea>
+              <label for="wa-details" data-i18n="waDetailsLabel">تفاصيل أو وصف مختصر للمشروع:</label>
+              <textarea id="wa-details" class="inquiry-textarea" rows="3" placeholder="أكتب هنا ملخص الفكرة..." data-i18n-placeholder="waDetailsPlaceholder"></textarea>
             </div>
 
             <button type="submit" class="wa-send-btn">
-              <i class="fab fa-whatsapp"></i> إرسال الطلب عبر WhatsApp الآن
+              <i class="fab fa-whatsapp"></i> <span data-i18n="waSubmitBtn">إرسال الطلب عبر WhatsApp الآن</span>
             </button>
           </form>
         </div>
@@ -105,15 +110,15 @@
       <div class="content-column">
         <!-- بوكس نبذة عني المنفصل -->
         <section class="about-card-section">
-          <h2 class="section-title">نبذة عني</h2>
+          <h2 class="section-title" data-i18n="aboutTitle">نبذة عني</h2>
           <div class="about-card-body">
-            <p class="about-text">
+            <p class="about-text" data-i18n="aboutText">
               أنا <strong>الصالح أحمد الحياري</strong>، أعمل في مجال إدارة وتجهيز السيرفرات، وبناء أتمتة للمهام والعمليات باستخدام <strong>n8n</strong>، بالإضافة لتطوير مواقع الويب. أركز على تقديم حلول عملية ومباشرة تساعد في تنظيم العمل وتسهيل الربط بين الخدمات.
             </p>
             <div class="skills-tags">
               <span class="skill-tag">n8n</span>
-              <span class="skill-tag">إدارة سيرفرات</span>
-              <span class="skill-tag">تطوير ويب</span>
+              <span class="skill-tag" data-i18n="skillServer">إدارة سيرفرات</span>
+              <span class="skill-tag" data-i18n="skillWeb">تطوير ويب</span>
               <span class="skill-tag">Linux</span>
               <span class="skill-tag">HTML/CSS/JS</span>
             </div>
@@ -122,21 +127,24 @@
 
         <!-- بوكس المشاريع المنفصل -->
         <section class="projects-section">
-          <h2 class="section-title">مشاريعي على GitHub</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--off-black); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
+            <h2 class="section-title" style="border: none; margin: 0; padding: 0;" data-i18n="githubTitle">مشاريعي على GitHub</h2>
+            <a href="projects.html" class="link-btn-subtle" data-i18n="viewAllGithubBtn">🚀 عرض جميع المشاريع</a>
+          </div>
           <div id="projects-container" class="projects-grid">
-            <div class="loading">جاري تحميل المشاريع...</div>
+            <div class="loading" data-i18n="loadingProjects">جاري تحميل المشاريع...</div>
           </div>
         </section>
 
         <!-- بوكس المواقع المفتوحة / المميزة المنفصل -->
         <section class="projects-section">
-          <h2 class="section-title">مواقع قمت بتطويرها</h2>
+          <h2 class="section-title" data-i18n="websitesTitle">مواقع قمت بتطويرها</h2>
           <div class="projects-grid">
             <div class="project-card">
               <h3 class="project-title">
                 <a href="https://puretouchplus.com/" target="_blank" rel="noopener noreferrer">Pure Touch Plus</a>
               </h3>
-              <p class="project-desc">موقع شركة Pure Touch Plus المتخصصة في خدمات التنظيف والتعقيم الاحترافية الشاملة.</p>
+              <p class="project-desc" data-i18n="descPureTouch">موقع شركة Pure Touch Plus المتخصصة في خدمات التنظيف والتعقيم الاحترافية الشاملة.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Website</span>
                 <span class="project-stars">🌐 Live</span>
@@ -146,7 +154,7 @@
               <h3 class="project-title">
                 <a href="https://ashrafaldbas.com/" target="_blank" rel="noopener noreferrer">السلط تايم</a>
               </h3>
-              <p class="project-desc">موقع إخباري مخصص لنشر أخبار مدينة السلط والمملكة الأردنية الهاشمية.</p>
+              <p class="project-desc" data-i18n="descSaltTime">موقع إخباري مخصص لنشر أخبار مدينة السلط والمملكة الأردنية الهاشمية.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Website</span>
                 <span class="project-stars">🌐 Live</span>
@@ -157,9 +165,9 @@
 
         <!-- بوكس واجهة الأوامر التفاعلية (Linux Terminal CLI) -->
         <section class="projects-section">
-          <h2 class="section-title">my CLI</h2>
+          <h2 class="section-title" data-i18n="cliTitle">my CLI</h2>
           <div class="about-card-body">
-            <p class="about-text" style="margin-bottom: 0.75rem;">
+            <p class="about-text" style="margin-bottom: 0.75rem;" data-i18n="cliDesc">
               واجهة تفاعلية لاستكشاف مشاريعي ومهاراتي في الأتمتة وإدارة السيرفرات. اكتب <code dir="ltr">help</code> للبدء.
             </p>
             <div class="terminal-window" id="main-terminal-window" onclick="document.getElementById('cli-input').focus()">
@@ -170,12 +178,12 @@
                   <span class="terminal-btn btn-green" title="ملء الشاشة / تكبير" onclick="event.stopPropagation(); toggleFullscreenTerminal('main-terminal-window');"></span>
                 </div>
                 <span class="terminal-title">guest@alhayari: ~</span>
-                <button class="terminal-expand-btn" title="توسيع / تكبير الشاشة (Fullscreen)" onclick="event.stopPropagation(); toggleFullscreenTerminal('main-terminal-window');">
+                <button class="terminal-expand-btn" title="توسيع / تكبير الشاشة (Fullscreen)" onclick="event.stopPropagation(); toggleFullscreenTerminal('main-terminal-window');" data-i18n="cliExpandBtn">
                   ⛶ تكبير الشاشة
                 </button>
               </div>
               <div class="terminal-body" id="cli-body">
-                <div class="terminal-welcome">مرحباً بك في نظام الصالح حياري! اكتب 'help' للبدء.</div>
+                <div class="terminal-welcome" data-i18n="cliWelcome">مرحباً بك في نظام الصالح حياري! اكتب 'help' للبدء.</div>
                 <div class="terminal-input-line">
                   <span class="terminal-prompt">guest@alhayari:~$</span>
                   <input type="text" id="cli-input" class="terminal-input" autocomplete="off" spellcheck="false">
@@ -189,7 +197,7 @@
         <section class="projects-section" id="server-cli-section" style="display: none;">
           <h2 class="section-title" style="color: #00f3ff;">Server CLI Dashboard 🖥️</h2>
           <div class="about-card-body">
-            <p class="about-text" style="margin-bottom: 0.75rem; color: #00f3ff;">
+            <p class="about-text" style="margin-bottom: 0.75rem; color: #00f3ff;" data-i18n="serverCliDesc">
               تيرمينال إدارة السيرفرات المتقدمة (Server Management Node). اكتب <code dir="ltr" style="color: #00ff66;">help</code> لرؤية أوامر السيرفر.
             </p>
             <div class="terminal-window server-cli-window" id="server-terminal-window" onclick="document.getElementById('server-cli-input').focus()">
@@ -200,12 +208,12 @@
                   <span class="terminal-btn btn-green" title="ملء الشاشة / تكبير" onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');"></span>
                 </div>
                 <span class="terminal-title" style="color: #00f3ff;">root@alsaleh-server-node: ~</span>
-                <button class="terminal-expand-btn" style="border-color: #00f3ff; color: #00f3ff;" title="توسيع / تكبير الشاشة (Fullscreen)" onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');">
+                <button class="terminal-expand-btn" style="border-color: #00f3ff; color: #00f3ff;" title="توسيع / تكبير الشاشة (Fullscreen)" onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');" data-i18n="cliExpandBtn">
                   ⛶ تكبير الشاشة
                 </button>
               </div>
               <div class="terminal-body" id="server-cli-body">
-                <div class="terminal-welcome" style="color: #00f3ff;">[SERVER NODE CONNECTED] أهلاً بك في تيرمينال إدارة السيرفرات (Server CLI)!</div>
+                <div class="terminal-welcome" style="color: #00f3ff;" data-i18n="serverCliWelcome">[SERVER NODE CONNECTED] أهلاً بك في تيرمينال إدارة السيرفرات (Server CLI)!</div>
                 <div class="terminal-input-line">
                   <span class="terminal-prompt" style="color: #00f3ff;">root@alsaleh-server:~$</span>
                   <input type="text" id="server-cli-input" class="terminal-input" autocomplete="off" spellcheck="false">
@@ -217,21 +225,21 @@
 
         <!-- بوكس أتمتة العمليات n8n المنفصل (دائماً تحت التيرمينال) -->
         <section class="projects-section">
-          <h2 class="section-title">أحدث أتمتة وسير العمل (n8n)</h2>
+          <h2 class="section-title" data-i18n="n8nTitle">أحدث أتمتة وسير العمل (n8n)</h2>
           <div id="n8n-container" class="projects-grid">
-            <div class="loading">جاري تحميل أتمتة n8n...</div>
+            <div class="loading" data-i18n="loadingN8n">جاري تحميل أتمتة n8n...</div>
           </div>
         </section>
 
         <!-- بوكس مشاريع جانبية (Side Projects) المنفصل (في أسفل الموقع تحت n8n) -->
         <section class="projects-section">
-          <h2 class="section-title">مشاريع جانبية</h2>
+          <h2 class="section-title" data-i18n="sideProjectsTitle">مشاريع جانبية</h2>
           <div class="projects-grid">
             <div class="project-card">
               <h3 class="project-title">
                 <a href="p/a/x.html" target="_blank" rel="noopener noreferrer">أشرف الدباس</a>
               </h3>
-              <p class="project-desc">خبير الإعلام الرقمي وتطوير المحتوى الصحفي والإخباري.</p>
+              <p class="project-desc" data-i18n="descAshraf">خبير الإعلام الرقمي وتطوير المحتوى الصحفي والإخباري.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
                 <span class="project-stars">🌐 Live</span>
@@ -242,7 +250,7 @@
               <h3 class="project-title">
                 <a href="p/r/x.html" target="_blank" rel="noopener noreferrer">رعد عربيات</a>
               </h3>
-              <p class="project-desc">مدير عمليات وضيافة. استعراض الخبرات العملية والمهارات القيادية.</p>
+              <p class="project-desc" data-i18n="descRaad">مدير عمليات وضيافة. استعراض الخبرات العملية والمهارات القيادية.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
                 <span class="project-stars">🌐 Live</span>
@@ -253,7 +261,7 @@
               <h3 class="project-title">
                 <a href="p/k/x.html" target="_blank" rel="noopener noreferrer">إيهاب الخالدي</a>
               </h3>
-              <p class="project-desc">استعراض السيرة الذاتية المهنية والمشاريع المنجزة.</p>
+              <p class="project-desc" data-i18n="descEhab">استعراض السيرة الذاتية المهنية والمشاريع المنجزة.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>CV Site</span>
                 <span class="project-stars">🌐 Live</span>
@@ -264,7 +272,7 @@
               <h3 class="project-title">
                 <a href="p/n/x.html" target="_blank" rel="noopener noreferrer">رناد الكلوب</a>
               </h3>
-              <p class="project-desc">أخصائية اجتماعية. تمكين الأفراد والعمل المجتمعي والتمكين الشبابي.</p>
+              <p class="project-desc" data-i18n="descRenad">أخصائية اجتماعية. تمكين الأفراد والعمل المجتمعي والتمكين الشبابي.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
                 <span class="project-stars">🌐 Live</span>
@@ -275,7 +283,7 @@
               <h3 class="project-title">
                 <a href="p/e/x.html" target="_blank" rel="noopener noreferrer">د. إيمان العلي</a>
               </h3>
-              <p class="project-desc">أستاذ مساعد في كلية الحقوق. مسيرة أكاديمية وبحثية وقانونية حافلة.</p>
+              <p class="project-desc" data-i18n="descEman">أستاذ مساعد في كلية الحقوق. مسيرة أكاديمية وبحثية وقانونية حافلة.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Academic</span>
                 <span class="project-stars">🌐 Live</span>
@@ -286,7 +294,7 @@
               <h3 class="project-title">
                 <a href="p/y/x.html" target="_blank" rel="noopener noreferrer">آية حامد</a>
               </h3>
-              <p class="project-desc">استعراض السيرة الذاتية والمهارات التدريبية والأكاديمية.</p>
+              <p class="project-desc" data-i18n="descAya">استعراض السيرة الذاتية والمهارات التدريبية والأكاديمية.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Trainer CV</span>
                 <span class="project-stars">🌐 Live</span>
@@ -297,7 +305,7 @@
               <h3 class="project-title">
                 <a href="p/b/x.html" target="_blank" rel="noopener noreferrer">عمر الحوارات (بريصي)</a>
               </h3>
-              <p class="project-desc">عرض السيرة الذاتية والمهارات بتصميم مبسط وفعال.</p>
+              <p class="project-desc" data-i18n="descOmar">عرض السيرة الذاتية والمهارات بتصميم مبسط وفعال.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>Portfolio</span>
                 <span class="project-stars">🌐 Live</span>
@@ -308,16 +316,16 @@
 
         <!-- بوكس إبداعات عشوائية الخفيف والسريع -->
         <section class="projects-section" id="random-creations">
-          <h2 class="section-title">إبداعات عشوائية 🎨</h2>
+          <h2 class="section-title" data-i18n="randomTitle">إبداعات عشوائية 🎨</h2>
           <div class="projects-grid" id="random-creations-grid">
             <div class="project-card">
               <h3 class="project-title">
                 <a href="fahmlahm/index.html" target="_blank" rel="noopener noreferrer">مطعم فحم ولحم 🍖🔥</a>
               </h3>
-              <p class="project-desc">موقع تفاعلي متكامل لمطعم فحم ولحم (قائمة الطعام، الفروع، والطلبات).</p>
+              <p class="project-desc" data-i18n="descFahm">موقع تفاعلي متكامل لمطعم فحم ولحم (قائمة الطعام، الفروع، والطلبات).</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
-                <span class="project-stars">🌐 معاينة المباشرة</span>
+                <span class="project-stars" data-i18n="livePreview">🌐 معاينة المباشرة</span>
               </div>
             </div>
 
@@ -325,10 +333,10 @@
               <h3 class="project-title">
                 <a href="pro_frontends/goldenmeal/index.html" target="_blank" rel="noopener noreferrer">Golden Meal</a>
               </h3>
-              <p class="project-desc">تطبيق وجبات طعام وتصميم واجهة تفاعلية.</p>
+              <p class="project-desc" data-i18n="descGolden">تطبيق وجبات طعام وتصميم واجهة تفاعلية.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
-                <span class="project-stars">🌐 معاينة المباشرة</span>
+                <span class="project-stars" data-i18n="livePreview">🌐 معاينة المباشرة</span>
               </div>
             </div>
 
@@ -336,10 +344,10 @@
               <h3 class="project-title">
                 <a href="pro_frontends/ZO1/index.html" target="_blank" rel="noopener noreferrer">ZO1 - الأكاديمية</a>
               </h3>
-              <p class="project-desc">تصميم واجهة المنصة التعليمية والأكاديمية.</p>
+              <p class="project-desc" data-i18n="descZO1">تصميم واجهة المنصة التعليمية والأكاديمية.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
-                <span class="project-stars">🌐 معاينة المباشرة</span>
+                <span class="project-stars" data-i18n="livePreview">🌐 معاينة المباشرة</span>
               </div>
             </div>
 
@@ -347,10 +355,10 @@
               <h3 class="project-title">
                 <a href="pro_frontends/ide cood/frontend/index.html" target="_blank" rel="noopener noreferrer">IDE Code</a>
               </h3>
-              <p class="project-desc">واجهة بيئة تطوير برمجية كود ومحرر نصوص.</p>
+              <p class="project-desc" data-i18n="descIDE">واجهة بيئة تطوير برمجية كود ومحرر نصوص.</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
-                <span class="project-stars">🌐 معاينة المباشرة</span>
+                <span class="project-stars" data-i18n="livePreview">🌐 معاينة المباشرة</span>
               </div>
             </div>
 
@@ -358,10 +366,10 @@
               <h3 class="project-title">
                 <a href="pro_frontends/alsalseh_paey/" target="_blank" rel="noopener noreferrer">alsalseh_paey</a>
               </h3>
-              <p class="project-desc">مشروع إدارة وتسهيل عمليات الدفع والتدفق المالي (PayFlow).</p>
+              <p class="project-desc" data-i18n="descPayflow">مشروع إدارة وتسهيل عمليات الدفع والتدفق المالي (PayFlow).</p>
               <div class="project-meta">
                 <span class="project-lang"><span class="lang-dot" style="background-color: var(--green)"></span>HTML/CSS/JS</span>
-                <span class="project-stars">🌐 معاينة المباشرة</span>
+                <span class="project-stars" data-i18n="livePreview">🌐 معاينة المباشرة</span>
               </div>
             </div>
           </div>
@@ -369,35 +377,35 @@
 
         <!-- بوكس حاسبة وفر وتوفير الأتمتة التفاعلية (Automation ROI & Time Saved Calculator) -->
         <section class="projects-section">
-          <h2 class="section-title">حاسبة توفير الوقت والمال بالأتمتة 🧮</h2>
+          <h2 class="section-title" data-i18n="roiTitle">حاسبة توفير الوقت والمال بالأتمتة 🧮</h2>
           <div class="about-card-body inquiry-builder-box">
-            <p class="about-text">
+            <p class="about-text" data-i18n="roiDesc">
               احسب كم من الوقت والمبالغ المالية يمكنك توفيرها شهرياً عند تحويل المهام الروتينية إلى أتمتة ذكية باستخدام n8n:
             </p>
             <div class="inquiry-grid">
               <div class="inquiry-group">
-                <label for="roi-employees">عدد الموظفين / فريق العمل:</label>
+                <label for="roi-employees" data-i18n="roiEmployeesLabel">عدد الموظفين / فريق العمل:</label>
                 <input type="number" id="roi-employees" class="inquiry-select" value="3" min="1" max="100" oninput="calculateAutomationRoi()">
               </div>
 
               <div class="inquiry-group">
-                <label for="roi-hours">ساعات المهام اليدوية يومياً (لكل شخص):</label>
+                <label for="roi-hours" data-i18n="roiHoursLabel">ساعات المهام اليدوية يومياً (لكل شخص):</label>
                 <input type="number" id="roi-hours" class="inquiry-select" value="2" min="0.5" step="0.5" max="12" oninput="calculateAutomationRoi()">
               </div>
 
               <div class="inquiry-group">
-                <label for="roi-hourly-rate">متوسط أجر الساعة التقديري ($):</label>
+                <label for="roi-hourly-rate" data-i18n="roiRateLabel">متوسط أجر الساعة التقديري ($):</label>
                 <input type="number" id="roi-hourly-rate" class="inquiry-select" value="10" min="1" max="500" oninput="calculateAutomationRoi()">
               </div>
             </div>
 
             <div class="roi-result-card">
               <div class="roi-stat-item">
-                <span class="roi-label">الوقت الموفر شهرياً:</span>
+                <span class="roi-label" data-i18n="roiSavedHoursLabel">الوقت الموفر شهرياً:</span>
                 <span class="roi-value" id="roi-saved-hours">0 ساعة ⏳</span>
               </div>
               <div class="roi-stat-item highlight">
-                <span class="roi-label">التوفير المالي الشهري:</span>
+                <span class="roi-label" data-i18n="roiSavedMoneyLabel">التوفير المالي الشهري:</span>
                 <span class="roi-value" id="roi-saved-money">$0 دولار 💰</span>
               </div>
             </div>
@@ -489,6 +497,7 @@
     </div>
 
     <!-- كود الجافا سكربت الخارجي -->
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

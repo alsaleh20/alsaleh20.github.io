@@ -119,11 +119,12 @@ function renderProjects(repos) {
   const container = document.getElementById('projects-container');
   if (!container) return;
 
+  const currentLang = localStorage.getItem('portfolio_lang') || 'ar';
   const hiddenRepos = ['alsaleh20.github.io'];
   const filteredRepos = repos.filter(repo => !repo.fork && !hiddenRepos.includes((repo.name || '').toLowerCase()));
 
   if (filteredRepos.length === 0) {
-    container.innerHTML = '<p class="no-projects">لا توجد مشاريع عامة حالياً.</p>';
+    container.innerHTML = `<p class="no-projects">${currentLang === 'en' ? 'No public projects found.' : 'لا توجد مشاريع عامة حالياً.'}</p>`;
     return;
   }
 
@@ -133,7 +134,8 @@ function renderProjects(repos) {
     card.className = 'project-card';
     
     const safeTitle = escapeHTML(repo.name);
-    const safeDesc = escapeHTML(repo.description || 'مشروع مميز من مشاريع alsaleh20 المتاحة على GitHub.');
+    const fallbackDesc = currentLang === 'en' ? 'Featured GitHub repository by alsaleh20.' : 'مشروع مميز من مشاريع alsaleh20 المتاحة على GitHub.';
+    const safeDesc = escapeHTML(repo.description || fallbackDesc);
     const safeLang = repo.language ? escapeHTML(repo.language) : null;
     const safeUrl = escapeHTML(repo.html_url);
     
@@ -155,8 +157,10 @@ function renderWorkflows(workflows) {
   const container = document.getElementById('n8n-container');
   if (!container) return;
 
+  const currentLang = localStorage.getItem('portfolio_lang') || 'ar';
+
   if (workflows.length === 0) {
-    container.innerHTML = '<p class="no-projects">لا توجد أتمتة نشطة حالياً.</p>';
+    container.innerHTML = `<p class="no-projects">${currentLang === 'en' ? 'No active automations found.' : 'لا توجد أتمتة نشطة حالياً.'}</p>`;
     return;
   }
 
@@ -166,13 +170,16 @@ function renderWorkflows(workflows) {
     card.className = 'project-card';
     
     const safeTitle = escapeHTML(flow.name);
-    const safeDesc = escapeHTML(flow.description || 'أتمتة سير عمل نشطة وجاهزة للاستخدام في منصة n8n.');
-    const formattedDate = new Date(flow.updatedAt).toLocaleDateString('ar-JO', {
+    const fallbackDesc = currentLang === 'en' ? 'Active workflow automation ready for n8n execution.' : 'أتمتة سير عمل نشطة وجاهزة للاستخدام في منصة n8n.';
+    const safeDesc = escapeHTML(flow.description || fallbackDesc);
+    const formattedDate = new Date(flow.updatedAt).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'ar-JO', {
       year: 'numeric',
-      month: 'long',
+      month: 'short',
       day: 'numeric'
     });
     const fileUrl = flow.fileUrl ? escapeHTML(flow.fileUrl) : null;
+    const activeLabel = flow.active ? (currentLang === 'en' ? 'Active' : 'نشط') : (currentLang === 'en' ? 'Inactive' : 'غير نشط');
+    const downloadLabel = currentLang === 'en' ? '📥 Download JSON' : '📥 تحميل JSON';
     
     card.innerHTML = `
       <h3 class="project-title" style="color: var(--white); margin-bottom: 0.5rem;">
@@ -182,15 +189,24 @@ function renderWorkflows(workflows) {
       <div class="project-meta" style="margin-top: 0.75rem;">
         <span class="project-lang">
           <span class="lang-dot" style="background-color: var(--green)"></span>
-          ${flow.active ? 'نشط' : 'غير نشط'}
+          ${activeLabel}
         </span>
-        ${fileUrl ? `<a href="${fileUrl}" download style="color: var(--green); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-right: auto;">📥 تحميل JSON</a>` : ''}
+        ${fileUrl ? `<a href="${fileUrl}" download style="color: var(--green); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-right: auto;">${downloadLabel}</a>` : ''}
         <span class="project-stars" style="margin-left: 0.5rem;">📅 ${formattedDate}</span>
       </div>
     `;
     container.appendChild(card);
   });
 }
+
+window.addEventListener('languageChanged', () => {
+  try {
+    const cachedRepos = localStorage.getItem('alsaleh20_repos_cache');
+    if (cachedRepos) renderProjects(JSON.parse(cachedRepos));
+    const cachedFlows = localStorage.getItem('n8n_workflows_cache');
+    if (cachedFlows) renderWorkflows(JSON.parse(cachedFlows));
+  } catch (e) {}
+});
 
 async function fetchProjects() {
   const username = 'alsaleh20';
@@ -210,7 +226,7 @@ async function fetchProjects() {
   }
 
   try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     if (response.ok) {
       const repos = await response.json();
       if (Array.isArray(repos) && repos.length > 0) {
@@ -224,7 +240,7 @@ async function fetchProjects() {
   }
 
   try {
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)}`;
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`)}`;
     const proxyResponse = await fetch(proxyUrl);
     if (proxyResponse.ok) {
       const repos = await proxyResponse.json();

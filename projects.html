@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d0d0d">
+    <meta name="i18n-title" content="true">
+    <meta name="description" content="دليل شامل لجميع مشاريع وأعمال الصالح أحمد الحياري - مستودعات GitHub، أتمتات n8n، ومواقع إلكترونية.">
+    <title data-i18n="allProjectsPageTitle">جميع المشاريع والأعمال - الصالح حياري</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="all-projects-container">
+      
+      <!-- Top Navigation & Header -->
+      <header class="all-projects-header">
+        <div class="header-top-bar">
+          <a href="index.html" class="link-btn-subtle" data-i18n="backHomeBtn">🏠 الصفحة الرئيسية</a>
+          <button id="lang-toggle-btn" onclick="toggleLanguage()" class="lang-switcher-btn" title="تغيير اللغة / Switch Language">🌐 English</button>
+        </div>
+
+        <div class="header-title-box">
+          <h1 data-i18n="allProjectsHeaderTitle">🚀 جميع المشاريع والأعمال</h1>
+          <p data-i18n="allProjectsHeaderSub">استكشف مستودعات GitHub، أتمتات n8n، المواقع الإلكترونية، والمشاريع الجانبية في مكان واحد.</p>
+        </div>
+      </header>
+
+      <!-- Filter Controls & Search -->
+      <div class="filter-search-box">
+        <div class="search-input-wrapper">
+          <input type="text" id="project-search-input" placeholder="🔍 ابحث باسم المشروع أو الكلمات المفتاحية..." data-i18n-placeholder="searchPlaceholder" oninput="filterAllProjects()">
+        </div>
+
+        <div class="filter-tabs" id="filter-tabs">
+          <button class="filter-tab active" data-category="all" onclick="selectCategory('all')" data-i18n="catAll">🌐 الكل</button>
+          <button class="filter-tab" data-category="github" onclick="selectCategory('github')" data-i18n="catGithub">💻 مشاريع GitHub</button>
+          <button class="filter-tab" data-category="n8n" onclick="selectCategory('n8n')" data-i18n="catN8n">⚡ أتمتة n8n</button>
+          <button class="filter-tab" data-category="websites" onclick="selectCategory('websites')" data-i18n="catWebsites">🌐 مواقع إلكترونية</button>
+          <button class="filter-tab" data-category="side" onclick="selectCategory('side')" data-i18n="catSide">👤 مشاريع جانبية</button>
+          <button class="filter-tab" data-category="creations" onclick="selectCategory('creations')" data-i18n="catCreations">🎨 إبداعات عشوائية</button>
+        </div>
+      </div>
+
+      <!-- Main Grid Container for All Projects -->
+      <main class="projects-section">
+        <div id="all-projects-grid" class="projects-grid">
+          <div class="loading" data-i18n="loadingProjects">جاري تحميل المشاريع...</div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer style="text-align: center; color: var(--grey); font-size: 0.85rem; padding: 1.5rem 0;" data-i18n="footerRights">
+        جميع الحقوق محفوظة © الصالح أحمد الحياري
+      </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="i18n.js"></script>
+    <script src="projects.js"></script>
+  </body>
+</html>
