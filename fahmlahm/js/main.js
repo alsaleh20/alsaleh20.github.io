@@ -17,9 +17,9 @@ const translations = {
         langToggleBtn: "English",
         
         // Hero
-        heroBadge: "طعم الشواء البلدي الأصيل على الفحم",
-        heroTitle: "أشهى المشويات البلدية و<span>الشاورما الطازجة</span> يومياً",
-        heroDesc: "نحن في مطعم <strong>فحم ولحم</strong> (شركة رائد وعصام العمايرة) نقدم لكم أجود أنواع اللحوم الطازجة (غنم بلدي وروماني) المشوية بطريقتنا التقليدية الخاصة، مع وجبات الشاورما والبرجر والبروستد.",
+        heroBadge: "طعم الشاورما والدجاج البلدي الأصيل على الفحم",
+        heroTitle: "أشهى وجبات الشاورما و<span>الدجاج المشوي</span> يومياً",
+        heroDesc: "نحن في مطعم <strong>فحم ولحم</strong> (شركة رائد وعصام العمايرة) نقدم لكم أشهى وجبات الشاورما الطازجة، ودجاج البروستد المقرمش، والدجاج المشوي على الفحم بتتبيلتنا الخاصة.",
         heroBtnMenu: "استعرض المنيو والأسعار",
         heroBtnCall: "اطلب الآن 053500600",
         stat1Title: "4.2 ★",
@@ -30,8 +30,8 @@ const translations = {
         stat3Desc: "خدمة متواصلة في بعض الفروع",
         
         // Features
-        feat1Title: "لحوم طازجة 100%",
-        feat1Desc: "نختار أجود أنواع اللحم الروماني والبلدي يومياً لضمان نكهة شواء لا تُنسى.",
+        feat1Title: "دجاج طازج 100%",
+        feat1Desc: "نستخدم الدجاج الطازج يومياً لضمان نكهة وجودة لا تُنسى في كل وجبة.",
         feat2Title: "شواء على الفحم",
         feat2Desc: "طريقة الطهي التقليدية على الفحم الطبيعي التي تمنح الأطباق رائحتها الزكية.",
         feat3Title: "توصيل سريع",
@@ -41,7 +41,7 @@ const translations = {
         
         // Menu Page
         menuPageTitle: "قائمة الطعام <span>والأسعار المفصلة</span>",
-        menuPageDesc: "استمتع بتشكيلة فريدة من المشويات البلدية على الفحم، الشاورما، الوجبات العائلية الكبرى والوجبات السريعة",
+        menuPageDesc: "استمتع بتشكيلة فريدة من الشاورما الطازجة، دجاج الفحم، وجبات البروستد المقرمشة، والوجبات العائلية الكبرى",
         previewTitle: "مختارات من قائمة <span>فحم ولحم</span>",
         previewSubtitle: "أشهر الأطباق والوجبات",
         btnFullMenu: "عرض قائمة الطعام الكاملة والأسعار",
@@ -49,11 +49,12 @@ const translations = {
         
         // Menu Tabs
         tabAll: "الكل",
-        tabKilograms: "المشويات بالوزن (كيلو)",
-        tabIndividual: "الوجبات الفردية",
+        tabCharcoal: "دجاج الفحم والبخاري",
+        tabBroasted: "البروستد والكرسبي",
         tabShawarma: "الشاورما والساندويشات",
+        tabBurgers: "البرجر وجبات الأطفال",
         tabFamily: "وجبات عالي العائلية",
-        tabFastfood: "البرجر والبروستد",
+        tabWings: "الوينجز والبوبس",
         addToCartBtn: "إضافة",
         currency: "د.أ",
         
@@ -77,7 +78,7 @@ const translations = {
         
         // Footer
         footerSubtitle: "شركة رائد وعصام العمايرة",
-        footerTagline: "أجود المشويات البلدية على الفحم والشاورما في الأردن.",
+        footerTagline: "أشهى وجبات الشاورما والدجاج المشوي على الفحم والبروستد في الأردن.",
         footerUnifiedPhone: "الرقم الموحد: 053500600",
         footerQuickLinks: "روابط سريعة",
         footerMainBranches: "الفروع الرئيسية",
@@ -104,9 +105,9 @@ const translations = {
         quickMenu: "Menu",
         
         // Hero
-        heroBadge: "Authentic Charcoal Grilled Flavour",
-        heroTitle: "Finest Local Grills & <span>Fresh Shawarma</span> Daily",
-        heroDesc: "At <strong>Fahem & Lahem Restaurant</strong> (Raed & Essam Al-Amayreh Co.), we serve fresh local lamb & roman beef grilled on natural charcoal, alongside shawarma, burgers, and broasted chicken.",
+        heroBadge: "Authentic Chicken & Shawarma Grilled Flavour",
+        heroTitle: "Charcoal Grilled Chicken & <span>Fresh Shawarma</span> Daily",
+        heroDesc: "At <strong>Fahm & Lahm Restaurant</strong> (Raed & Essam Al-Amayreh Co.), we serve fresh chicken shawarma, crispy broasted chicken, and charcoal-grilled chicken with our signature spices.",
         heroBtnMenu: "Explore Menu & Prices",
         heroBtnCall: "Order Now 053500600",
         stat1Title: "4.2 ★",
@@ -117,8 +118,8 @@ const translations = {
         stat3Desc: "Non-stop service in select branches",
         
         // Features
-        feat1Title: "100% Fresh Meat",
-        feat1Desc: "Handpicked premium local lamb & meat daily for an unforgettable barbecue flavor.",
+        feat1Title: "100% Fresh Chicken",
+        feat1Desc: "We use 100% fresh chicken daily to ensure unforgettable taste and quality in every meal.",
         feat2Title: "Charcoal Barbecue",
         feat2Desc: "Traditional grilling over natural wood charcoal giving rich smoky aromas.",
         feat3Title: "Fast Delivery",
@@ -128,7 +129,7 @@ const translations = {
         
         // Menu Page
         menuPageTitle: "Food Menu <span>& Detailed Prices</span>",
-        menuPageDesc: "Enjoy our wide variety of charcoal grills, shawarma platters, mega family meals, and fast food.",
+        menuPageDesc: "Enjoy our wide variety of fresh shawarma, charcoal-grilled chicken, crispy broasted chicken, and mega family meals.",
         previewTitle: "Featured <span>Fahm & Lahm</span> Dishes",
         previewSubtitle: "POPULAR DISHES & MEALS",
         btnFullMenu: "View Full Menu & All Prices",
@@ -136,11 +137,12 @@ const translations = {
         
         // Menu Tabs
         tabAll: "All",
-        tabKilograms: "Grills by KG",
-        tabIndividual: "Single Meals",
+        tabCharcoal: "Charcoal Chicken & Bukhari",
+        tabBroasted: "Broasted & Crispy",
         tabShawarma: "Shawarma & Sandwiches",
+        tabBurgers: "Burgers & Kids Meals",
         tabFamily: "Aali Family Meals",
-        tabFastfood: "Burgers & Broasted",
+        tabWings: "Wings & Bites",
         addToCartBtn: "Add to Cart",
         currency: "JOD",
         
@@ -164,7 +166,7 @@ const translations = {
         
         // Footer
         footerSubtitle: "Raed & Essam Al-Amayreh Co.",
-        footerTagline: "The finest charcoal grills & shawarma in Jordan.",
+        footerTagline: "The finest shawarma, charcoal-grilled chicken & broasted in Jordan.",
         footerUnifiedPhone: "Hotline: 053500600",
         footerQuickLinks: "Quick Links",
         footerMainBranches: "Main Branches",
@@ -176,314 +178,712 @@ const translations = {
 
 // Real Data extracted strictly from documents in AR & EN
 const menuItems = [
-    // Category: kilograms
+    // Category: charcoal (دجاج الفحم والبخاري)
     {
         id: 1,
-        name: { ar: "شقف لحم 1 كيلو", en: "1 KG Lamb Tikka / Shish Kebab" },
-        category: "kilograms",
-        price: 14.00,
+        name: { ar: "دجاجة مشوية على الفحم", en: "Charcoal Grilled Chicken" },
+        category: "charcoal",
+        price: 5.00,
         desc: { 
-            ar: "لحم روماني بلدي طازج مشوي على الفحم الطبيعي المباشر، يخدم مع البصل، الطماطم المشوية والخبز", 
-            en: "Fresh local lamb tikka grilled over wood charcoal, served with grilled onions, tomatoes & bread" 
+            ar: "دجاجة مشوية كاملة على الفحم تقدم مع بطاطس 200غم، خبز، ثومية عادي، ثومية حار وثومية مايونيز عادي", 
+            en: "Whole charcoal grilled chicken served with 200g fries, bread, regular garlic, spicy garlic & regular mayo garlic" 
         },
         icon: "fa-fire",
         badge: { ar: "الأكثر طلباً", en: "Best Seller" }
     },
     {
         id: 2,
-        name: { ar: "كباب لحم 1 كيلو", en: "1 KG Lamb Kebab" },
-        category: "kilograms",
-        price: 10.00,
+        name: { ar: "نصف دجاجة مشوية على الفحم", en: "Half Charcoal Grilled Chicken" },
+        category: "charcoal",
+        price: 2.75,
         desc: { 
-            ar: "كباب لحم روماني بلدي طازج متبل بتتبيلتنا الخاصة المشوية على الفحم", 
-            en: "Fresh seasoned minced lamb kebab grilled over hot charcoal" 
+            ar: "نصف دجاجة مشوية على الفحم تقدم مع بطاطس 200غم، خبز، ثومية عادي وثومية حار", 
+            en: "Half charcoal grilled chicken served with 200g fries, bread, regular garlic & spicy garlic" 
         },
-        icon: "fa-drumstick-bite",
-        badge: { ar: "مميز", en: "Featured" }
+        icon: "fa-fire",
+        badge: { ar: "", en: "" }
     },
     {
         id: 3,
-        name: { ar: "مشكل 1 كيلو (لحم ودجاج)", en: "1 KG Mixed Grill (Lamb & Chicken)" },
-        category: "kilograms",
-        price: 12.00,
+        name: { ar: "دجاجة مشوية سادة", en: "Whole Grilled Chicken (Plain)" },
+        category: "charcoal",
+        price: 4.20,
         desc: { 
-            ar: "تشكيلة فاخرة تجمع بين شقف اللحم، الكباب، والشيش طاووق المشوي على الفحم", 
-            en: "Premium mixed platter of lamb tikka, lamb kebab, and shish tawook" 
+            ar: "دجاجة كاملة مشوية على الفحم بدون إضافات", 
+            en: "Whole grilled chicken on charcoal without sides" 
         },
-        icon: "fa-layer-group",
-        badge: { ar: "خيار العائلات", en: "Family Choice" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
     },
     {
         id: 4,
-        name: { ar: "عرايس لحم 1 كيلو", en: "1 KG Lamb Arayes" },
-        category: "kilograms",
-        price: 10.00,
+        name: { ar: "نصف دجاجة مشوية سادة", en: "Half Grilled Chicken (Plain)" },
+        category: "charcoal",
+        price: 2.25,
         desc: { 
-            ar: "عرايس باللحم البلدي المتبل والمشوي داخل الخبز العربي على الفحم حتى القرمشة", 
-            en: "Crispy grilled Arabic pita stuffed with spiced fresh minced lamb" 
+            ar: "نصف دجاجة مشوية على الفحم بدون إضافات", 
+            en: "Half grilled chicken on charcoal without sides" 
         },
-        icon: "fa-bread-slice",
+        icon: "fa-drumstick-bite",
         badge: { ar: "", en: "" }
     },
     {
         id: 5,
-        name: { ar: "دجاجة مشوية على الفحم", en: "Whole Charcoal Grilled Chicken" },
-        category: "kilograms",
-        price: 6.00,
+        name: { ar: "وجبة البخاري نصف دجاجة", en: "Bukhari Rice Meal with Half Chicken" },
+        category: "charcoal",
+        price: 2.75,
         desc: { 
-            ar: "دجاجة كاملة متبلة وموضوعة على الفحم المباشر، تقدم مع الخبز الطازج والثومية", 
-            en: "Whole marinated chicken slow-grilled on charcoal, served with garlic dip & pita" 
+            ar: "نصف دجاجة شواية مع 300 غرام أرز بخاري وصوص حار", 
+            en: "Half rotisserie chicken served with 300g Bukhari rice & spicy sauce" 
         },
-        icon: "fa-drumstick-bite",
-        badge: { ar: "شهي", en: "Delicious" }
+        icon: "fa-bowl-rice",
+        badge: { ar: "شعبي", en: "Popular" }
     },
-
-    // Category: individual
     {
         id: 6,
-        name: { ar: "وجبة شقف لحم فردية", en: "Single Lamb Tikka Meal" },
-        category: "individual",
-        price: 3.50,
+        name: { ar: "علبة أرز بخاري سادة (300 غم)", en: "Plain Bukhari Rice Box (300g)" },
+        category: "charcoal",
+        price: 1.00,
         desc: { 
-            ar: "قطع شقف لحم بلدي مشوية تقدم مع البصل، الطماطم المشوية والخبز الطازج", 
-            en: "Single portion of grilled lamb tikka served with onions, tomatoes & bread" 
+            ar: "علبة أرز بخاري سادة بوزن 300 غم تقدم مع الصوص الخاص", 
+            en: "Plain Bukhari rice portion (300g) served with special sauce" 
         },
-        icon: "fa-utensils",
+        icon: "fa-bowl-rice",
         badge: { ar: "", en: "" }
     },
     {
         id: 7,
-        name: { ar: "وجبة كباب لحم فردية", en: "Single Lamb Kebab Meal" },
-        category: "individual",
-        price: 2.50,
+        name: { ar: "صدر أرز بخاري 1 كيلو", en: "1 KG Bukhari Rice Platter" },
+        category: "charcoal",
+        price: 2.25,
         desc: { 
-            ar: "أسياخ كباب لحم مشوية على الفحم مع الخضار المشوية والخبز", 
-            en: "Single portion of charcoal grilled lamb kebab skewers" 
+            ar: "صدر أرز بخاري بوزن 1 كيلو يقدم مع 3 علب صوص", 
+            en: "1 KG platter of Bukhari rice served with 3 sauce boxes" 
         },
-        icon: "fa-utensils",
+        icon: "fa-bowl-rice",
         badge: { ar: "", en: "" }
     },
     {
         id: 8,
-        name: { ar: "وجبة شيش طاووق", en: "Shish Tawook Meal" },
-        category: "individual",
-        price: 2.00,
+        name: { ar: "صدر أرز بخاري 2 كيلو", en: "2 KG Bukhari Rice Platter" },
+        category: "charcoal",
+        price: 3.25,
         desc: { 
-            ar: "قطع دجاج شيش طاووق متبلة ومعدة على الفحم مع الثومية والخبز", 
-            en: "Marinated chicken breast skewers grilled over charcoal" 
+            ar: "صدر أرز بخاري بوزن 2 كيلو يقدم مع 5 علب صوص", 
+            en: "2 KG platter of Bukhari rice served with 5 sauce boxes" 
         },
-        icon: "fa-utensils",
+        icon: "fa-bowl-rice",
         badge: { ar: "", en: "" }
     },
     {
         id: 9,
-        name: { ar: "وجبة مشكل (لحم ودجاج)", en: "Single Mixed Grill Meal" },
-        category: "individual",
-        price: 3.00,
+        name: { ar: "صدر أرز بخاري 3 كيلو", en: "3 KG Bukhari Rice Platter" },
+        category: "charcoal",
+        price: 4.00,
         desc: { 
-            ar: "مزيج مشويات فردي متنوع من اللحم البلدي والدجاج المشوي", 
-            en: "Single combination platter of lamb and chicken grills" 
+            ar: "صدر أرز بخاري بوزن 3 كيلو يقدم مع 6 علب صوص", 
+            en: "3 KG platter of Bukhari rice served with 6 sauce boxes" 
         },
-        icon: "fa-star",
-        badge: { ar: "مفضل", en: "Popular" }
+        icon: "fa-bowl-rice",
+        badge: { ar: "", en: "" }
     },
 
-    // Category: shawarma
+    // Category: broasted (البروستد والكرسبي)
     {
         id: 10,
-        name: { ar: "شاورما عادي (60غ)", en: "Regular Shawarma (60g)" },
-        category: "shawarma",
-        price: 0.65,
+        name: { ar: "وجبة كرسبي 8 قطع", en: "8 Pcs Crispy Chicken Meal" },
+        category: "broasted",
+        price: 4.00,
         desc: { 
-            ar: "ساندويش شاورما دجاج كلاسيك بالخبز العربي والتومية والمخلل", 
-            en: "Classic chicken shawarma sandwich in Arabic pita with garlic sauce" 
+            ar: "8 قطع كرسبي (400غ)، بطاطا 200غم، ثومية حار وعادي 50غم، خبز، علبة ماتريكس 250مل، كاتشاب وسلطة كولسلو 100غم", 
+            en: "8 pieces crispy chicken (400g), 200g fries, regular & spicy garlic (50g), bread, Matrix 250ml, ketchup & 100g coleslaw" 
         },
-        icon: "fa-burger",
-        badge: { ar: "", en: "" }
+        icon: "fa-cookie",
+        badge: { ar: "مميز", en: "Featured" }
     },
     {
         id: 11,
-        name: { ar: "شاورما سوبر (180غ)", en: "Super Shawarma (180g)" },
-        category: "shawarma",
-        price: 1.25,
+        name: { ar: "وجبة كرسبي 5 قطع", en: "5 Pcs Crispy Chicken Meal" },
+        category: "broasted",
+        price: 3.00,
         desc: { 
-            ar: "حجم سوبر غني بالشاورما والمقبلات والتومية", 
-            en: "Large super-sized chicken shawarma sandwich" 
+            ar: "5 قطع كرسبي (250غ)، بطاطا 200غم، ثومية عادي 50غم، خبز، علبة ماتريكس 250مل، كاتشاب وسلطة كولسلو 100غم", 
+            en: "5 pieces crispy chicken (250g), 200g fries, regular garlic (50g), bread, Matrix 250ml, ketchup & 100g coleslaw" 
         },
-        icon: "fa-burger",
+        icon: "fa-cookie",
         badge: { ar: "", en: "" }
     },
     {
         id: 12,
-        name: { ar: "ساندويش شاورما فرنسي (100غ)", en: "French Shawarma Sandwich (100g)" },
-        category: "shawarma",
-        price: 1.30,
+        name: { ar: "وجبة بروستد نصف دجاجة (4 قطع)", en: "Half Chicken Broasted Meal (4 Pcs)" },
+        category: "broasted",
+        price: 2.70,
         desc: { 
-            ar: "ساندويش شاورما بالخبز الفرنسي المحمص الخاص", 
-            en: "Shawarma sandwich in toasted French baguette bread" 
+            ar: "4 قطع دجاج بروستد مقرمش، بطاطا 200غم، ثومية 50غم، وخبز طازج", 
+            en: "4 pieces crispy broasted chicken, 200g fries, 50g garlic dip & fresh bread" 
         },
-        icon: "fa-bread-slice",
+        icon: "fa-drumstick-bite",
         badge: { ar: "", en: "" }
     },
     {
         id: 13,
-        name: { ar: "ساندويش سوبر زنجر (180غ)", en: "Super Zinger Sandwich (180g)" },
-        category: "shawarma",
-        price: 1.30,
+        name: { ar: "وجبة بروستد دجاجة كاملة (8 قطع)", en: "Whole Chicken Broasted Meal (8 Pcs)" },
+        category: "broasted",
+        price: 4.70,
         desc: { 
-            ar: "قطع زنجر دجاج مقرمشة حارة مع الخس والصوص الخاص", 
-            en: "Crispy spicy chicken zinger sandwich with lettuce & sauce" 
+            ar: "8 قطع دجاج بروستد مقرمش، بطاطا 200غم، ثومية 50غم، وخبز طازج", 
+            en: "8 pieces crispy broasted chicken, 200g fries, 50g garlic dip & fresh bread" 
         },
-        icon: "fa-pepper-hot",
-        badge: { ar: "", en: "" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "قيمة ممتازة", en: "Best Value" }
     },
     {
         id: 14,
-        name: { ar: "ساندويش هامر (200غ)", en: "Hammer Sandwich (200g)" },
-        category: "shawarma",
-        price: 1.75,
+        name: { ar: "وجبة بروستد رقم (1) - قطعتين دجاج", en: "Broasted Meal #1 (2 Pcs)" },
+        category: "broasted",
+        price: 2.25,
         desc: { 
-            ar: "ساندويش هامر المميز مع الجبنة الذائبة والبطاطس المقرمشة", 
-            en: "Signature Hammer sandwich packed with melted cheese & fries" 
+            ar: "قطعتين دجاج بروستد، بطاطا 200غم، ثومية 50غم، خبز، علبة ماتريكس 250مل، كاتشاب وسلطة كولسلو 100غم", 
+            en: "2 pieces broasted chicken, 200g fries, 50g garlic dip, bread, Matrix 250ml, ketchup & 100g coleslaw" 
         },
-        icon: "fa-cheese",
-        badge: { ar: "جديد", en: "New" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
     },
     {
         id: 15,
-        name: { ar: "وجبة شاورما عادي (200غ)", en: "Regular Shawarma Meal (200g)" },
-        category: "shawarma",
-        price: 2.00,
+        name: { ar: "وجبة بروستد رقم (2) - 3 قطع دجاج", en: "Broasted Meal #2 (3 Pcs)" },
+        category: "broasted",
+        price: 3.00,
         desc: { 
-            ar: "شاورما عربية مقطعة تقدم مع بطاطس مقلية، صوص ثوم، ومخلل", 
-            en: "Sliced Arabic shawarma meal served with fries, garlic dip & pickles" 
+            ar: "3 قطع دجاج بروستد، بطاطا 200غم، ثومية 50غم، خبز، علبة ماتريكس 250مل، كاتشاب وسلطة كولسلو 100غم", 
+            en: "3 pieces broasted chicken, 200g fries, 50g garlic dip, bread, Matrix 250ml, ketchup & 100g coleslaw" 
         },
-        icon: "fa-box",
+        icon: "fa-drumstick-bite",
         badge: { ar: "", en: "" }
     },
     {
         id: 16,
-        name: { ar: "وجبة شاورما سوبر", en: "Super Shawarma Meal" },
-        category: "shawarma",
-        price: 2.75,
+        name: { ar: "وجبة بروستد رقم (3) - 4 قطع دجاج", en: "Broasted Meal #3 (4 Pcs)" },
+        category: "broasted",
+        price: 3.65,
         desc: { 
-            ar: "وجبة شاورما سوبر مقطعة مع سرفيس بطاطس ومقبلات متنوعة", 
-            en: "Sliced super shawarma meal with fries and extra garlic dips" 
+            ar: "4 قطع دجاج بروستد، بطاطا 200غم، ثومية 50غم، خبز، علبة ماتريكس 250مل، كاتشاب وسلطة كولسلو 100غم", 
+            en: "4 pieces broasted chicken, 200g fries, 50g garlic dip, bread, Matrix 250ml, ketchup & 100g coleslaw" 
         },
-        icon: "fa-box",
+        icon: "fa-drumstick-bite",
         badge: { ar: "", en: "" }
     },
     {
         id: 17,
-        name: { ar: "وجبة شاورما دبل (240غ)", en: "Double Shawarma Meal (240g)" },
-        category: "shawarma",
-        price: 3.40,
+        name: { ar: "وجبة بروستد رقم (4) - 9 قطع (دجاجة كاملة)", en: "Broasted Meal #4 (9 Pcs - Whole Chicken)" },
+        category: "broasted",
+        price: 7.00,
         desc: { 
-            ar: "وجبة مضاعفة لشخصين تحتوي على 240 غرام شاورما مع البطاطس والصوصات", 
-            en: "Double portion shawarma meal (240g) served with fries & dips" 
+            ar: "9 قطع دجاج بروستد، بطاطا 400غم، ثومية 50غم، خبز، علبة ماتريكس 250مل، كاتشاب وسلطة كولسلو 100غم", 
+            en: "9 pieces broasted chicken, 400g fries, 50g garlic dip, bread, Matrix 250ml, ketchup & 100g coleslaw" 
         },
-        icon: "fa-boxes-stacked",
-        badge: { ar: "قيمة عالية", en: "Great Value" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
     },
     {
         id: 18,
-        name: { ar: "وجبة شاورما تريل (360غ)", en: "Triple Shawarma Meal (360g)" },
-        category: "shawarma",
-        price: 4.60,
+        name: { ar: "وجبة بروستد رقم (5) - 15 قطعة (دجاجة ونصف)", en: "Broasted Meal #5 (15 Pcs)" },
+        category: "broasted",
+        price: 10.75,
         desc: { 
-            ar: "وجبة ثلاثية ضخمة تحتوي على 360 غرام شاورما مع كمية مضاعفة من الثومية والبطاطس", 
-            en: "Triple size shawarma meal (360g) with double fries & garlic dips" 
+            ar: "15 قطعة دجاج بروستد، بطاطا 400غم، ثومية 50غم، 5 خبز، علبة ماتريكس 2 لتر، كاتشاب وسلطة كولسلو 100غم", 
+            en: "15 pieces broasted chicken, 400g fries, 50g garlic dip, 5 bread, Matrix 2L, ketchup & 100g coleslaw" 
         },
-        icon: "fa-boxes-stacked",
-        badge: { ar: "مشبعة", en: "Mega Portion" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "حجم عائلي", en: "Family Size" }
     },
-
-    // Category: family
     {
         id: 19,
-        name: { ar: "وجبة عالي 1 العائلية", en: "Aali 1 Family Meal" },
-        category: "family",
-        price: 10.25,
+        name: { ar: "وجبة بروستد رقم (6) - 15 قطعة (دجاج وعظم)", en: "Broasted Meal #6 (15 Pcs - Bone-In)" },
+        category: "broasted",
+        price: 14.20,
         desc: { 
-            ar: "وجبة شاورما عائلية كبرى مع سرافيس البطاطس، الصوصات، والمشروب الغازي العائلي", 
-            en: "Large family shawarma meal with family fries, garlic dips & 1L drink" 
+            ar: "15 قطعة دجاج وعظم بروستد مع البطاطا المقلية، الثومية والخبز ومشروب عائلي", 
+            en: "15 pieces bone-in broasted chicken served with fries, garlic dip, bread & family size drink" 
         },
-        icon: "fa-people-group",
-        badge: { ar: "عائلي", en: "Family" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
     },
     {
         id: 20,
-        name: { ar: "وجبة عالي 2 العائلية", en: "Aali 2 Family Meal" },
-        category: "family",
-        price: 13.50,
+        name: { ar: "وجبة بروستد رقم (7) - 20 قطعة (دجاج وعظم)", en: "Broasted Meal #7 (20 Pcs - Bone-In)" },
+        category: "broasted",
+        price: 17.50,
         desc: { 
-            ar: "وجبة عائلية ضخمة تشمل كمية وفيرة من الشاورما العربي والملحقات الكاملة", 
-            en: "Extra large family shawarma feast with complete sides & drinks" 
+            ar: "20 قطعة دجاج وعظم بروستد، بطاطا 400غم، ثومية 50غم، 8 خبز، علبة ماتريكس 2 لتر، كاتشاب وسلطة كولسلو 100غم", 
+            en: "20 pieces bone-in broasted chicken, 400g fries, 50g garlic, 8 bread, Matrix 2L, ketchup & 100g coleslaw" 
         },
-        icon: "fa-people-group",
-        badge: { ar: "عائلي", en: "Family" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
     },
     {
         id: 21,
-        name: { ar: "وجبة عالي 3 العائلية (1 كيلو شاورما)", en: "Aali 3 Family Meal (1 KG Shawarma)" },
-        category: "family",
-        price: 16.85,
+        name: { ar: "وجبة بروستد رقم (8) - 24 قطعة (دجاج وعظم)", en: "Broasted Meal #8 (24 Pcs - Bone-In)" },
+        category: "broasted",
+        price: 20.50,
         desc: { 
-            ar: "كيلوغرام كامل من الشاورما المقطعة مع سرافيس البطاطس الضخمة، الصوصات والمشروبات العائلية", 
-            en: "1 Full KG of sliced chicken shawarma with massive fries platter & family drinks" 
+            ar: "24 قطعة دجاج وعظم بروستد، بطاطا 400غم، 4 علب ثومية 50غم، 10 خبز، علبة ماتريكس 2 لتر، كاتشاب وسلطة كولسلو 100غم", 
+            en: "24 pieces bone-in broasted chicken, 400g fries, 4x 50g garlic, 10 bread, Matrix 2L, ketchup & 100g coleslaw" 
         },
-        icon: "fa-crown",
-        badge: { ar: "الأضخم", en: "Mega Feast" }
+        icon: "fa-fire",
+        badge: { ar: "الأضخم للجمعات", en: "Mega Feast" }
     },
 
-    // Category: fastfood
+    // Category: shawarma (الشاورما والساندويشات)
     {
         id: 22,
-        name: { ar: "وجبة برجر ترند / باربيكيو / سبايسي", en: "Burger Meal (Trend / BBQ / Spicy)" },
-        category: "fastfood",
-        price: 2.80,
+        name: { ar: "شاورما عادي (60 غم)", en: "Regular Shawarma Sandwich (60g)" },
+        category: "shawarma",
+        price: 0.65,
         desc: { 
-            ar: "وجبة برجر متكاملة مع بطاطس ومشروب وصوص الهني ماسترد المميز", 
-            en: "Complete burger meal with french fries, soft drink & honey mustard sauce" 
+            ar: "ساندويش شاورما دجاج كلاسيك بالخبز العربي والتومية والمخلل", 
+            en: "Classic chicken shawarma sandwich in Arabic pita with garlic sauce & pickles" 
         },
         icon: "fa-burger",
         badge: { ar: "", en: "" }
     },
     {
         id: 23,
-        name: { ar: "وجبة بروستد (4 قطع)", en: "Broasted Meal (4 Pcs)" },
-        category: "fastfood",
-        price: 2.70,
+        name: { ar: "شاورما سوبر (120 غم)", en: "Super Shawarma Sandwich (120g)" },
+        category: "shawarma",
+        price: 1.25,
         desc: { 
-            ar: "4 قطع دجاج بروستد مقرمش مع بطاطس مقلية، ثومية، وخبز طازج", 
-            en: "4 Pieces crispy broasted chicken with fries, garlic dip & bread" 
+            ar: "ساندويش شاورما حجم سوبر غني بالثومية والمخلل في خبز الشراك", 
+            en: "Super chicken shawarma sandwich wrapped in Shrak bread with garlic & pickles" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 24,
+        name: { ar: "ساندويش شيش طاووق (120 غم)", en: "Shish Tawook Sandwich (120g)" },
+        category: "shawarma",
+        price: 1.30,
+        desc: { 
+            ar: "ساندويش قطع شيش طاووق دجاج مشوية على الفحم مع الثومية والبطاطا والمخلل", 
+            en: "Charcoal grilled shish tawook chicken cubes wrapped in bread with garlic, fries & pickles" 
+        },
+        icon: "fa-bread-slice",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 25,
+        name: { ar: "ساندويش شاورما فرنسي (100 غم)", en: "French Shawarma Sandwich (100g)" },
+        category: "shawarma",
+        price: 1.30,
+        desc: { 
+            ar: "ساندويش شاورما دجاج بالخبز الفرنسي المحمص الخاص مع الثومية", 
+            en: "Chicken shawarma sandwich in toasted French baguette with garlic sauce" 
+        },
+        icon: "fa-bread-slice",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 26,
+        name: { ar: "ساندويش هامر (200 غم)", en: "Hammer Sandwich (200g)" },
+        category: "shawarma",
+        price: 1.75,
+        desc: { 
+            ar: "ساندويش هامر المميز الغني بالدجاج والجبنة والبطاطس المقرمشة", 
+            en: "Signature Hammer chicken sandwich packed with melted cheese & fries" 
+        },
+        icon: "fa-cheese",
+        badge: { ar: "جديد", en: "New" }
+    },
+    {
+        id: 27,
+        name: { ar: "ساندويش سوبر زنجر (120 غم)", en: "Super Zinger Sandwich (120g)" },
+        category: "shawarma",
+        price: 1.30,
+        desc: { 
+            ar: "قطع صدر دجاج زنجر مقرمش وحار مع الخس والمايونيز والجبنة", 
+            en: "Crispy spicy chicken zinger sandwich with lettuce, mayo & cheese" 
+        },
+        icon: "fa-pepper-hot",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 28,
+        name: { ar: "وجبة شاورما عادي (120 غم)", en: "Regular Shawarma Meal (120g)" },
+        category: "shawarma",
+        price: 2.00,
+        desc: { 
+            ar: "وجبة شاورما عربي مقطعة تقدم مع بطاطس 200غم، مخلل، صوص خضار وكاتشب", 
+            en: "Sliced Arabic shawarma served with 200g fries, pickles, vegetable sauce & ketchup" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 29,
+        name: { ar: "وجبة شاورما فرنسي (100 غم)", en: "French Shawarma Meal (100g)" },
+        category: "shawarma",
+        price: 2.10,
+        desc: { 
+            ar: "ساندويش شاورما بالخبز الفرنسي مقطع يقدم مع بطاطس مقلية متبلة ومقبلات وصوص شاورما", 
+            en: "Sliced French bread shawarma sandwich served with seasoned fries, pickles & shawarma sauce" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 30,
+        name: { ar: "وجبة الهامر (200 غم)", en: "Hammer Sandwich Meal (200g)" },
+        category: "shawarma",
+        price: 2.90,
+        desc: { 
+            ar: "وجبة ساندويش هامر دجاج وجبنة مقطع يقدم مع البطاطس المقلية المتبلة والمايونيز", 
+            en: "Sliced Hammer chicken & cheese sandwich meal served with seasoned fries & mayo" 
+        },
+        icon: "fa-box",
+        badge: { ar: "الأكثر طلباً", en: "Best Seller" }
+    },
+    {
+        id: 31,
+        name: { ar: "وجبة الزنجر (120 غم)", en: "Zinger Sandwich Meal (120g)" },
+        category: "shawarma",
+        price: 2.25,
+        desc: { 
+            ar: "وجبة ساندويش زنجر دجاج مقرمش حار يقدم مع بطاطس مقلية 200 غم ومشروب ماتريكس 250 مل", 
+            en: "Crispy spicy chicken zinger meal served with 200g fries & Matrix 250ml" 
+        },
+        icon: "fa-pepper-hot",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 32,
+        name: { ar: "وجبة شاورما سوبر (180 غم)", en: "Super Shawarma Meal (180g)" },
+        category: "shawarma",
+        price: 2.75,
+        desc: { 
+            ar: "وجبة شاورما سوبر عربي مقطع، تقدم مع بطاطس 200 غم، مخلل، 2 صوص، خس وكاتشب", 
+            en: "Sliced super shawarma meal served with 200g fries, pickles, 2 sauces, lettuce & ketchup" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 33,
+        name: { ar: "وجبة شاورما دبل (240 غم)", en: "Double Shawarma Meal (240g)" },
+        category: "shawarma",
+        price: 3.40,
+        desc: { 
+            ar: "وجبة شاورما عربي دبل، تقدم مع بطاطس 200 غم، مخلل، 2 صوص، خس وكاتشب", 
+            en: "Double sliced Arabic shawarma meal with 200g fries, pickles, 2 sauces, lettuce & ketchup" 
+        },
+        icon: "fa-boxes-stacked",
+        badge: { ar: "عائلي خفيف", en: "Mini Family" }
+    },
+    {
+        id: 34,
+        name: { ar: "وجبة شاورما تريبل (360 غم)", en: "Triple Shawarma Meal (360g)" },
+        category: "shawarma",
+        price: 4.60,
+        desc: { 
+            ar: "وجبة شاورما عربي تريبل ضخمة، تقدم مع بطاطس 200 غم، مخلل، 2 صوص، خس وكاتشب", 
+            en: "Triple sliced Arabic shawarma meal with 200g fries, pickles, 2 sauces, lettuce & ketchup" 
+        },
+        icon: "fa-boxes-stacked",
+        badge: { ar: "مشبعة جداً", en: "Mega Portion" }
+    },
+
+    // Category: burgers (البرجر وجبات الأطفال)
+    {
+        id: 35,
+        name: { ar: "وجبة برجر للأطفال", en: "Kids Burger Meal" },
+        category: "burgers",
+        price: 1.95,
+        desc: { 
+            ar: "ساندويش برجر صدر دجاج 100 غم مع عصير 250 مل وبطاطا 200 غرام ولعبة هدية للأطفال", 
+            en: "100g chicken breast burger sandwich served with 250ml juice, 200g fries & a free toy" 
+        },
+        icon: "fa-child-reaching",
+        badge: { ar: "وجبة طفل", en: "Kids Special" }
+    },
+    {
+        id: 36,
+        name: { ar: "ساندويش برجر هني ماسترد (120 غم)", en: "Honey Mustard Burger Sandwich (120g)" },
+        category: "burgers",
+        price: 1.85,
+        desc: { 
+            ar: "ساندويش صدر دجاج مقرمش 120 غم مع الخس، جبنة الموزاريلا وصوص الهني ماسترد الخاص", 
+            en: "120g crispy chicken breast sandwich with lettuce, mozzarella cheese & signature honey mustard sauce" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 37,
+        name: { ar: "وجبة برجر هني ماسترد", en: "Honey Mustard Burger Meal" },
+        category: "burgers",
+        price: 2.80,
+        desc: { 
+            ar: "وجبة صدر دجاج هني ماسترد تقدم مع بطاطس هني ماسترد متبلة، صوص هني ماسترد وعلبة ماتريكس", 
+            en: "Honey mustard chicken burger meal served with seasoned fries, extra sauce & Matrix can" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 38,
+        name: { ar: "ساندويش برجر ترند (120 غم)", en: "Trend Burger Sandwich (120g)" },
+        category: "burgers",
+        price: 1.85,
+        desc: { 
+            ar: "ساندويش صدر دجاج مقرمش 120 غم مع الجبن والجرجير والصوص الخاص بالخبز المحمص", 
+            en: "120g crispy chicken breast sandwich with cheese, arugula & special sauce in toasted bun" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 39,
+        name: { ar: "وجبة برجر ترند", en: "Trend Burger Meal" },
+        category: "burgers",
+        price: 2.80,
+        desc: { 
+            ar: "وجبة صدر دجاج ترند تقدم مع بطاطس ترند متبلة، صوص ترند وعلبة ماتريكس", 
+            en: "Trend chicken burger meal served with seasoned Trend fries, special sauce & Matrix can" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 40,
+        name: { ar: "ساندويش برجر سبايسي كرنش (120 غم)", en: "Spicy Crunch Burger Sandwich (120g)" },
+        category: "burgers",
+        price: 1.85,
+        desc: { 
+            ar: "ساندويش صدر دجاج سبايسي مقرمش وحار 120 غم مع الخس، الجبنة والبهارات الحارة", 
+            en: "120g extra crispy spicy chicken breast sandwich with lettuce, cheese & hot spices" 
+        },
+        icon: "fa-pepper-hot",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 41,
+        name: { ar: "وجبة برجر سبايسي كرنش", en: "Spicy Crunch Burger Meal" },
+        category: "burgers",
+        price: 2.80,
+        desc: { 
+            ar: "وجبة صدر دجاج سبايسي كرنش تقدم مع بطاطس سبايسي متبلة، صوص حار وعلبة ماتريكس", 
+            en: "Spicy Crunch chicken burger meal served with seasoned spicy fries, hot sauce & Matrix can" 
+        },
+        icon: "fa-pepper-hot",
+        badge: { ar: "حار", en: "Spicy" }
+    },
+    {
+        id: 42,
+        name: { ar: "ساندويش برجر باربيكيو (120 غم)", en: "BBQ Burger Sandwich (120g)" },
+        category: "burgers",
+        price: 1.85,
+        desc: { 
+            ar: "ساندويش صدر دجاج مقرمش 120 غم غني بجبنة الشيدر وصوص الباربيكيو المدخن", 
+            en: "120g crispy chicken breast sandwich with cheddar cheese & smoky BBQ sauce" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 43,
+        name: { ar: "وجبة برجر باربيكيو", en: "BBQ Burger Meal" },
+        category: "burgers",
+        price: 2.80,
+        desc: { 
+            ar: "وجبة صدر دجاج باربيكيو تقدم مع بطاطس باربيكيو متبلة، صوص باربيكيو وعلبة ماتريكس", 
+            en: "BBQ chicken burger meal served with seasoned BBQ fries, extra sauce & Matrix can" 
+        },
+        icon: "fa-burger",
+        badge: { ar: "", en: "" }
+    },
+
+    // Category: family (وجبات عالي العائلية)
+    {
+        id: 44,
+        name: { ar: "وجبة شاورما عالي (1) - 6 ساندويشات", en: "Aali 1 Family Meal (6 Sandwiches)" },
+        category: "family",
+        price: 10.25,
+        desc: { 
+            ar: "وجبة شاورما عائلية تتكون من 6 ساندويشات شاورما مقطعة مع سرفيس بطاطس، صوصات وكاتشب وماتريكس", 
+            en: "Family shawarma platter of 6 sliced sandwiches served with fries, dipping sauces, ketchup & Matrix" 
+        },
+        icon: "fa-people-group",
+        badge: { ar: "عائلي", en: "Family Choice" }
+    },
+    {
+        id: 45,
+        name: { ar: "وجبة شاورما عالي (2) - 8 ساندويشات", en: "Aali 2 Family Meal (8 Sandwiches)" },
+        category: "family",
+        price: 13.50,
+        desc: { 
+            ar: "وجبة شاورما عائلية كبرى من 8 ساندويشات شاورما مقطعة مع سرفيس بطاطس دبل، صوصات ومقبلات ومشروب غازي", 
+            en: "Large family shawarma platter of 8 sliced sandwiches with double fries, sauces, sides & drinks" 
+        },
+        icon: "fa-people-group",
+        badge: { ar: "عائلي كبير", en: "Large Family" }
+    },
+    {
+        id: 46,
+        name: { ar: "وجبة شاورما عالي (3) - 10 ساندويشات", en: "Aali 3 Family Meal (10 Sandwiches)" },
+        category: "family",
+        price: 16.85,
+        desc: { 
+            ar: "وجبة شاورما عائلية ضخمة تتكون من 10 ساندويشات شاورما مقطعة مع صنفين سرفيس بطاطس وصحن سرفيس صوصات كامل ومشروبات عائلية", 
+            en: "Mega family shawarma platter of 10 sliced sandwiches with two fries platters, complete dipping sides & family drinks" 
+        },
+        icon: "fa-crown",
+        badge: { ar: "الأضخم للشاورما", en: "Shawarma Feast" }
+    },
+
+    // Category: wings (الوينجز والبوبس)
+    {
+        id: 47,
+        name: { ar: "وجبة وينجز 6 قطع", en: "6 Pcs Chicken Wings Meal" },
+        category: "wings",
+        price: 1.95,
+        desc: { 
+            ar: "6 قطع أجنحة دجاج مقرمشة مع علبة ماتريكس 250 مل وبطاطا مقلية 200 غم", 
+            en: "6 pieces of crispy chicken wings served with Matrix 250ml & 200g fries" 
         },
         icon: "fa-drumstick-bite",
         badge: { ar: "", en: "" }
     },
     {
-        id: 24,
-        name: { ar: "وجبة بروستد (8 قطع)", en: "Broasted Meal (8 Pcs)" },
-        category: "fastfood",
-        price: 4.70,
+        id: 48,
+        name: { ar: "وجبة وينجز 10 قطع", en: "10 Pcs Chicken Wings Meal" },
+        category: "wings",
+        price: 2.50,
         desc: { 
-            ar: "8 قطع دجاج بروستد مقرمش لجميع أفراد الأسرة مع المقبلات والبطاطس", 
-            en: "8 Pieces crispy broasted chicken meal for the family with fries & garlic" 
+            ar: "10 قطع أجنحة دجاج مقرمشة مع علبة ماتريكس 250 مل وبطاطا مقلية 200 غم", 
+            en: "10 pieces of crispy chicken wings served with Matrix 250ml & 200g fries" 
         },
         icon: "fa-drumstick-bite",
-        badge: { ar: "عرض رائع", en: "Great Offer" }
+        badge: { ar: "", en: "" }
     },
     {
-        id: 25,
-        name: { ar: "وجبة بروستد عائلية كبرى (24 قطعة)", en: "Mega Family Broasted Meal (24 Pcs)" },
-        category: "fastfood",
-        price: 20.50,
+        id: 49,
+        name: { ar: "وجبة وينجز 16 قطعة", en: "16 Pcs Chicken Wings Meal" },
+        category: "wings",
+        price: 3.55,
         desc: { 
-            ar: "وجبة رقم 181 الضخمة: 24 قطعة بروستد ذهبي مقرمش مع البطاطس الكبيرة، الصوصات، والخبز", 
-            en: "Mega Meal #181: 24 pieces crispy golden broasted chicken with large fries & dips" 
+            ar: "16 قطعة أجنحة دجاج مقرمشة مع علبة ماتريكس 250 مل وبطاطا مقلية 200 غم", 
+            en: "16 pieces of crispy chicken wings served with Matrix 250ml & 200g fries" 
         },
-        icon: "fa-fire",
-        badge: { ar: "حفلات وعائلات", en: "Parties & Events" }
+        icon: "fa-drumstick-bite",
+        badge: { ar: "قيمة عالية", en: "Great Value" }
+    },
+    {
+        id: 50,
+        name: { ar: "8 قطع وينجز سادة", en: "8 Pcs Chicken Wings (Plain)" },
+        category: "wings",
+        price: 1.20,
+        desc: { 
+            ar: "8 قطع أجنحة دجاج مقرمشة سادة بدون إضافات", 
+            en: "8 pieces of crispy chicken wings served plain" 
+        },
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 51,
+        name: { ar: "10 قطع وينجز سادة", en: "10 Pcs Chicken Wings (Plain)" },
+        category: "wings",
+        price: 1.75,
+        desc: { 
+            ar: "10 قطع أجنحة دجاج مقرمشة سادة بدون إضافات", 
+            en: "10 pieces of crispy chicken wings served plain" 
+        },
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 52,
+        name: { ar: "16 قطعة وينجز سادة", en: "16 Pcs Chicken Wings (Plain)" },
+        category: "wings",
+        price: 2.75,
+        desc: { 
+            ar: "16 قطعة أجنحة دجاج مقرمشة سادة بدون إضافات", 
+            en: "16 pieces of crispy chicken wings served plain" 
+        },
+        icon: "fa-drumstick-bite",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 53,
+        name: { ar: "وجبة بوبس 6 قطع", en: "6 Pcs Chicken Bites Meal" },
+        category: "wings",
+        price: 2.00,
+        desc: { 
+            ar: "6 قطع بوبس دجاج مقرمش (بايتس) مع علبة ماتريكس 250 مل وبطاطا مقلية 200 غم", 
+            en: "6 pieces crispy chicken bites served with Matrix 250ml & 200g fries" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 54,
+        name: { ar: "وجبة بوبس 10 قطع", en: "10 Pcs Chicken Bites Meal" },
+        category: "wings",
+        price: 2.55,
+        desc: { 
+            ar: "10 قطع بوبس دجاج مقرمش (بايتس) مع علبة ماتريكس 250 مل وبطاطا مقلية 200 غم", 
+            en: "10 pieces crispy chicken bites served with Matrix 250ml & 200g fries" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 55,
+        name: { ar: "وجبة بوبس 16 قطعة", en: "16 Pcs Chicken Bites Meal" },
+        category: "wings",
+        price: 3.60,
+        desc: { 
+            ar: "16 قطع بوبس دجاج مقرمش (بايتس) مع علبة ماتريكس 250 مل وبطاطا مقلية 200 غم", 
+            en: "16 pieces crispy chicken bites served with Matrix 250ml & 200g fries" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 56,
+        name: { ar: "6 قطع بوبس سادة", en: "6 Pcs Chicken Bites (Plain)" },
+        category: "wings",
+        price: 1.25,
+        desc: { 
+            ar: "6 قطع بوبس دجاج مقرمش (بايتس) سادة بدون إضافات", 
+            en: "6 pieces crispy chicken bites served plain" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 57,
+        name: { ar: "10 قطع بوبس سادة", en: "10 Pcs Chicken Bites (Plain)" },
+        category: "wings",
+        price: 1.80,
+        desc: { 
+            ar: "10 قطع بوبس دجاج مقرمش (بايتس) سادة بدون إضافات", 
+            en: "10 pieces crispy chicken bites served plain" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
+    },
+    {
+        id: 58,
+        name: { ar: "16 قطعة بوبس سادة", en: "16 Pcs Chicken Bites (Plain)" },
+        category: "wings",
+        price: 2.80,
+        desc: { 
+            ar: "16 قطع بوبس دجاج مقرمش (بايتس) سادة بدون إضافات", 
+            en: "16 pieces crispy chicken bites served plain" 
+        },
+        icon: "fa-box",
+        badge: { ar: "", en: "" }
     }
 ];
 
