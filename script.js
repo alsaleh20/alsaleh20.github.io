@@ -1,10 +1,21 @@
 const pageStartTime = new Date();
 
+const rootPageNames = new Set(['index.html', 'projects.html']);
+const currentPageName = window.location.pathname.split('/').pop() || '';
+
+if (rootPageNames.has(currentPageName) && !document.querySelector('link[data-root-landing="true"]')) {
+  const landingStyleLink = document.createElement('link');
+  landingStyleLink.rel = 'stylesheet';
+  landingStyleLink.href = 'landing.css';
+  landingStyleLink.setAttribute('data-root-landing', 'true');
+  document.head.appendChild(landingStyleLink);
+}
+
 function getRealUptimeFormatted() {
   const now = new Date();
   const diffMs = now - pageStartTime;
   const totalSeconds = Math.floor(diffMs / 1000);
-  
+
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
@@ -132,13 +143,13 @@ function renderProjects(repos) {
   filteredRepos.forEach(repo => {
     const card = document.createElement('div');
     card.className = 'project-card';
-    
+
     const safeTitle = escapeHTML(repo.name);
     const fallbackDesc = currentLang === 'en' ? 'Featured GitHub repository by alsaleh20.' : 'مشروع مميز من مشاريع alsaleh20 المتاحة على GitHub.';
     const safeDesc = escapeHTML(repo.description || fallbackDesc);
     const safeLang = repo.language ? escapeHTML(repo.language) : null;
     const safeUrl = escapeHTML(repo.html_url);
-    
+
     card.innerHTML = `
       <h3 class="project-title">
         <a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeTitle}</a>
@@ -168,7 +179,7 @@ function renderWorkflows(workflows) {
   workflows.forEach(flow => {
     const card = document.createElement('div');
     card.className = 'project-card';
-    
+
     const safeTitle = escapeHTML(flow.name);
     const fallbackDesc = currentLang === 'en' ? 'Active workflow automation ready for n8n execution.' : 'أتمتة سير عمل نشطة وجاهزة للاستخدام في منصة n8n.';
     const safeDesc = escapeHTML(flow.description || fallbackDesc);
@@ -180,7 +191,7 @@ function renderWorkflows(workflows) {
     const fileUrl = flow.fileUrl ? escapeHTML(flow.fileUrl) : null;
     const activeLabel = flow.active ? (currentLang === 'en' ? 'Active' : 'نشط') : (currentLang === 'en' ? 'Inactive' : 'غير نشط');
     const downloadLabel = currentLang === 'en' ? '📥 Download JSON' : '📥 تحميل JSON';
-    
+
     card.innerHTML = `
       <h3 class="project-title" style="color: var(--white); margin-bottom: 0.5rem;">
         ${safeTitle}
@@ -205,7 +216,7 @@ window.addEventListener('languageChanged', () => {
     if (cachedRepos) renderProjects(JSON.parse(cachedRepos));
     const cachedFlows = localStorage.getItem('n8n_workflows_cache');
     if (cachedFlows) renderWorkflows(JSON.parse(cachedFlows));
-  } catch (e) {}
+  } catch (e) { }
 });
 
 async function fetchProjects() {
@@ -259,7 +270,7 @@ async function fetchProjects() {
 
 async function fetchN8NWorkflows() {
   const webhookUrl = 'https://nonapplicatory-hitchier-tu.ngrok-free.dev/webhook/get-latest-automations';
-  
+
   try {
     const cachedData = localStorage.getItem('n8n_workflows_cache');
     if (cachedData) {
@@ -327,7 +338,7 @@ let commandHistory = [];
 let historyIndex = -1;
 
 if (cliInput) {
-  cliInput.addEventListener('keydown', function(e) {
+  cliInput.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
       const command = this.value.trim();
       if (command) {
@@ -355,7 +366,7 @@ if (cliInput) {
       e.preventDefault();
       const fullVal = this.value.toLowerCase();
       const parts = fullVal.split(' ');
-      
+
       if (parts.length === 1) {
         // Complete main command
         const currentVal = parts[0];
@@ -402,7 +413,7 @@ function appendTerminalLine(text, className = '') {
   const line = document.createElement('div');
   line.className = `terminal-line ${className}`;
   line.textContent = text;
-  
+
   const inputLine = cliBody.querySelector('.terminal-input-line');
   cliBody.insertBefore(line, inputLine);
   cliBody.scrollTop = cliBody.scrollHeight;
@@ -420,7 +431,7 @@ function executeCommand(cmd) {
   const mainCmd = parts[0].toLowerCase();
   const arg = parts[1] ? parts[1].toLowerCase() : '';
 
-  switch(mainCmd) {
+  switch (mainCmd) {
     case 'apt':
       if (arg === 'servar' || arg === 'server') {
         openServerCLITerminal();
@@ -433,13 +444,13 @@ function executeCommand(cmd) {
         triggerHackerFallEffect();
       } else {
         appendTerminalLine('Available commands:\n' +
-                           '  apt servar    - 🚀 Launch second terminal: Server CLI\n' +
-                           '  projects      - Show key portfolio projects & repositories\n' +
-                           '  sub-projects  - 📂 Show all imported side projects\n' +
-                           '  skills        - List technical skills and proficiency\n' +
-                           '  about         - Show information about Alsaleh Al-Hayari\n' +
-                           '  contact       - Options: -wa, -git, -link, -mail\n' +
-                           '  clear         - Clear the terminal screen');
+          '  apt servar    - 🚀 Launch second terminal: Server CLI\n' +
+          '  projects      - Show key portfolio projects & repositories\n' +
+          '  sub-projects  - 📂 Show all imported side projects\n' +
+          '  skills        - List technical skills and proficiency\n' +
+          '  about         - Show information about Alsaleh Al-Hayari\n' +
+          '  contact       - Options: -wa, -git, -link, -mail\n' +
+          '  clear         - Clear the terminal screen');
       }
       break;
     case '/rgb':
@@ -450,14 +461,14 @@ function executeCommand(cmd) {
     case 'sub-projects':
     case 'side-projects':
       appendTerminalLine('📂 Side Projects Portfolio:\n' +
-                         '1. Ashraf Al-Dabas    - Digital Media Portfolio (p/a/x.html)\n' +
-                         '2. Raad Arabiyat      - Hospitality Leader CV (p/r/x.html)\n' +
-                         '3. Ehab Al-Khaldi     - Operations Manager CV (p/k/x.html)\n' +
-                         '4. Renad Kloob        - Social Worker Portfolio (p/n/x.html)\n' +
-                         '5. Dr. Eman Al-Ali    - Academic Law Professor (p/e/x.html)\n' +
-                         '6. Aya Hamed          - Life Skills Trainer (p/y/x.html)\n' +
-                         '7. Omar Al-Hiwarat    - Professional Barista (p/b/x.html)\n\n' +
-                         'All side projects are live and accessible under the /p/ directory.');
+        '1. Ashraf Al-Dabas    - Digital Media Portfolio (p/a/x.html)\n' +
+        '2. Raad Arabiyat      - Hospitality Leader CV (p/r/x.html)\n' +
+        '3. Ehab Al-Khaldi     - Operations Manager CV (p/k/x.html)\n' +
+        '4. Renad Kloob        - Social Worker Portfolio (p/n/x.html)\n' +
+        '5. Dr. Eman Al-Ali    - Academic Law Professor (p/e/x.html)\n' +
+        '6. Aya Hamed          - Life Skills Trainer (p/y/x.html)\n' +
+        '7. Omar Al-Hiwarat    - Professional Barista (p/b/x.html)\n\n' +
+        'All side projects are live and accessible under the /p/ directory.');
       break;
     case 'status':
     case 'system':
@@ -481,32 +492,32 @@ function executeCommand(cmd) {
       break;
     case 'about':
       appendTerminalLine('Name: Alsaleh Al-Hayari\n' +
-                         'Role: Server Administrator & Automation Expert (n8n)\n' +
-                         'Location: Salt, Jordan\n' +
-                         'Bio: I design workflows, deploy web servers, configure secure Linux systems, and connect APIs.');
+        'Role: Server Administrator & Automation Expert (n8n)\n' +
+        'Location: Salt, Jordan\n' +
+        'Bio: I design workflows, deploy web servers, configure secure Linux systems, and connect APIs.');
       break;
     case 'skills':
       appendTerminalLine('[ Server Administration ]  ██████████████████ 90%\n' +
-                         '[ n8n / Automations ]      ████████████████████ 95%\n' +
-                         '[ Linux / Bash Scripting ] ████████████████ 85%\n' +
-                         '[ Frontend Web (HTML/JS) ] ██████████████ 70%');
+        '[ n8n / Automations ]      ████████████████████ 95%\n' +
+        '[ Linux / Bash Scripting ] ████████████████ 85%\n' +
+        '[ Frontend Web (HTML/JS) ] ██████████████ 70%');
       break;
     case 'projects':
       appendTerminalLine('Featured Web Projects:\n' +
-                         '1. Pure Touch Plus   - Cleaning & Sterilization Service Website (https://puretouchplus.com/)\n' +
-                         '2. Salt Time News    - Salt Time News Website (https://ashrafaldbas.com/)\n\n' +
-                         'GitHub Repositories:\n' +
-                         '3. linkedin_ai.skill  - Content creation automation for LinkedIn\n' +
-                         '4. n8n_master.skill  - Advanced n8n workflow templates\n' +
-                         '5. PayFlow           - Financial flow & payment management system\n\n' +
-                         'n8n Workflows:\n' +
-                         '6. Student Attendance Processing (Ollama + n8n)\n' +
-                         '7. Telegram News Aggregator Scraper\n' +
-                         '8. Unified Webhook Notifications Hub\n' +
-                         '9. AI Lead Generator & Cold Outreach (Gemini + GPT-4)\n' +
-                         '10. Task Management AI Agent (Google Sheets + GPT-4o)\n' +
-                         '11. Telegram Gmail Assistant Agent (Gemini)\n\n' +
-                         'Type "puretouch", "salttime", or "github" to open them.');
+        '1. Pure Touch Plus   - Cleaning & Sterilization Service Website (https://puretouchplus.com/)\n' +
+        '2. Salt Time News    - Salt Time News Website (https://ashrafaldbas.com/)\n\n' +
+        'GitHub Repositories:\n' +
+        '3. linkedin_ai.skill  - Content creation automation for LinkedIn\n' +
+        '4. n8n_master.skill  - Advanced n8n workflow templates\n' +
+        '5. PayFlow           - Financial flow & payment management system\n\n' +
+        'n8n Workflows:\n' +
+        '6. Student Attendance Processing (Ollama + n8n)\n' +
+        '7. Telegram News Aggregator Scraper\n' +
+        '8. Unified Webhook Notifications Hub\n' +
+        '9. AI Lead Generator & Cold Outreach (Gemini + GPT-4)\n' +
+        '10. Task Management AI Agent (Google Sheets + GPT-4o)\n' +
+        '11. Telegram Gmail Assistant Agent (Gemini)\n\n' +
+        'Type "puretouch", "salttime", or "github" to open them.');
       break;
     case 'puretouch':
       appendTerminalLine('Opening Pure Touch Plus...');
@@ -562,22 +573,22 @@ function executeCommand(cmd) {
         window.open('https://unicoders.co/profile/alsaleh20', '_blank');
       } else {
         appendTerminalLine('Usage: contact [option]\n' +
-                           'Options:\n' +
-                           '  -wa       : Open WhatsApp chat 1 (+962775858328)\n' +
-                           '  -wa2      : Open WhatsApp chat 2 (+962779511729)\n' +
-                           '  -mail     : Send an Email (alsalehhiary@gmail.com)\n' +
-                           '  -git      : Open GitHub profile\n' +
-                           '  -link     : Open LinkedIn profile\n' +
-                           '  -khamsat  : Open Khamsat profile\n' +
-                           '  -mostaql  : Open Mostaql profile\n' +
-                           '  -baaeed   : Open Baaeed profile\n' +
-                           '  -hsoub    : Open Hsoub Academy profile\n' +
-                           '  -unicoders: Open Unicoders profile\n' +
-                           '  -insta    : Open Instagram profile\n' +
-                           '  -x        : Open X (Twitter) profile\n' +
-                           '  -yt       : Open YouTube channel\n' +
-                           '  -fb       : Open Facebook profile\n' +
-                           'Example: contact -mail');
+          'Options:\n' +
+          '  -wa       : Open WhatsApp chat 1 (+962775858328)\n' +
+          '  -wa2      : Open WhatsApp chat 2 (+962779511729)\n' +
+          '  -mail     : Send an Email (alsalehhiary@gmail.com)\n' +
+          '  -git      : Open GitHub profile\n' +
+          '  -link     : Open LinkedIn profile\n' +
+          '  -khamsat  : Open Khamsat profile\n' +
+          '  -mostaql  : Open Mostaql profile\n' +
+          '  -baaeed   : Open Baaeed profile\n' +
+          '  -hsoub    : Open Hsoub Academy profile\n' +
+          '  -unicoders: Open Unicoders profile\n' +
+          '  -insta    : Open Instagram profile\n' +
+          '  -x        : Open X (Twitter) profile\n' +
+          '  -yt       : Open YouTube channel\n' +
+          '  -fb       : Open Facebook profile\n' +
+          'Example: contact -mail');
       }
       break;
     case 'github':
@@ -627,8 +638,8 @@ function executeCommand(cmd) {
     case 'secret':
     case 'vault':
       appendTerminalLine('🔓 SECRET UNLOCKED:\n' +
-                         '✨ "Creativity is intelligence having fun." - Albert Einstein\n' +
-                         '🚀 You found the hidden Easter Egg! Try typing: matrix, cyberpunk, hacker, sudo, or party.', 'matrix-text');
+        '✨ "Creativity is intelligence having fun." - Albert Einstein\n' +
+        '🚀 You found the hidden Easter Egg! Try typing: matrix, cyberpunk, hacker, sudo, or party.', 'matrix-text');
       break;
 
     default:
@@ -645,12 +656,12 @@ function triggerMatrixEffect() {
     setTimeout(() => windowElem.classList.remove('glitch-effect'), 600);
   }
   appendTerminalLine('Entering Matrix visual mode...', 'matrix-text');
-  
+
   const matrixChars = '01010101010101010101010101010101';
   let count = 0;
   const interval = setInterval(() => {
     let lineText = '';
-    for(let i = 0; i < 45; i++) {
+    for (let i = 0; i < 45; i++) {
       lineText += Math.random() > 0.5 ? '1 ' : '0 ';
     }
     appendTerminalLine(lineText, 'matrix-text');
@@ -708,7 +719,7 @@ function triggerValveSteamPrank() {
     windowElem.classList.add('hacker-mode', 'glitch-effect');
     setTimeout(() => windowElem.classList.remove('glitch-effect'), 800);
   }
-  
+
   appendTerminalLine('⚠️ [VALVE ANTI-CHEAT PROTOCOL ACTIVATED]', 'terminal-error');
   setTimeout(() => {
     appendTerminalLine('🚨 تم إقصاء المخترق (إعدامه) ☠️', 'hacker-text');
@@ -728,10 +739,10 @@ function triggerHackerFallEffect() {
   }
 
   appendTerminalLine('⚠️ OVERRIDING SYSTEM SECURITY PERMISSIONS...', 'hacker-text');
-  
+
   setTimeout(() => {
     appendTerminalLine('🔥 SYSTEM CRASH: GRAVITY PROTOCOL OVERLOAD! 💥', 'terminal-error');
-    
+
     // Select sections to fall except terminal section
     const sections = document.querySelectorAll('.card, .about-card-section, .projects-section');
     sections.forEach((sec, idx) => {
@@ -758,7 +769,7 @@ function triggerHackerFallEffect() {
 function showServerStatus() {
   const cpuUsage = Math.floor(Math.random() * 12 + 14); // ~14-26%
   const ramUsed = (1.8 + Math.random() * 0.3).toFixed(1);
-  
+
   appendTerminalLine('🖥️  ALSALEH PRODUCTION LINUX SERVER STATUS', 'cli-highlight');
   appendTerminalLine('--------------------------------------------------');
   appendTerminalLine(`OS          : Ubuntu 24.04 LTS (x86_64 Linux 6.8.0-generic)`);
@@ -798,7 +809,7 @@ function executePingCommand(target) {
   else if (target) host = target;
 
   appendTerminalLine(`PING ${host} (104.21.55.120) 56(84) bytes of data.`);
-  
+
   let pingCount = 0;
   const pingInterval = setInterval(() => {
     pingCount++;
@@ -841,7 +852,7 @@ function openServerCLITerminal() {
     serverSection.scrollIntoView({ behavior: 'smooth' });
     appendTerminalLine('🚀 Launching second terminal: "Server CLI"...', 'cli-highlight');
     appendServerCLILine('[CONNECTED TO SERVER NODE] Type "help" to see available server administration commands.', 'cli-success');
-    
+
     // Focus second terminal input
     setTimeout(() => {
       const serverInput = document.getElementById('server-cli-input');
@@ -856,7 +867,7 @@ let serverCommandHistory = [];
 let serverHistoryIndex = -1;
 
 if (serverCliInput) {
-  serverCliInput.addEventListener('keydown', function(e) {
+  serverCliInput.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
       const command = this.value.trim();
       if (command) {
@@ -884,7 +895,7 @@ if (serverCliInput) {
       e.preventDefault();
       const fullVal = this.value.toLowerCase();
       const parts = fullVal.split(' ');
-      
+
       if (parts.length === 1) {
         const currentVal = parts[0];
         if (currentVal) {
@@ -922,7 +933,7 @@ function appendServerCLILine(text, className = '') {
   const line = document.createElement('div');
   line.className = `terminal-line ${className}`;
   line.textContent = text;
-  
+
   const inputLine = serverCliBody.querySelector('.terminal-input-line');
   serverCliBody.insertBefore(line, inputLine);
   serverCliBody.scrollTop = serverCliBody.scrollHeight;
@@ -935,17 +946,17 @@ function executeServerCLICommand(cmd) {
   const mainCmd = parts[0].toLowerCase();
   const arg = parts[1] ? parts[1].toLowerCase() : '';
 
-  switch(mainCmd) {
+  switch (mainCmd) {
     case 'help':
       appendServerCLILine('Server CLI Commands:\n' +
-                          '  status     - Real-time Linux server health & resources\n' +
-                          '  htop       - Interactive CPU & RAM process monitor\n' +
-                          '  services   - Status of n8n, Nginx, Docker & PostgreSQL\n' +
-                          '  ping [host]- Check latency to websites (puretouch / salttime)\n' +
-                          '  logs       - View latest n8n & server automation logs\n' +
-                          '  uptime     - View server running time & load averages\n' +
-                          '  clear      - Clear the server CLI screen\n' +
-                          '  exit       - Close Server CLI terminal');
+        '  status     - Real-time Linux server health & resources\n' +
+        '  htop       - Interactive CPU & RAM process monitor\n' +
+        '  services   - Status of n8n, Nginx, Docker & PostgreSQL\n' +
+        '  ping [host]- Check latency to websites (puretouch / salttime)\n' +
+        '  logs       - View latest n8n & server automation logs\n' +
+        '  uptime     - View server running time & load averages\n' +
+        '  clear      - Clear the server CLI screen\n' +
+        '  exit       - Close Server CLI terminal');
       break;
     case 'status':
     case 'system':
@@ -1022,7 +1033,7 @@ function executePingCommandCLI(target) {
   else if (target) host = target;
 
   appendServerCLILine(`PING ${host} (104.21.55.120) 56(84) bytes of data.`);
-  
+
   let pingCount = 0;
   const pingInterval = setInterval(() => {
     pingCount++;
@@ -1147,7 +1158,7 @@ function resetRgbColors() {
 // Smart WhatsApp Inquiry Builder Function
 function sendWhatsAppInquiry(e) {
   e.preventDefault();
-  
+
   const service = document.getElementById('wa-service').value;
   const phone = document.getElementById('wa-phone-choice').value;
   const timeline = document.getElementById('wa-timeline').value;
@@ -1163,7 +1174,7 @@ function sendWhatsAppInquiry(e) {
 
   const encodedMsg = encodeURIComponent(message);
   const targetUrl = `https://wa.me/${phone}?text=${encodedMsg}`;
-  
+
   window.open(targetUrl, '_blank');
 }
 
