@@ -17,16 +17,16 @@
 ```text
 ```mermaid
 gitGraph
-   commit
-   commit
-   branch feature
-   checkout feature
-   commit
-   commit
-   checkout main
-   merge feature
-   commit
-```
+    commit
+    commit
+    branch feature
+    checkout feature
+    commit
+    commit
+    checkout main
+    merge feature
+    commit
+
 ## التشغيل
 
 للمشاريع البسيطة مثل هذا الموقع، يمكنك فتح أي ملف HTML مباشرة في المتصفح، أو استخدام خادم محلي بسيط مثل:
