@@ -14,7 +14,6 @@
 
 ## هيكل المشروع
 
-```text
 ```mermaid
 gitGraph
     commit
@@ -26,6 +25,7 @@ gitGraph
     checkout main
     merge feature
     commit
+```
 
 ## التشغيل
 
