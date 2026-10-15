@@ -15,24 +15,18 @@
 ## هيكل المشروع
 
 ```text
-.
-├── index.html
-├── projects.html
-├── style.css
-├── i18n.js
-├── projects.js
-├── script.js
-├── robots.txt
-├── sitemap.xml
-├── README.md
-├── SEO-AUDIT.md
-├── p/
-├── pro_frontends/
-├── restorant/
-├── workflows/
-└── ...
+```mermaid
+gitGraph
+   commit
+   commit
+   branch feature
+   checkout feature
+   commit
+   commit
+   checkout main
+   merge feature
+   commit
 ```
-
 ## التشغيل
 
 للمشاريع البسيطة مثل هذا الموقع، يمكنك فتح أي ملف HTML مباشرة في المتصفح، أو استخدام خادم محلي بسيط مثل:
