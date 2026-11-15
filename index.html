@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0d0d0d">
+  <meta name="theme-color" content="#0a0e16">
   <meta name="i18n-title" content="true">
   <meta name="description"
     content="الصالح أحمد الحياري | مطور ويب، متخصص في أتمتة n8n، إدارة السيرفرات، وبناء حلول رقمية عملية للكتّاب والمشاريع.">
@@ -19,7 +19,7 @@
   <title data-i18n="pageTitle">الصالح أحمد الحياري | تطوير الويب، n8n، وإدارة السيرفرات</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -28,7 +28,7 @@
   <div class="wrapper">
     <!-- البطاقة التعريفية -->
     <main class="card">
-      <div style="display: flex; justify-content: flex-end; width: 100%; margin-bottom: 0.75rem;">
+      <div class="card-top">
         <button id="lang-toggle-btn" onclick="toggleLanguage()" class="lang-switcher-btn"
           title="تغيير اللغة / Switch Language">🌐 English</button>
       </div>
@@ -42,10 +42,10 @@
       <!-- أيقونات التواصل السريعة فوق GitHub -->
       <div class="quick-icons-bar">
         <a href="https://wa.me/962775858328" target="_blank" rel="noopener noreferrer" class="icon-link"
-          title="واتساب 0775858328">💬</a>
+          title="واتساب 0775858328" aria-label="واتساب 0775858328"><i class="fab fa-whatsapp"></i></a>
         <a href="https://wa.me/962779511729" target="_blank" rel="noopener noreferrer" class="icon-link"
-          title="واتساب 0779511729">📱</a>
-        <a href="mailto:alsalehhiary@gmail.com" class="icon-link" title="إيميل alsalehhiary@gmail.com">✉️</a>
+          title="واتساب 0779511729" aria-label="واتساب 0779511729"><i class="fas fa-comment-dots"></i></a>
+        <a href="mailto:alsalehhiary@gmail.com" class="icon-link" title="إيميل alsalehhiary@gmail.com" aria-label="البريد الإلكتروني"><i class="fas fa-envelope"></i></a>
       </div>
 
       <!-- زر حفظ بطاقة جهة الاتصال vCard و QR Code -->
@@ -60,34 +60,32 @@
       </div>
 
       <nav class="links">
-        <a class="link" href="projects.html"
-          style="border: 1px solid #00f3ff; color: #00f3ff; background-color: rgba(0, 243, 255, 0.1);"
+        <a class="link link--primary" href="projects.html"
           data-i18n="linkAllProjects">🚀 جميع المشاريع والأعمال</a>
-        <a class="link" href="#random-creations"
-          style="border: 1px solid var(--green); color: var(--green); background-color: rgba(196, 248, 42, 0.1);"
+        <a class="link link--secondary" href="#random-creations"
           data-i18n="linkCreations">🎨 إبداعات مختارة (8 مشاريع)</a>
-        <a class="link" href="https://github.com/alsaleh20" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="link" href="https://github.com/alsaleh20" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i>GitHub</a>
         <a class="link" href="https://www.linkedin.com/in/alsaleh-hyari-b2b5b5392/" target="_blank"
-          rel="noopener noreferrer">LinkedIn</a>
-        <a class="link" href="https://khamsat.com/user/alsaleh20" target="_blank" rel="noopener noreferrer">خمسات</a>
-        <a class="link" href="https://mostaql.com/u/k_alsaleh20" target="_blank" rel="noopener noreferrer">مستقل</a>
-        <a class="link" href="https://baaeed.com/u/alsaleh20" target="_blank" rel="noopener noreferrer">بعيد</a>
+          rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a>
+        <a class="link" href="https://khamsat.com/user/alsaleh20" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase" aria-hidden="true"></i>خمسات</a>
+        <a class="link" href="https://mostaql.com/u/k_alsaleh20" target="_blank" rel="noopener noreferrer"><i class="fas fa-laptop-code" aria-hidden="true"></i>مستقل</a>
+        <a class="link" href="https://baaeed.com/u/alsaleh20" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe" aria-hidden="true"></i>بعيد</a>
         <a class="link" href="https://academy.hsoub.com/profile/4433240-alsaleh-hiary/" target="_blank"
-          rel="noopener noreferrer">أكاديمية حسوب</a>
+          rel="noopener noreferrer"><i class="fas fa-graduation-cap" aria-hidden="true"></i>أكاديمية حسوب</a>
         <a class="link" href="https://unicoders.co/profile/alsaleh20" target="_blank"
-          rel="noopener noreferrer">Unicoders</a>
+          rel="noopener noreferrer"><i class="fas fa-code" aria-hidden="true"></i>Unicoders</a>
         <a class="link" href="https://instagram.com/k_alsaleh20_" target="_blank"
-          rel="noopener noreferrer">Instagram</a>
-        <a class="link" href="https://x.com/k_alsaleh20" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
-        <a class="link" href="https://www.youtube.com/@alsaleh20" target="_blank" rel="noopener noreferrer">YouTube</a>
+          rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i>Instagram</a>
+        <a class="link" href="https://x.com/k_alsaleh20" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter" aria-hidden="true"></i>X (Twitter)</a>
+        <a class="link" href="https://www.youtube.com/@alsaleh20" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube" aria-hidden="true"></i>YouTube</a>
         <a class="link" href="https://www.facebook.com/alsaleh.hiary.2025" target="_blank"
-          rel="noopener noreferrer">Facebook</a>
+          rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i>Facebook</a>
       </nav>
 
       <!-- بوكس حاسبة ومنشئ طلبات الخدمة المباشر عبر الواتساب (موقع المربع الأحمر) -->
       <div class="sidebar-inquiry-card">
         <h2 class="sidebar-inquiry-title" data-i18n="waTitle">طلب خدمة سريع عبر WhatsApp 💬</h2>
-        <form id="wa-inquiry-form" onsubmit="sendWhatsAppInquiry(event)">
+        <form id="wa-inquiry-form" class="inquiry-grid" onsubmit="sendWhatsAppInquiry(event)">
           <div class="inquiry-group">
             <label for="wa-service" data-i18n="waServiceLabel">الخدمة المطلوبة:</label>
             <select id="wa-service" class="inquiry-select" required>
@@ -104,7 +102,7 @@
             </select>
           </div>
 
-          <div class="inquiry-group" style="margin-top: 0.75rem;">
+          <div class="inquiry-group">
             <label for="wa-phone-choice" data-i18n="waPhoneLabel">الرقم المفصل للتواصل:</label>
             <select id="wa-phone-choice" class="inquiry-select">
               <option value="962775858328">واتساب 1: 0775858328</option>
@@ -112,7 +110,7 @@
             </select>
           </div>
 
-          <div class="inquiry-group" style="margin-top: 0.75rem;">
+          <div class="inquiry-group">
             <label for="wa-timeline" data-i18n="waTimelineLabel">الإطار الزمني المتوقع:</label>
             <select id="wa-timeline" class="inquiry-select">
               <option value="عاجل (خلال 24-48 ساعة)" data-i18n="waOptTimeline1">⚡ عاجل (خلال 24-48 ساعة)</option>
@@ -121,7 +119,7 @@
             </select>
           </div>
 
-          <div class="inquiry-group" style="margin-top: 0.75rem;">
+          <div class="inquiry-group">
             <label for="wa-details" data-i18n="waDetailsLabel">تفاصيل أو وصف مختصر للمشروع:</label>
             <textarea id="wa-details" class="inquiry-textarea" rows="3" placeholder="أكتب هنا ملخص الفكرة..."
               data-i18n-placeholder="waDetailsPlaceholder"></textarea>
@@ -157,9 +155,8 @@
 
       <!-- بوكس المشاريع المنفصل -->
       <section class="projects-section">
-        <div
-          style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--off-black); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
-          <h2 class="section-title" style="border: none; margin: 0; padding: 0;" data-i18n="githubTitle">مشاريعي على
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="githubTitle">مشاريعي على
             GitHub</h2>
           <a href="projects.html" class="link-btn-subtle" data-i18n="viewAllGithubBtn">🚀 عرض جميع المشاريع</a>
         </div>
@@ -203,7 +200,7 @@
       <section class="projects-section">
         <h2 class="section-title" data-i18n="cliTitle">my CLI</h2>
         <div class="about-card-body">
-          <p class="about-text" style="margin-bottom: 0.75rem;" data-i18n="cliDesc">
+          <p class="about-text" data-i18n="cliDesc">
             واجهة تفاعلية لاستكشاف مشاريعي ومهاراتي في الأتمتة وإدارة السيرفرات. اكتب <code dir="ltr">help</code> للبدء.
           </p>
           <div class="terminal-window" id="main-terminal-window" onclick="document.getElementById('cli-input').focus()">
@@ -237,15 +234,14 @@
 
       <!-- بوكس واجهة السيرفر الثانية المخصصة (Server CLI Terminal) مخفية وتظهر عند طلب apt servar -->
       <section class="projects-section" id="server-cli-section" style="display: none;">
-        <h2 class="section-title" style="color: #00f3ff;">Server CLI Dashboard 🖥️</h2>
+        <h2 class="section-title">Server CLI Dashboard 🖥️</h2>
         <div class="about-card-body">
-          <p class="about-text" style="margin-bottom: 0.75rem; color: #00f3ff;" data-i18n="serverCliDesc">
-            تيرمينال إدارة السيرفرات المتقدمة (Server Management Node). اكتب <code dir="ltr"
-              style="color: #00ff66;">help</code> لرؤية أوامر السيرفر.
+          <p class="about-text" data-i18n="serverCliDesc">
+            تيرمينال إدارة السيرفرات المتقدمة (Server Management Node). اكتب <code dir="ltr">help</code> لرؤية أوامر السيرفر.
           </p>
           <div class="terminal-window server-cli-window" id="server-terminal-window"
             onclick="document.getElementById('server-cli-input').focus()">
-            <div class="terminal-header" style="background-color: #112233;">
+            <div class="terminal-header">
               <div class="terminal-dots">
                 <span class="terminal-btn btn-red" title="إغلاق"
                   onclick="event.stopPropagation(); closeServerTerminal();"></span>
@@ -254,8 +250,8 @@
                 <span class="terminal-btn btn-green" title="ملء الشاشة / تكبير"
                   onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');"></span>
               </div>
-              <span class="terminal-title" style="color: #00f3ff;">root@alsaleh-server-node: ~</span>
-              <button class="terminal-expand-btn" style="border-color: #00f3ff; color: #00f3ff;"
+              <span class="terminal-title">root@alsaleh-server-node: ~</span>
+              <button class="terminal-expand-btn"
                 title="توسيع / تكبير الشاشة (Fullscreen)"
                 onclick="event.stopPropagation(); toggleFullscreenTerminal('server-terminal-window');"
                 data-i18n="cliExpandBtn">
@@ -263,10 +259,10 @@
               </button>
             </div>
             <div class="terminal-body" id="server-cli-body">
-              <div class="terminal-welcome" style="color: #00f3ff;" data-i18n="serverCliWelcome">[SERVER NODE CONNECTED]
+              <div class="terminal-welcome" data-i18n="serverCliWelcome">[SERVER NODE CONNECTED]
                 أهلاً بك في تيرمينال إدارة السيرفرات (Server CLI)!</div>
               <div class="terminal-input-line">
-                <span class="terminal-prompt" style="color: #00f3ff;">root@alsaleh-server:~$</span>
+                <span class="terminal-prompt">root@alsaleh-server:~$</span>
                 <input type="text" id="server-cli-input" class="terminal-input" autocomplete="off" spellcheck="false">
               </div>
             </div>
@@ -533,18 +529,17 @@
 
   <!-- QR Code Modal -->
   <div id="qr-modal" class="rgb-modal-overlay" style="display: none;">
-    <div class="rgb-modal-card" style="max-width: 400px; text-align: center;">
+    <div class="rgb-modal-card qr-modal-card">
       <div class="rgb-modal-header">
         <h3>📱 مسح QR Code للتواصل الحقيقي</h3>
         <span class="rgb-modal-close" onclick="closeQrModal()">&times;</span>
       </div>
-      <div class="rgb-modal-body" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <div class="rgb-modal-body">
         <p>افتح كاميرا هاتفك وامسح الرمز للتواصل المباشر عبر WhatsApp:</p>
         <img id="qr-img" loading="lazy" decoding="async"
-          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F962775858328&color=c4f82a&bgcolor=1f1f1f"
-          alt="QR Code - Alsaleh Al-Hayari"
-          style="border: 4px solid var(--green); border-radius: 12px; width: 200px; height: 200px;">
-        <p style="font-size: 0.8rem; color: var(--green); font-weight: 700;">الصالح أحمد الحياري - 0775858328</p>
+          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F962775858328&color=0a0e16&bgcolor=ffffff"
+          alt="QR Code - Alsaleh Al-Hayari">
+        <p class="qr-caption">الصالح أحمد الحياري - 0775858328</p>
       </div>
     </div>
   </div>
@@ -562,42 +557,42 @@
         <div class="rgb-picker-group">
           <label>اللون الأساسي (Primary Accent / Green):</label>
           <div class="color-picker-wrapper">
-            <input type="color" id="picker-green" value="#c4f82a" oninput="updateRgbColor('--green', this.value)">
-            <span id="hex-green">#c4f82a</span>
+            <input type="color" id="picker-green" value="#3ecf8e" oninput="updateRgbColor('--green', this.value)">
+            <span id="hex-green">#3ecf8e</span>
           </div>
         </div>
 
         <div class="rgb-picker-group">
           <label>خلفية الصفحة (Background Color):</label>
           <div class="color-picker-wrapper">
-            <input type="color" id="picker-black" value="#0d0d0d" oninput="updateRgbColor('--black', this.value)">
-            <span id="hex-black">#0d0d0d</span>
+            <input type="color" id="picker-black" value="#0a0e16" oninput="updateRgbColor('--black', this.value)">
+            <span id="hex-black">#0a0e16</span>
           </div>
         </div>
 
         <div class="rgb-picker-group">
           <label>خلفية البطاقات (Card Container):</label>
           <div class="color-picker-wrapper">
-            <input type="color" id="picker-dark-grey" value="#1f1f1f"
+            <input type="color" id="picker-dark-grey" value="#131a27"
               oninput="updateRgbColor('--dark-grey', this.value)">
-            <span id="hex-dark-grey">#1f1f1f</span>
+            <span id="hex-dark-grey">#131a27</span>
           </div>
         </div>
 
         <div class="rgb-picker-group">
           <label>خلفية العناصر الإضافية (Off Black):</label>
           <div class="color-picker-wrapper">
-            <input type="color" id="picker-off-black" value="#141414"
+            <input type="color" id="picker-off-black" value="#0e141f"
               oninput="updateRgbColor('--off-black', this.value)">
-            <span id="hex-off-black">#141414</span>
+            <span id="hex-off-black">#0e141f</span>
           </div>
         </div>
 
         <div class="rgb-picker-group">
           <label>لون النصوص (Text Color):</label>
           <div class="color-picker-wrapper">
-            <input type="color" id="picker-white" value="#ffffff" oninput="updateRgbColor('--white', this.value)">
-            <span id="hex-white">#ffffff</span>
+            <input type="color" id="picker-white" value="#e8ecf3" oninput="updateRgbColor('--white', this.value)">
+            <span id="hex-white">#e8ecf3</span>
           </div>
         </div>
 
@@ -623,4 +618,4 @@
   <script src="script.js"></script>
 </body>
 
-</html>
+</html>
