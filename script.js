@@ -1,16 +1,5 @@
 const pageStartTime = new Date();
 
-const rootPageNames = new Set(['index.html', 'projects.html']);
-const currentPageName = window.location.pathname.split('/').pop() || '';
-
-if (rootPageNames.has(currentPageName) && !document.querySelector('link[data-root-landing="true"]')) {
-  const landingStyleLink = document.createElement('link');
-  landingStyleLink.rel = 'stylesheet';
-  landingStyleLink.href = 'landing.css';
-  landingStyleLink.setAttribute('data-root-landing', 'true');
-  document.head.appendChild(landingStyleLink);
-}
-
 function getRealUptimeFormatted() {
   const now = new Date();
   const diffMs = now - pageStartTime;
@@ -199,10 +188,10 @@ function renderWorkflows(workflows) {
       <p class="project-desc">${safeDesc}</p>
       <div class="project-meta" style="margin-top: 0.75rem;">
         <span class="project-lang">
-          <span class="lang-dot" style="background-color: var(--green)"></span>
+          <span class="lang-dot is-live"></span>
           ${activeLabel}
         </span>
-        ${fileUrl ? `<a href="${fileUrl}" download style="color: var(--green); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-right: auto;">${downloadLabel}</a>` : ''}
+        ${fileUrl ? `<a href="${fileUrl}" download class="project-download">${downloadLabel}</a>` : ''}
         <span class="project-stars" style="margin-left: 0.5rem;">📅 ${formattedDate}</span>
       </div>
     `;
@@ -744,7 +733,7 @@ function triggerHackerFallEffect() {
     appendTerminalLine('🔥 SYSTEM CRASH: GRAVITY PROTOCOL OVERLOAD! 💥', 'terminal-error');
 
     // Select sections to fall except terminal section
-    const sections = document.querySelectorAll('.card, .about-card-section, .projects-section');
+    const sections = document.querySelectorAll('.hero, .section, .site-footer');
     sections.forEach((sec, idx) => {
       const parentSection = sec.closest('section');
       // If it is not the CLI terminal section, make it fall
@@ -1141,11 +1130,11 @@ function applyRgbPreset(presetName) {
 
 function resetRgbColors() {
   const defaultColors = {
-    '--green': '#3ecf8e',
-    '--black': '#0a0e16',
-    '--dark-grey': '#131a27',
-    '--off-black': '#0e141f',
-    '--white': '#e8ecf3'
+    '--green': '#22d3ee',
+    '--black': '#05080d',
+    '--dark-grey': '#0c131c',
+    '--off-black': '#080d14',
+    '--white': '#f4f7fb'
   };
   for (let varName in defaultColors) {
     updateRgbColor(varName, defaultColors[varName]);

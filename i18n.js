@@ -246,6 +246,51 @@ const translations = {
   }
 };
 
+/* Keys added with the redesigned layout */
+Object.assign(translations.ar, {
+  navAbout: "نبذة",
+  navServices: "الخدمات",
+  navProjects: "المشاريع",
+  navTerminal: "التيرمينال",
+  navContact: "تواصل",
+  heroLead: "أبني أتمتة للمهام باستخدام n8n، أجهّز وأدير السيرفرات، وأطوّر مواقع ويب عملية ومباشرة.",
+  heroContactBtn: "اطلب خدمة",
+  servicesTitle: "الخدمات",
+  svc1Title: "أتمتة n8n",
+  svc1Desc: "بناء سير عمل يربط أدواتك ببعضها وينفّذ المهام المتكررة تلقائياً.",
+  svc2Title: "إدارة السيرفرات",
+  svc2Desc: "تجهيز وإدارة سيرفرات Linux و VPS ونشر التطبيقات عليها.",
+  svc3Title: "تطوير الويب",
+  svc3Desc: "مواقع وواجهات ويب سريعة ومتجاوبة مع جميع الشاشات.",
+  svc4Title: "ربط API و Webhooks",
+  svc4Desc: "تكامل الخدمات والأنظمة المختلفة عبر API و Webhooks.",
+  platformsTitle: "حساباتي ومنصات العمل",
+  contactTitle: "تواصل معي",
+  contactLead: "اختر الخدمة واكتب ملخص فكرتك، وسيُفتح WhatsApp برسالة جاهزة للإرسال."
+});
+
+Object.assign(translations.en, {
+  navAbout: "About",
+  navServices: "Services",
+  navProjects: "Projects",
+  navTerminal: "Terminal",
+  navContact: "Contact",
+  heroLead: "I build task automation with n8n, set up and manage servers, and develop practical, straightforward websites.",
+  heroContactBtn: "Request a service",
+  servicesTitle: "Services",
+  svc1Title: "n8n Automation",
+  svc1Desc: "Workflows that connect your tools and run repetitive tasks automatically.",
+  svc2Title: "Server Management",
+  svc2Desc: "Setting up and managing Linux and VPS servers and deploying apps on them.",
+  svc3Title: "Web Development",
+  svc3Desc: "Fast websites and interfaces that work on every screen size.",
+  svc4Title: "API & Webhook Integration",
+  svc4Desc: "Connecting different services and systems through APIs and webhooks.",
+  platformsTitle: "Profiles & Platforms",
+  contactTitle: "Get in Touch",
+  contactLead: "Pick a service and describe your idea; WhatsApp opens with the message ready to send."
+});
+
 let currentLang = localStorage.getItem('portfolio_lang') || 'ar';
 
 function setLanguage(lang) {

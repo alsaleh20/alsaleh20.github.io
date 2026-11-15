@@ -423,7 +423,7 @@ function renderAllProjects() {
 
     let downloadBtn = '';
     if (item.category === 'n8n' && item.fileUrl) {
-      downloadBtn = `<a href="${escapeHTML(item.fileUrl)}" download style="color: var(--green); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-right: auto;">📥 ${lang === 'en' ? 'Download JSON' : 'تحميل JSON'}</a>`;
+      downloadBtn = `<a href="${escapeHTML(item.fileUrl)}" download class="project-download">📥 ${lang === 'en' ? 'Download JSON' : 'تحميل JSON'}</a>`;
     }
 
     card.innerHTML = `
@@ -434,7 +434,7 @@ function renderAllProjects() {
       <p class="project-desc">${desc}</p>
       <div class="project-meta">
         <span class="project-lang">
-          <span class="lang-dot" style="background-color: var(--green)"></span>
+          <span class="lang-dot is-live"></span>
           ${escapeHTML(item.metaLang)}
         </span>
         ${downloadBtn}
