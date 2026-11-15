@@ -61,7 +61,7 @@ const translations = {
     cliExpandBtn: "⛶ تكبير الشاشة",
     
     // Server CLI
-    serverCliDesc: 'تيرمينال إدارة السيرفرات المتقدمة (Server Management Node). اكتب <code dir="ltr" style="color: #00ff66;">help</code> لرؤية أوامر السيرفر.',
+    serverCliDesc: 'تيرمينال إدارة السيرفرات المتقدمة (Server Management Node). اكتب <code dir="ltr">help</code> لرؤية أوامر السيرفر.',
     serverCliWelcome: "[SERVER NODE CONNECTED] أهلاً بك في تيرمينال إدارة السيرفرات (Server CLI)!",
     
     // n8n Section
@@ -182,7 +182,7 @@ const translations = {
     cliExpandBtn: "⛶ Fullscreen",
     
     // Server CLI
-    serverCliDesc: 'Advanced Server Management CLI Node. Type <code dir="ltr" style="color: #00ff66;">help</code> to see server commands.',
+    serverCliDesc: 'Advanced Server Management CLI Node. Type <code dir="ltr">help</code> to see server commands.',
     serverCliWelcome: "[SERVER NODE CONNECTED] Welcome to Server Management CLI!",
     
     // n8n Section

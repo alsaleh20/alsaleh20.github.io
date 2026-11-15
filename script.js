@@ -1141,11 +1141,11 @@ function applyRgbPreset(presetName) {
 
 function resetRgbColors() {
   const defaultColors = {
-    '--green': '#c4f82a',
-    '--black': '#0d0d0d',
-    '--dark-grey': '#1f1f1f',
-    '--off-black': '#141414',
-    '--white': '#ffffff'
+    '--green': '#3ecf8e',
+    '--black': '#0a0e16',
+    '--dark-grey': '#131a27',
+    '--off-black': '#0e141f',
+    '--white': '#e8ecf3'
   };
   for (let varName in defaultColors) {
     updateRgbColor(varName, defaultColors[varName]);
