@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0e16">
+  <meta name="theme-color" content="#05080d">
   <meta name="i18n-title" content="true">
   <meta name="description"
     content="جميع مشاريع الصالح أحمد الحياري: مواقع إلكترونية، أتمتة n8n، مشاريع GitHub، ومشاريع جانبية ذات قيمة عملية وتقنية.">
@@ -16,30 +16,35 @@
   <title data-i18n="allProjectsPageTitle">جميع المشاريع والأعمال | الصالح أحمد الحياري</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="all-projects-container">
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand glitch" href="index.html">ALSALEH</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="backHomeBtn">🏠 الصفحة الرئيسية</a></li>
+        <li><a href="index.html#contact" data-i18n="navContact">تواصل</a></li>
+      </ul>
+      <button id="lang-toggle-btn" onclick="toggleLanguage()" class="lang-switcher-btn"
+        title="تغيير اللغة / Switch Language">🌐 English</button>
+    </div>
+  </header>
 
-    <!-- Top Navigation & Header -->
-    <header class="all-projects-header">
-      <div class="header-top-bar">
-        <a href="index.html" class="link-btn-subtle" data-i18n="backHomeBtn">🏠 الصفحة الرئيسية</a>
-        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="lang-switcher-btn"
-          title="تغيير اللغة / Switch Language">🌐 English</button>
-      </div>
-
-      <div class="header-title-box">
-        <h1 data-i18n="allProjectsHeaderTitle">🚀 جميع المشاريع والأعمال</h1>
-        <p data-i18n="allProjectsHeaderSub">استكشف مستودعات GitHub، أتمتات n8n، المواقع الإلكترونية، والمشاريع الجانبية
-          في مكان واحد.</p>
-      </div>
+  <main class="shell">
+    <header class="page-head">
+      <span class="hero-kicker mono">ALL PROJECTS</span>
+      <h1 class="glitch" data-i18n="allProjectsHeaderTitle">🚀 جميع المشاريع والأعمال</h1>
+      <p data-i18n="allProjectsHeaderSub">استكشف مستودعات GitHub، أتمتات n8n، المواقع الإلكترونية، والمشاريع الجانبية
+        في مكان واحد.</p>
     </header>
 
-    <!-- Filter Controls & Search -->
     <div class="filter-search-box">
       <div class="search-input-wrapper">
         <input type="text" id="project-search-input" placeholder="🔍 ابحث باسم المشروع أو الكلمات المفتاحية..."
@@ -62,24 +67,21 @@
       </div>
     </div>
 
-    <!-- Main Grid Container for All Projects -->
-    <main class="projects-section">
-      <div id="all-projects-grid" class="projects-grid">
-        <div class="loading" data-i18n="loadingProjects">جاري تحميل المشاريع...</div>
-      </div>
-    </main>
+    <div id="all-projects-grid" class="projects-grid">
+      <div class="loading" data-i18n="loadingProjects">جاري تحميل المشاريع...</div>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="site-footer"
-      data-i18n="footerRights">
-      جميع الحقوق محفوظة © الصالح أحمد الحياري
-    </footer>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="brand glitch" href="index.html">ALSALEH</a>
+      <span data-i18n="footerRights">جميع الحقوق محفوظة © الصالح أحمد الحياري</span>
+    </div>
+  </footer>
 
-  </div>
-
-  <!-- Scripts -->
   <script src="i18n.js"></script>
   <script src="projects.js"></script>
+  <script src="fx.js"></script>
 </body>
 
 </html>
