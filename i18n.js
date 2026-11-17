@@ -439,6 +439,32 @@ Object.assign(translations.en, {
   gltchStep4D: "We handle day-to-day operation, monitor it, and protect what we built."
 });
 
+/* SuperAuto section */
+Object.assign(translations.ar, {
+  superautoTitle: "سوبر أوتو: أتمتة مخصصة لكل عميل",
+  superautoKicker: "منهجنا",
+  superautoStory: "لا نركّب أدوات جاهزة على عملك. نفهم متطلباتك، ثم نبني منصة أتمتة خاصة بك تعمل كتطبيق أو خدمة ويب.",
+  superautoF1T: "نفهم متطلباتك",
+  superautoF1D: "نجلس معك لفهم طريقة عملك وأدواتك والنتيجة التي تريدها، قبل كتابة أي سطر برمجي.",
+  superautoF2T: "منصة مخصصة لعملك",
+  superautoF2D: "نبني الأتمتة المطلوبة من الصفر، بدون الاعتماد على منصات جاهزة تفرض طريقتها عليك.",
+  superautoF3T: "تتحمل الحركة العالية",
+  superautoF3D: "منصات الأتمتة الجاهزة لا تتحمل حركة المرور العالية. نصمم أنظمتنا لتتوسع مع عملك ونوزّعها حيث تحتاج."
+});
+
+/* SuperAuto section */
+Object.assign(translations.en, {
+  superautoTitle: "SuperAuto: automation built for each client",
+  superautoKicker: "Our approach",
+  superautoStory: "We do not install ready-made tools on your business. We understand your requirements, then build an automation platform just for you that runs as an app or web service.",
+  superautoF1T: "We understand your requirements",
+  superautoF1D: "We sit down with you to learn how you work, which tools you use and the result you want, before writing a single line of code.",
+  superautoF2T: "A platform built for your work",
+  superautoF2D: "We build the automation you need from scratch, without relying on ready-made platforms that impose their way of working.",
+  superautoF3T: "Built for heavy traffic",
+  superautoF3D: "Ready-made automation platforms cannot handle high traffic. We design our systems to scale with your business and spread them where needed."
+});
+
 let currentLang = localStorage.getItem('portfolio_lang') || 'ar';
 
 function setLanguage(lang) {
