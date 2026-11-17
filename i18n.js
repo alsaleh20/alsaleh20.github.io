@@ -358,7 +358,7 @@ Object.assign(translations.en, {
 /* Keys for stats, the case study and the GLTCH page */
 Object.assign(translations.ar, {
   statClientSites: "مواقع عملاء على الإنترنت",
-  statClinic: "منصة عيادات منشورة",
+  statClinic: "مشاريع قيد التطوير (شفاء)",
   statFrontends: "واجهات تصميمية",
   statWorkflows: "سير عمل n8n منشورة",
   shifaCaseBtn: "اقرأ دراسة الحالة",
@@ -400,7 +400,7 @@ Object.assign(translations.ar, {
 /* Keys for stats, the case study and the GLTCH page */
 Object.assign(translations.en, {
   statClientSites: "Client websites live",
-  statClinic: "Clinic platform live",
+  statClinic: "Projects in development (Shifa)",
   statFrontends: "Design front-ends",
   statWorkflows: "Published n8n workflows",
   shifaCaseBtn: "Read the case study",
