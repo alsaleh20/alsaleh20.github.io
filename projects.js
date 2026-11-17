@@ -44,13 +44,6 @@ const fallbackGitHubRepos = [
 // Fallback n8n Workflows
 const fallbackN8nWorkflows = [
   {
-    name: 'أتمتة إنشاء مقاطع الفيديو للشبكات الاجتماعية (n8n + AI)',
-    description: 'سير عمل كامل يبدأ من فكرة النص وحتى توليد وتجميع المشاهد البصرية والصوتية تلقائياً وإرسال إشعار الجاهزية.',
-    fileUrl: 'workflows/social_video_generator.json',
-    active: true,
-    updatedAt: new Date().toISOString()
-  },
-  {
     name: 'وكيل إدارة المهام الذكي (Google Sheets + GPT-4o)',
     description: 'وكيل ذكاء اصطناعي تفاعلي (AI Agent) يدير قائمة المهام داخل Google Sheets بالكامل من خلال فهم الأوامر.',
     fileUrl: 'workflows/google_sheets_task_agent.json',
@@ -97,6 +90,18 @@ const staticWebsites = [
 
 // Random Creations
 const staticCreations = [
+  {
+    id: 'create-2',
+    category: 'creations',
+    badgeClass: 'badge-creation',
+    badgeText: 'Creation',
+    name: 'Golden Meal App',
+    description_ar: 'تطبيق وجبات طعام وتصميم واجهة تفاعلية.',
+    description_en: 'Food ordering app frontend and interactive layout.',
+    url: 'pro_frontends/goldenmeal/index.html',
+    metaLang: 'HTML/CSS/JS',
+    metaIcon: '🌐 Preview'
+  },
   {
     id: 'create-3',
     category: 'creations',

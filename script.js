@@ -432,14 +432,25 @@ function executeCommand(cmd) {
       if (arg === '--sudo' || arg === '-sudo') {
         triggerHackerFallEffect();
       } else {
-        appendTerminalLine('Available commands:\n' +
-          '  apt servar    - 🚀 Launch second terminal: Server CLI\n' +
-          '  projects      - Show key portfolio projects & repositories\n' +
-          '  skills        - List technical skills and proficiency\n' +
-          '  about         - Show information about Alsaleh Al-Hayari\n' +
-          '  gltch         - ⚡ About GLTCH, my startup\n' +
-          '  contact       - Options: -wa, -git, -link, -mail\n' +
-          '  clear         - Clear the terminal screen');
+        if (currentLang === 'ar') {
+          appendTerminalLine('الأوامر المتاحة:', 'terminal-auto-dir');
+          appendTerminalLine('  apt servar    - 🚀 تشغيل التيرمينال الثاني: Server CLI\n' +
+            '  projects      - عرض أهم المشاريع والمستودعات\n' +
+            '  skills        - المهارات التقنية ومستواها\n' +
+            '  about         - معلومات عن الصالح الحياري\n' +
+            '  gltch         - ⚡ عن GLTCH، شركتي الناشئة\n' +
+            '  contact       - الخيارات: -wa, -git, -link, -mail\n' +
+            '  clear         - مسح شاشة التيرمينال');
+        } else {
+          appendTerminalLine('Available commands:\n' +
+            '  apt servar    - 🚀 Launch second terminal: Server CLI\n' +
+            '  projects      - Show key portfolio projects & repositories\n' +
+            '  skills        - List technical skills and proficiency\n' +
+            '  about         - Show information about Alsaleh Al-Hayari\n' +
+            '  gltch         - ⚡ About GLTCH, my startup\n' +
+            '  contact       - Options: -wa, -git, -link, -mail\n' +
+            '  clear         - Clear the terminal screen');
+        }
       }
       break;
     case '/rgb':
@@ -468,10 +479,17 @@ function executeCommand(cmd) {
       showUptime();
       break;
     case 'about':
-      appendTerminalLine('Name: Alsaleh Al-Hayari\n' +
-        'Role: Server Administrator & Automation Expert (n8n)\n' +
-        'Location: Salt, Jordan\n' +
-        'Bio: I design workflows, deploy web servers, configure secure Linux systems, and connect APIs.');
+      if (currentLang === 'ar') {
+        appendTerminalLine('الاسم: الصالح أحمد الحياري\n' +
+          'الدور: مدير سيرفرات وخبير أتمتة (n8n)\n' +
+          'الموقع: السلط، الأردن\n' +
+          'نبذة: أصمّم سير العمل، أنشر سيرفرات الويب، أجهّز أنظمة Linux آمنة، وأربط الـ APIs.', 'terminal-auto-dir');
+      } else {
+        appendTerminalLine('Name: Alsaleh Al-Hayari\n' +
+          'Role: Server Administrator & Automation Expert (n8n)\n' +
+          'Location: Salt, Jordan\n' +
+          'Bio: I design workflows, deploy web servers, configure secure Linux systems, and connect APIs.');
+      }
       break;
     case 'gltch':
     case 'startup':
@@ -522,10 +540,17 @@ function executeCommand(cmd) {
       }
       break;
     case 'skills':
-      appendTerminalLine('[ Server Administration ]  ██████████████████ 90%\n' +
-        '[ n8n / Automations ]      ████████████████████ 95%\n' +
-        '[ Linux / Bash Scripting ] ████████████████ 85%\n' +
-        '[ Frontend Web (HTML/JS) ] ██████████████ 70%');
+      if (currentLang === 'ar') {
+        appendTerminalLine('██████████████████░░ 90%  إدارة السيرفرات\n' +
+          '████████████████████ 95%  n8n والأتمتة\n' +
+          '████████████████░░░░ 85%  Linux و Bash\n' +
+          '██████████████░░░░░░ 70%  واجهات الويب (HTML/JS)');
+      } else {
+        appendTerminalLine('[ Server Administration ]  ██████████████████ 90%\n' +
+          '[ n8n / Automations ]      ████████████████████ 95%\n' +
+          '[ Linux / Bash Scripting ] ████████████████ 85%\n' +
+          '[ Frontend Web (HTML/JS) ] ██████████████ 70%');
+      }
       break;
     case 'projects':
       appendTerminalLine('Featured Web Projects:\n' +

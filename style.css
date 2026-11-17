@@ -1057,6 +1057,156 @@ main {
   font-size: 0.8rem;
 }
 
+/* Stats strip */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.2rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--tone);
+  border-radius: var(--radius);
+  background-color: var(--dark-grey);
+}
+
+.stat dd {
+  color: var(--tone);
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat dt {
+  color: var(--grey);
+  font-size: 0.88rem;
+}
+
+/* Case study page */
+.case-body,
+.gltch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+  gap: 1rem;
+}
+
+.gltch-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+}
+
+.case-wide {
+  grid-column: 1 / -1;
+}
+
+.case-h {
+  margin-bottom: 0.75rem;
+  color: var(--tone);
+  font-size: 1.05rem;
+}
+
+.case-list {
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+  color: var(--white);
+  font-size: 0.95rem;
+}
+
+.case-list li {
+  padding-inline-start: 1.1rem;
+  border-inline-start: 2px solid var(--tone);
+}
+
+.case-list strong {
+  color: var(--tone);
+}
+
+.case-body .about-text {
+  margin-bottom: 1rem;
+}
+
+/* GLTCH page */
+.gltch-hero .startup-name {
+  font-size: clamp(3.4rem, 12vw, 7rem);
+}
+
+.gltch-founder {
+  color: var(--orange) !important;
+  font-size: 0.9rem !important;
+  font-weight: 600;
+}
+
+.pillar-label {
+  margin-bottom: 0.6rem;
+  color: var(--tone);
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  text-align: end;
+}
+
+[dir="ltr"] .pillar-label {
+  text-align: start;
+}
+
+.startup-cta {
+  margin-top: 1.25rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 1rem;
+  list-style: none;
+}
+
+.step {
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background-color: var(--dark-grey);
+}
+
+.step-n {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--orange);
+  font-size: 0.8rem;
+}
+
+.step h3 {
+  font-size: 1.1rem;
+}
+
+.step p {
+  margin-top: 0.3rem;
+  color: var(--grey);
+  font-size: 0.92rem;
+}
+
+.cta-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  border-color: color-mix(in srgb, var(--orange) 40%, transparent);
+}
+
+.cta-band h2 {
+  font-size: 1.4rem;
+}
+
+.cta-band p {
+  color: var(--grey);
+}
+
 /* ---------- 10. Forms & ROI ---------- */
 .inquiry-grid {
   display: grid;
