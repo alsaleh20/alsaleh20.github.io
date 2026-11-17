@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05080d">
+  <meta name="description" content="منصة ويب لإدارة العيادات بُنيت لعميل كان غارقاً في الأوراق.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Shifa — منصة لإدارة العيادة بلا أوراق | الصالح أحمد الحياري">
+  <meta property="og:description" content="منصة ويب لإدارة العيادات بُنيت لعميل كان غارقاً في الأوراق.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alsaleh20.github.io/case-shifa.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:image" content="https://alsaleh20.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alsaleh20.github.io/case-shifa.html">
+  <title>Shifa — منصة لإدارة العيادة بلا أوراق | الصالح أحمد الحياري</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand glitch" href="index.html">ALSALEH</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="backHomeBtn">🏠 الصفحة الرئيسية</a></li>
+        <li><a href="index.html#shifa" data-i18n="navShifaLink">Shifa</a></li>
+        <li><a href="index.html#contact" data-i18n="navContact">تواصل</a></li>
+      </ul>
+      <button id="lang-toggle-btn" onclick="toggleLanguage()" class="lang-switcher-btn"
+        title="تغيير اللغة / Switch Language">🌐 English</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <header class="page-head">
+      <span class="hero-kicker mono">CASE STUDY</span>
+      <h1 class="glitch" data-i18n="caseShifaTitle">Shifa — منصة لإدارة العيادة بلا أوراق</h1>
+      <p data-i18n="caseShifaSummary">منصة ويب لإدارة العيادات بُنيت لعميل كان غارقاً في الأوراق.</p>
+    </header>
+
+    <div class="case-body">
+      <section class="panel tone-red">
+        <h2 class="case-h" data-i18n="caseProblemH">المشكلة</h2>
+        <p class="about-text" data-i18n="caseProblem">تواصل معنا عميل يملك عيادة وكان غارقاً في الأوراق في عمله اليومي.</p>
+      </section>
+      <section class="panel tone-cyan">
+        <h2 class="case-h" data-i18n="caseSolutionH">الحل</h2>
+        <p class="about-text" data-i18n="caseSolution">بنينا Shifa لتنقل عمل العيادة من الورق إلى شاشة واحدة: ملف لكل مريض، ووصفات وفواتير تُصدر وتُطبع من النظام.</p>
+      </section>
+      <section class="panel tone-orange case-wide">
+        <h2 class="case-h" data-i18n="caseBuiltH">ما بنيناه</h2>
+        <ul class="case-list" data-i18n="caseBuilt"><li><strong>ملف المريض:</strong> بيانات شخصية وحساسية وتاريخ مرضي وسجلات طبية، ومواعيد قادمة لا تقبل تاريخاً سابقاً.</li><li><strong>مخطط الأسنان:</strong> الأسنان من 1 إلى 32 بعشر حالات (سليم، تسوس، حشوة، تاج، علاج عصب، مفقود، يحتاج خلعاً، زرعة، جسر، أخرى) مع العلاج والتشخيص والتكلفة وصورة أشعة حتى 10 ميغابايت.</li><li><strong>الوصفات:</strong> تشخيص وعدة أدوية بالاسم والجرعة والكمية، وتظهر حساسية المريض أثناء الكتابة، وتُطبع من صفحتها.</li><li><strong>الفواتير:</strong> بنود (كشف، علاج، إجراء سني برقم السن، جراحة، أدوية) مع الخصم والضريبة وطرق الدفع (نقداً، بطاقة، CliQ، تأمين)، وترقيم متسلسل مثل INV-2026-0001 وحالة (مدفوعة، جزئية، غير مدفوعة)، وطباعة أو PDF.</li><li><strong>مساعد AI+:</strong> أسئلة وملفات نصية وتلخيص لملف المريض بضغطة واحدة، بحصة أسبوعية تتجدد كل يوم أحد في السادسة صباحاً.</li><li><strong>الأمان:</strong> كلمة مرور ثم كود من 6 أرقام صالح 10 دقائق، وقفل 30 دقيقة بعد المحاولات الخاطئة، وعزل بيانات كل عيادة، وصور أشعة في تخزين خاص بلا رابط عام.</li><li><strong>الاشتراكات:</strong> باقة أساسية وثلاث باقات AI+، شهرياً أو سنوياً بخصم، وعقود مخصصة للمستشفيات والشبكات (ملف موحد بين الفروع وحسابات بلا حد)، يفعّلها فريقنا بعد مراجعة الطلب.</li><li><strong>الواجهة:</strong> عربي وإنجليزي، ووضع فاتح وداكن، ويعمل على الجوال.</li></ul>
+      </section>
+      <section class="panel tone-lime">
+        <h2 class="case-h" data-i18n="caseTechH">التقنيات</h2>
+        <div class="skills-tags"><span class="skill-tag">PHP 8.3</span><span class="skill-tag">nginx</span><span class="skill-tag">Alpine.js</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">Arabic / English (RTL)</span></div>
+      </section>
+      <section class="panel tone-cyan">
+        <h2 class="case-h" data-i18n="caseOutcomeH">المُخرَج</h2>
+        <p class="about-text" data-i18n="caseOutcome">منصة منشورة تعمل بالعربية والإنجليزية وتخدم العيادات بالاشتراك. قريباً: إدارة الصيدلية والمخزون، والربط مع الصيدليات، وتطبيق ويندوز (نسخة تجريبية متاحة).</p>
+        <a class="btn btn--primary" href="index.html#shifa" data-i18n="caseBack">عودة إلى Shifa</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="brand glitch" href="index.html">ALSALEH</a>
+      <span data-i18n="footerRights">جميع الحقوق محفوظة © الصالح أحمد الحياري</span>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="fx.js"></script>
+</body>
+
+</html>
