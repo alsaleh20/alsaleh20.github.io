@@ -44,13 +44,6 @@ const fallbackGitHubRepos = [
 // Fallback n8n Workflows
 const fallbackN8nWorkflows = [
   {
-    name: 'أتمتة إنشاء مقاطع الفيديو للشبكات الاجتماعية (n8n + AI)',
-    description: 'سير عمل كامل يبدأ من فكرة النص وحتى توليد وتجميع المشاهد البصرية والصوتية تلقائياً وإرسال إشعار الجاهزية.',
-    fileUrl: 'workflows/social_video_generator.json',
-    active: true,
-    updatedAt: new Date().toISOString()
-  },
-  {
     name: 'وكيل إدارة المهام الذكي (Google Sheets + GPT-4o)',
     description: 'وكيل ذكاء اصطناعي تفاعلي (AI Agent) يدير قائمة المهام داخل Google Sheets بالكامل من خلال فهم الأوامر.',
     fileUrl: 'workflows/google_sheets_task_agent.json',
@@ -182,20 +175,11 @@ const staticSideProjects = [
   }
 ];
 
+// Screenshots for locally hosted projects, keyed by project URL
+const projectShots = {"p/a/x.html": "ashraf", "p/r/x.html": "raad", "p/k/x.html": "ehab", "p/n/x.html": "renad", "p/e/x.html": "eman", "p/y/x.html": "aya", "p/b/x.html": "omar", "pro_frontends/goldenmeal/index.html": "goldenmeal", "pro_frontends/ZO1/index.html": "zo1", "pro_frontends/ide cood/frontend/index.html": "ide", "restorant/alis/index.html": "alis", "restorant/army/index.html": "army", "restorant/sushijo/index.html": "sushi"};
+
 // Random Creations
 const staticCreations = [
-  {
-    id: 'create-1',
-    category: 'creations',
-    badgeClass: 'badge-creation',
-    badgeText: 'Creation',
-    name: 'مطعم فحم ولحم (Fahm & Lahm Restaurant)',
-    description_ar: 'موقع تفاعلي متكامل لمطعم فحم ولحم (قائمة الطعام، الفروع، والطلبات).',
-    description_en: 'Interactive website for Fahm & Lahm Restaurant (Menu, branches, orders).',
-    url: 'fahmlahm/index.html',
-    metaLang: 'HTML/CSS/JS',
-    metaIcon: '🌐 Preview'
-  },
   {
     id: 'create-2',
     category: 'creations',
@@ -426,7 +410,11 @@ function renderAllProjects() {
       downloadBtn = `<a href="${escapeHTML(item.fileUrl)}" download class="project-download">📥 ${lang === 'en' ? 'Download JSON' : 'تحميل JSON'}</a>`;
     }
 
+    const shot = projectShots[item.url];
+    const thumb = shot ? `<img class="project-thumb" src="assets/shots/${shot}.jpg" width="640" height="400" loading="lazy" decoding="async" alt="">` : '';
+
     card.innerHTML = `
+      ${thumb}
       <span class="project-category-badge ${item.badgeClass}">${item.badgeText}</span>
       <h3 class="project-title">
         <a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>
