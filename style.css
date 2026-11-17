@@ -1193,6 +1193,13 @@ main {
   overflow-wrap: anywhere;
 }
 
+/* Lines that may be Arabic: each line picks its own direction */
+.terminal-auto-dir {
+  unicode-bidi: plaintext;
+  text-align: start;
+  font-family: var(--font-sans);
+}
+
 .terminal-command-response {
   color: var(--accent);
 }

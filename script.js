@@ -494,24 +494,45 @@ function executeCommand(cmd) {
         '██    ██ ██         ██    ██      ██   ██\n' +
         ' ██████  ███████    ██     ██████ ██   ██', 'cli-highlight');
       appendTerminalLine('A G E N T I C  •  M E D I A  •  T E C H', 'cli-warning');
-      appendTerminalLine('GLTCH is an agentic, media-tech heavy startup.\n' +
-        'Founder: Alsaleh Al-Hayari');
-      appendTerminalLine('[ AGENTIC ]\n' +
-        '  > AI agents that produce content\n' +
-        '  > Automated publishing and account management\n' +
-        '  > We automate your life and work', 'cli-highlight');
-      appendTerminalLine('[ MEDIA ]\n' +
-        '  > We run your media and make you go viral\n' +
-        '  > We design your media so it reaches your clients\n' +
-        '  > We shoot and direct live streams\n' +
-        '  > Creative production', 'cli-warning');
-      appendTerminalLine('[ TECH-HEAVY ]\n' +
-        '  > Our own data center\n' +
-        '  > We build software out of the ordinary\n' +
-        '  > We hack and we fix\n' +
-        '  > We protect you\n' +
-        '  > Technical infrastructure for media', 'cli-success');
-      appendTerminalLine("Type 'contact' to get in touch.");
+      if (currentLang === 'ar') {
+        appendTerminalLine('شركة GLTCH الناشئة: Agentic Media-Tech Heavy.\n' +
+          'المؤسس: الصالح أحمد الحياري', 'terminal-auto-dir');
+        appendTerminalLine('[ الوكلاء — AGENTIC ]\n' +
+          '• وكلاء AI ينتجون المحتوى\n' +
+          '• نشر وإدارة آلية للحسابات\n' +
+          '• نؤتمت حياتك وعملك', 'cli-highlight terminal-auto-dir');
+        appendTerminalLine('[ الميديا — MEDIA ]\n' +
+          '• ندير الميديا ونخلّيك تنتشر بشكل فيروسي\n' +
+          '• نصمّم الميديا تبعتك لتوصل لعملائك\n' +
+          '• نصوّر ونخرج البثوث\n' +
+          '• إنتاج إبداعي', 'cli-warning terminal-auto-dir');
+        appendTerminalLine('[ التقنية الثقيلة — TECH-HEAVY ]\n' +
+          '• عندنا داتا سنتر\n' +
+          '• نبرمج لك شيئاً خارجاً عن المألوف\n' +
+          '• نهكّر ونصلّح\n' +
+          '• نحميك\n' +
+          '• بنية تقنية للإعلام', 'cli-success terminal-auto-dir');
+        appendTerminalLine('اكتب contact للتواصل.', 'terminal-auto-dir');
+      } else {
+        appendTerminalLine('GLTCH is an agentic, media-tech heavy startup.\n' +
+          'Founder: Alsaleh Al-Hayari');
+        appendTerminalLine('[ AGENTIC ]\n' +
+          '  > AI agents that produce content\n' +
+          '  > Automated publishing and account management\n' +
+          '  > We automate your life and work', 'cli-highlight');
+        appendTerminalLine('[ MEDIA ]\n' +
+          '  > We run your media and make you go viral\n' +
+          '  > We design your media so it reaches your clients\n' +
+          '  > We shoot and direct live streams\n' +
+          '  > Creative production', 'cli-warning');
+        appendTerminalLine('[ TECH-HEAVY ]\n' +
+          '  > Our own data center\n' +
+          '  > We build software out of the ordinary\n' +
+          '  > We hack and we fix\n' +
+          '  > We protect you\n' +
+          '  > Technical infrastructure for media', 'cli-success');
+        appendTerminalLine("Type 'contact' to get in touch.");
+      }
       break;
     case 'skills':
       appendTerminalLine('[ Server Administration ]  ██████████████████ 90%\n' +
