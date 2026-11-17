@@ -361,7 +361,7 @@ if (cliInput) {
         const currentVal = parts[0];
         if (currentVal) {
           const commands = [
-            'about', 'skills', 'projects', 'sub-projects', 'contact', 'clear', 'github', 'help', 'apt',
+            'about', 'skills', 'projects', 'sub-projects', 'contact', 'clear', 'github', 'help', 'apt', 'gltch',
             'puretouch', 'salttime', 'ashraf', 'status', 'ping', 'htop', 'uptime', 'logs', 'services', 'valve-steam',
             'matrix', 'cyberpunk', 'neon', 'hacker', 'hack', 'sudo', 'party', 'celebrate', 'secret', 'vault'
           ];
@@ -438,6 +438,7 @@ function executeCommand(cmd) {
           '  sub-projects  - 📂 Show all imported side projects\n' +
           '  skills        - List technical skills and proficiency\n' +
           '  about         - Show information about Alsaleh Al-Hayari\n' +
+          '  gltch         - ⚡ About GLTCH, my startup\n' +
           '  contact       - Options: -wa, -git, -link, -mail\n' +
           '  clear         - Clear the terminal screen');
       }
@@ -484,6 +485,33 @@ function executeCommand(cmd) {
         'Role: Server Administrator & Automation Expert (n8n)\n' +
         'Location: Salt, Jordan\n' +
         'Bio: I design workflows, deploy web servers, configure secure Linux systems, and connect APIs.');
+      break;
+    case 'gltch':
+    case 'startup':
+      appendTerminalLine(' ██████  ██      ████████  ██████ ██   ██\n' +
+        '██       ██         ██    ██      ██   ██\n' +
+        '██   ███ ██         ██    ██      ███████\n' +
+        '██    ██ ██         ██    ██      ██   ██\n' +
+        ' ██████  ███████    ██     ██████ ██   ██', 'cli-highlight');
+      appendTerminalLine('A G E N T I C  •  M E D I A  •  T E C H', 'cli-warning');
+      appendTerminalLine('GLTCH is an agentic, media-tech heavy startup.\n' +
+        'Founder: Alsaleh Al-Hayari');
+      appendTerminalLine('[ AGENTIC ]\n' +
+        '  > AI agents that produce content\n' +
+        '  > Automated publishing and account management\n' +
+        '  > We automate your life and work', 'cli-highlight');
+      appendTerminalLine('[ MEDIA ]\n' +
+        '  > We run your media and make you go viral\n' +
+        '  > We design your media so it reaches your clients\n' +
+        '  > We shoot and direct live streams\n' +
+        '  > Creative production', 'cli-warning');
+      appendTerminalLine('[ TECH-HEAVY ]\n' +
+        '  > Our own data center\n' +
+        '  > We build software out of the ordinary\n' +
+        '  > We hack and we fix\n' +
+        '  > We protect you\n' +
+        '  > Technical infrastructure for media', 'cli-success');
+      appendTerminalLine("Type 'contact' to get in touch.");
       break;
     case 'skills':
       appendTerminalLine('[ Server Administration ]  ██████████████████ 90%\n' +
