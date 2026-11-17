@@ -4,7 +4,7 @@
 
 const translations = {
   ar: {
-    pageTitle: "الصفحة الشخصية والمشاريع - الصالح حياري",
+    pageTitle: "GLTCH | الصالح حياري - أتمتة، سيرفرات، وتطوير ويب",
     name: "الصالح أحمد الحياري",
     location: "الأردن 🇯🇴",
     bio: '"إدارة سيرفرات | أتمتة n8n | تطوير ويب"',
@@ -125,7 +125,7 @@ const translations = {
   },
 
   en: {
-    pageTitle: "Portfolio & Projects - Alsaleh Al-Hayari",
+    pageTitle: "GLTCH | Alsaleh Al-Hayari - Automation, Servers & Web",
     name: "Alsaleh Ahmad Al-Hayari",
     location: "Jordan 🇯🇴",
     bio: '"Server Management | n8n Automation | Web Development"',
@@ -253,7 +253,8 @@ Object.assign(translations.ar, {
   navProjects: "المشاريع",
   navTerminal: "التيرمينال",
   navContact: "تواصل",
-  heroLead: "أبني أتمتة للمهام باستخدام n8n، أجهّز وأدير السيرفرات، وأطوّر مواقع ويب عملية ومباشرة.",
+  founderRole: "المؤسس",
+  heroLead: "نبني أتمتة للمهام باستخدام n8n، نجهّز وندير السيرفرات، ونطوّر مواقع ويب عملية ومباشرة.",
   heroContactBtn: "اطلب خدمة",
   servicesTitle: "الخدمات",
   svc1Title: "أتمتة n8n",
@@ -275,7 +276,8 @@ Object.assign(translations.en, {
   navProjects: "Projects",
   navTerminal: "Terminal",
   navContact: "Contact",
-  heroLead: "I build task automation with n8n, set up and manage servers, and develop practical, straightforward websites.",
+  founderRole: "Founder",
+  heroLead: "We build task automation with n8n, set up and manage servers, and develop practical, straightforward websites.",
   heroContactBtn: "Request a service",
   servicesTitle: "Services",
   svc1Title: "n8n Automation",
