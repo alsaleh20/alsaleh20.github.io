@@ -250,7 +250,10 @@ const translations = {
 Object.assign(translations.ar, {
   founderOf: "مؤسس",
   startupTitle: "شركتي الناشئة",
-  startupDesc: "GLTCH هي شركتي الناشئة في مجالات الإعلام والتقنية والإبداع.",
+  startupDesc: "GLTCH هي شركتي الناشئة التي تجمع الإعلام والتقنية والإبداع تحت سقف واحد: نصنع المحتوى، نبني الأدوات التقنية التي تشغّله، ونصمّم الهوية التي تميّزه.",
+  pillarMedia: "صناعة المحتوى الرقمي ونشره وإدارة حضوره على المنصات.",
+  pillarTech: "مواقع ويب، أتمتة للمهام، وسيرفرات تشغّل العمل بثبات.",
+  pillarCreative: "هوية بصرية وتصميم وأفكار تعطي المشروع شخصيته.",
   startupRole: "المؤسس",
   navAbout: "نبذة",
   navServices: "الخدمات",
@@ -276,7 +279,10 @@ Object.assign(translations.ar, {
 Object.assign(translations.en, {
   founderOf: "Founder of",
   startupTitle: "My Startup",
-  startupDesc: "GLTCH is my startup in media, tech and creative work.",
+  startupDesc: "GLTCH is my startup that brings media, tech and creative work under one roof: we produce the content, build the technology that runs it, and design the identity that sets it apart.",
+  pillarMedia: "Producing and publishing digital content and managing its presence across platforms.",
+  pillarTech: "Websites, task automation and servers that keep the work running reliably.",
+  pillarCreative: "Visual identity, design and ideas that give a project its character.",
   startupRole: "Founder",
   navAbout: "About",
   navServices: "Services",
