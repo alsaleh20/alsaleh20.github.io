@@ -94,120 +94,9 @@ const staticWebsites = [
   }
 ];
 
-// Side Projects
-const staticSideProjects = [
-  {
-    id: 'side-1',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'Portfolio',
-    name: 'أشرف الدباس (Ashraf Al-Dabbas)',
-    description_ar: 'خبير الإعلام الرقمي وتطوير المحتوى الصحفي والإخباري.',
-    description_en: 'Digital media expert and press content developer.',
-    url: 'p/a/x.html',
-    metaLang: 'Portfolio',
-    metaIcon: '🌐 Live'
-  },
-  {
-    id: 'side-2',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'Portfolio',
-    name: 'رعد عربيات (Raad Arabiat)',
-    description_ar: 'مدير عمليات وضيافة. استعراض الخبرات العملية والمهارات القيادية.',
-    description_en: 'Operations & hospitality manager. Showcasing leadership and operational expertise.',
-    url: 'p/r/x.html',
-    metaLang: 'Portfolio',
-    metaIcon: '🌐 Live'
-  },
-  {
-    id: 'side-3',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'CV Site',
-    name: 'إيهاب الخالدي (Ehab Al-Khaldi)',
-    description_ar: 'استعراض السيرة الذاتية المهنية والمشاريع المنجزة.',
-    description_en: 'Professional CV & portfolio showcasing completed projects.',
-    url: 'p/k/x.html',
-    metaLang: 'CV Site',
-    metaIcon: '🌐 Live'
-  },
-  {
-    id: 'side-4',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'Portfolio',
-    name: 'رناد الكلوب (Renad Al-Kloub)',
-    description_ar: 'أخصائية اجتماعية. تمكين الأفراد والعمل المجتمعي والتمكين الشبابي.',
-    description_en: 'Social worker & youth empowerment specialist.',
-    url: 'p/n/x.html',
-    metaLang: 'Portfolio',
-    metaIcon: '🌐 Live'
-  },
-  {
-    id: 'side-5',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'Academic',
-    name: 'د. إيمان العلي (Dr. Eman Al-Ali)',
-    description_ar: 'أستاذ مساعد في كلية الحقوق. مسيرة أكاديمية وبحثية وقانونية حافلة.',
-    description_en: 'Assistant Professor at College of Law. Academic, legal, and research journey.',
-    url: 'p/e/x.html',
-    metaLang: 'Academic',
-    metaIcon: '🌐 Live'
-  },
-  {
-    id: 'side-6',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'Trainer CV',
-    name: 'آية حامد (Aya Hamed)',
-    description_ar: 'استعراض السيرة الذاتية والمهارات التدريبية والأكاديمية.',
-    description_en: 'Professional CV showcasing training and academic achievements.',
-    url: 'p/y/x.html',
-    metaLang: 'Trainer CV',
-    metaIcon: '🌐 Live'
-  },
-  {
-    id: 'side-7',
-    category: 'side',
-    badgeClass: 'badge-side',
-    badgeText: 'Portfolio',
-    name: 'عمر الحوارات (Omar Al-Hiwarat)',
-    description_ar: 'عرض السيرة الذاتية والمهارات بتصميم مبسط وفعال.',
-    description_en: 'Streamlined CV & skills presentation.',
-    url: 'p/b/x.html',
-    metaLang: 'Portfolio',
-    metaIcon: '🌐 Live'
-  }
-];
 
 // Random Creations
 const staticCreations = [
-  {
-    id: 'create-1',
-    category: 'creations',
-    badgeClass: 'badge-creation',
-    badgeText: 'Creation',
-    name: 'مطعم فحم ولحم (Fahm & Lahm Restaurant)',
-    description_ar: 'موقع تفاعلي متكامل لمطعم فحم ولحم (قائمة الطعام، الفروع، والطلبات).',
-    description_en: 'Interactive website for Fahm & Lahm Restaurant (Menu, branches, orders).',
-    url: 'fahmlahm/index.html',
-    metaLang: 'HTML/CSS/JS',
-    metaIcon: '🌐 Preview'
-  },
-  {
-    id: 'create-2',
-    category: 'creations',
-    badgeClass: 'badge-creation',
-    badgeText: 'Creation',
-    name: 'Golden Meal App',
-    description_ar: 'تطبيق وجبات طعام وتصميم واجهة تفاعلية.',
-    description_en: 'Food ordering app frontend and interactive layout.',
-    url: 'pro_frontends/goldenmeal/index.html',
-    metaLang: 'HTML/CSS/JS',
-    metaIcon: '🌐 Preview'
-  },
   {
     id: 'create-3',
     category: 'creations',
@@ -229,42 +118,6 @@ const staticCreations = [
     description_ar: 'واجهة بيئة تطوير برمجية كود ومحرر نصوص.',
     description_en: 'Cloud IDE code editor & terminal layout.',
     url: 'pro_frontends/ide cood/frontend/index.html',
-    metaLang: 'HTML/CSS/JS',
-    metaIcon: '🌐 Preview'
-  },
-  {
-    id: 'create-6',
-    category: 'creations',
-    badgeClass: 'badge-creation',
-    badgeText: 'Creation',
-    name: 'مطعم عليز (Alis Restaurant)',
-    description_ar: 'موقع وتطبيق ويب لمطعم عليز (فرع أبو نصير) - وجبات البروستد، الشاورما، برجر اللحم والدجاج مع قائمة طعام وسلة شراء تفاعلية.',
-    description_en: 'Interactive website for Alis Restaurant (Abu Nseir branch) - Broasted, Shawarma, Burgers with menu & cart.',
-    url: 'restorant/alis/index.html',
-    metaLang: 'HTML/CSS/JS',
-    metaIcon: '🌐 Preview'
-  },
-  {
-    id: 'create-7',
-    category: 'creations',
-    badgeClass: 'badge-creation',
-    badgeText: 'Creation',
-    name: 'مطعم آرمي برقر (Army Burger)',
-    description_ar: 'موقع تفاعلي بطابع عسكري تكتيكي لمطعم آرمي برقر في عمان الأردن (قائمة الطعام والطلبات والفرع).',
-    description_en: 'Tactical military themed website for Army Burger restaurant in Amman (Menu, orders & branch).',
-    url: 'restorant/army/index.html',
-    metaLang: 'HTML/CSS/JS',
-    metaIcon: '🌐 Preview'
-  },
-  {
-    id: 'create-8',
-    category: 'creations',
-    badgeClass: 'badge-creation',
-    badgeText: 'Creation',
-    name: 'مطعم فودو سوشي (Fugu Sushi)',
-    description_ar: 'موقع فاخر لمطعم فودو سوشي (Fugu Sushi) تجربة السوشي الياباني والمأكولات الآسيوية في عمان.',
-    description_en: 'Luxury website for Fugu Sushi restaurant showcasing Japanese sushi and Asian cuisine in Amman.',
-    url: 'restorant/sushijo/index.html',
     metaLang: 'HTML/CSS/JS',
     metaIcon: '🌐 Preview'
   }
@@ -364,7 +217,6 @@ async function loadAllProjectsData() {
     ...formattedGithub,
     ...formattedN8n,
     ...staticWebsites,
-    ...staticSideProjects,
     ...staticCreations
   ];
 

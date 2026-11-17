@@ -361,7 +361,7 @@ if (cliInput) {
         const currentVal = parts[0];
         if (currentVal) {
           const commands = [
-            'about', 'skills', 'projects', 'sub-projects', 'contact', 'clear', 'github', 'help', 'apt', 'gltch',
+            'about', 'skills', 'projects', 'contact', 'clear', 'github', 'help', 'apt', 'gltch',
             'puretouch', 'salttime', 'ashraf', 'status', 'ping', 'htop', 'uptime', 'logs', 'services', 'valve-steam',
             'matrix', 'cyberpunk', 'neon', 'hacker', 'hack', 'sudo', 'party', 'celebrate', 'secret', 'vault'
           ];
@@ -435,7 +435,6 @@ function executeCommand(cmd) {
         appendTerminalLine('Available commands:\n' +
           '  apt servar    - 🚀 Launch second terminal: Server CLI\n' +
           '  projects      - Show key portfolio projects & repositories\n' +
-          '  sub-projects  - 📂 Show all imported side projects\n' +
           '  skills        - List technical skills and proficiency\n' +
           '  about         - Show information about Alsaleh Al-Hayari\n' +
           '  gltch         - ⚡ About GLTCH, my startup\n' +
@@ -447,18 +446,6 @@ function executeCommand(cmd) {
     case 'rgb':
       openRgbModal();
       appendTerminalLine('🎨 Opening RGB Theme Customizer...', 'cli-success');
-      break;
-    case 'sub-projects':
-    case 'side-projects':
-      appendTerminalLine('📂 Side Projects Portfolio:\n' +
-        '1. Ashraf Al-Dabas    - Digital Media Portfolio (p/a/x.html)\n' +
-        '2. Raad Arabiyat      - Hospitality Leader CV (p/r/x.html)\n' +
-        '3. Ehab Al-Khaldi     - Operations Manager CV (p/k/x.html)\n' +
-        '4. Renad Kloob        - Social Worker Portfolio (p/n/x.html)\n' +
-        '5. Dr. Eman Al-Ali    - Academic Law Professor (p/e/x.html)\n' +
-        '6. Aya Hamed          - Life Skills Trainer (p/y/x.html)\n' +
-        '7. Omar Al-Hiwarat    - Professional Barista (p/b/x.html)\n\n' +
-        'All side projects are live and accessible under the /p/ directory.');
       break;
     case 'status':
     case 'system':

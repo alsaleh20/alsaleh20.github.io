@@ -14,7 +14,7 @@ const translations = {
     qrBtn: "📱 QR Code",
     
     // Sidebar Links
-    linkCreations: "🎨 إبداعات مختارة (8 مشاريع)",
+    linkCreations: "🎨 إبداعات مختارة",
     linkAllProjects: "🚀 جميع المشاريع والأعمال",
     
     // WhatsApp Inquiry Box
@@ -135,7 +135,7 @@ const translations = {
     qrBtn: "📱 QR Code",
     
     // Sidebar Links
-    linkCreations: "🎨 Selected Creations (8 Projects)",
+    linkCreations: "🎨 Selected Creations",
     linkAllProjects: "🚀 All Projects & Automations",
     
     // WhatsApp Inquiry Box
@@ -303,6 +303,56 @@ Object.assign(translations.en, {
   platformsTitle: "Profiles & Platforms",
   contactTitle: "Get in Touch",
   contactLead: "Pick a service and describe your idea; WhatsApp opens with the message ready to send."
+});
+
+/* Shifa project section */
+Object.assign(translations.ar, {
+  shifaTitle: "Shifa: عيادة بلا أوراق",
+  shifaKicker: "قصة المشروع",
+  shifaStory: "تواصل معنا عميل يملك عيادة وكان غارقاً في الأوراق، فبنينا له Shifa: منصة تنقل عمل العيادة اليومي من الورق إلى شاشة واحدة.",
+  shifaIntro: "Shifa منصة ويب لإدارة العيادات (الطب العام وطب الأسنان): ملف إلكتروني لكل مريض، وصفات وفواتير تُطبع بضغطة زر، مخطط أسنان تفاعلي، ومساعد ذكاء اصطناعي في باقات AI+. وهي منشورة وتعمل بالعربية والإنجليزية.",
+  shifaF1T: "ملف المريض الإلكتروني",
+  shifaF1D: "الاسم والهوية والهاتف والحساسية والتاريخ المرضي، مع السجلات الطبية والمواعيد القادمة في صفحة واحدة، وبحث سريع بالاسم أو الهوية أو الهاتف.",
+  shifaF2T: "مخطط الأسنان والأشعة",
+  shifaF2D: "مخطط تفاعلي للأسنان من 1 إلى 32: حالة كل سن وعلاجه وتكلفته، مع إرفاق صور الأشعة (حتى 10 ميغابايت) في تخزين خاص.",
+  shifaF3T: "الوصفات الطبية",
+  shifaF3D: "التشخيص والأدوية والجرعات، مع إظهار حساسية المريض أثناء الكتابة، ثم طباعة الوصفة من صفحتها وحفظها في ملف المريض.",
+  shifaF4T: "الفواتير والمالية",
+  shifaF4D: "فواتير بأرقام متسلسلة (مثل INV-2026-0001) تحسب الإجمالي والمتبقي وحالة الدفع، وتُطبع أو تُحمّل PDF، مع لوحة تتابع دخل العيادة.",
+  shifaF5T: "مساعد الذكاء الاصطناعي (AI+)",
+  shifaF5D: "يجيب عن الأسئلة ويحلل الملفات النصية المرفقة، ويلخّص ملف أي مريض بضغطة واحدة قبل الزيارة.",
+  shifaF6T: "الخصوصية والأمان",
+  shifaF6D: "بيانات كل عيادة معزولة عن غيرها، والدخول بكود تحقق من 6 أرقام يصل بالبريد مع قفل بعد المحاولات الخاطئة، وصور الأشعة لا يفتحها إلا صاحب الملف.",
+  shifaFlowTitle: "كيف تبدأ العيادة",
+  shifaFlow1: "تنشئ العيادة حسابها وتختار الباقة.",
+  shifaFlow2: "يراجع فريقنا الطلب ويفعّل الاشتراك، وتصلها رسالة.",
+  shifaFlow3: "تضيف المرضى وتصدر الوصفات والفواتير من اليوم الأول.",
+  shifaMore: "يعمل على الجوال والكمبيوتر مع وضع فاتح وداكن، ويمكن الطباعة من الهاتف. قريباً: إدارة الصيدلية والمخزون، والربط مع الصيدليات، وتطبيق ويندوز (نسخة تجريبية متاحة)."
+});
+
+/* Shifa project section */
+Object.assign(translations.en, {
+  shifaTitle: "Shifa: a paper-free clinic",
+  shifaKicker: "The story",
+  shifaStory: "A client who runs a clinic contacted us, drowning in paperwork. So we built Shifa for them: a platform that moves the clinic’s daily work from paper onto one screen.",
+  shifaIntro: "Shifa is a web platform for running clinics (general medicine and dentistry): an electronic file for every patient, prescriptions and invoices printed in one click, an interactive dental chart, and an AI assistant in the AI+ plans. It is live and works in Arabic and English.",
+  shifaF1T: "Electronic patient file",
+  shifaF1D: "Name, ID, phone, allergies and medical history, with medical records and upcoming appointments on one page, and quick search by name, ID or phone.",
+  shifaF2T: "Dental chart and X-rays",
+  shifaF2D: "An interactive chart of teeth 1 to 32: each tooth’s condition, treatment and cost, with X-ray images (up to 10 MB) kept in private storage.",
+  shifaF3T: "Prescriptions",
+  shifaF3D: "Diagnosis, medicines and doses, with the patient’s allergies shown while writing, then printed from the prescription page and kept in the patient file.",
+  shifaF4T: "Invoices and finances",
+  shifaF4D: "Numbered invoices (such as INV-2026-0001) that work out the total, balance and payment status, printed or downloaded as PDF, with a dashboard that follows the clinic’s income.",
+  shifaF5T: "AI assistant (AI+)",
+  shifaF5D: "Answers questions, analyses attached text files, and summarises any patient’s record in one click before the visit.",
+  shifaF6T: "Privacy and security",
+  shifaF6D: "Each clinic’s data is kept separate, sign-in uses a 6-digit code sent by email with a lock-out after wrong attempts, and X-ray images open only for the file’s owner.",
+  shifaFlowTitle: "How a clinic gets started",
+  shifaFlow1: "The clinic creates its account and picks a plan.",
+  shifaFlow2: "Our team reviews the request and activates the subscription, and a message is sent.",
+  shifaFlow3: "It adds patients and issues prescriptions and invoices from day one.",
+  shifaMore: "Works on phone and desktop with light and dark modes, and prints from a phone. Coming soon: pharmacy and inventory management, pharmacy connection, and a Windows app (a beta is available)."
 });
 
 let currentLang = localStorage.getItem('portfolio_lang') || 'ar';
