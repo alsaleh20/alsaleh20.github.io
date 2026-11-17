@@ -4,7 +4,7 @@
 
 const translations = {
   ar: {
-    pageTitle: "GLTCH | الصالح حياري - أتمتة، سيرفرات، وتطوير ويب",
+    pageTitle: "الصفحة الشخصية والمشاريع - الصالح حياري",
     name: "الصالح أحمد الحياري",
     location: "الأردن 🇯🇴",
     bio: '"إدارة سيرفرات | أتمتة n8n | تطوير ويب"',
@@ -125,7 +125,7 @@ const translations = {
   },
 
   en: {
-    pageTitle: "GLTCH | Alsaleh Al-Hayari - Automation, Servers & Web",
+    pageTitle: "Portfolio & Projects - Alsaleh Al-Hayari",
     name: "Alsaleh Ahmad Al-Hayari",
     location: "Jordan 🇯🇴",
     bio: '"Server Management | n8n Automation | Web Development"',
@@ -248,13 +248,16 @@ const translations = {
 
 /* Keys added with the redesigned layout */
 Object.assign(translations.ar, {
+  founderOf: "مؤسس",
+  startupTitle: "شركتي الناشئة",
+  startupDesc: "GLTCH هي شركتي الناشئة في مجالات الإعلام والتقنية والإبداع.",
+  startupRole: "المؤسس",
   navAbout: "نبذة",
   navServices: "الخدمات",
   navProjects: "المشاريع",
   navTerminal: "التيرمينال",
   navContact: "تواصل",
-  founderRole: "المؤسس",
-  heroLead: "نبني أتمتة للمهام باستخدام n8n، نجهّز وندير السيرفرات، ونطوّر مواقع ويب عملية ومباشرة.",
+  heroLead: "أبني أتمتة للمهام باستخدام n8n، أجهّز وأدير السيرفرات، وأطوّر مواقع ويب عملية ومباشرة.",
   heroContactBtn: "اطلب خدمة",
   servicesTitle: "الخدمات",
   svc1Title: "أتمتة n8n",
@@ -271,13 +274,16 @@ Object.assign(translations.ar, {
 });
 
 Object.assign(translations.en, {
+  founderOf: "Founder of",
+  startupTitle: "My Startup",
+  startupDesc: "GLTCH is my startup in media, tech and creative work.",
+  startupRole: "Founder",
   navAbout: "About",
   navServices: "Services",
   navProjects: "Projects",
   navTerminal: "Terminal",
   navContact: "Contact",
-  founderRole: "Founder",
-  heroLead: "We build task automation with n8n, set up and manage servers, and develop practical, straightforward websites.",
+  heroLead: "I build task automation with n8n, set up and manage servers, and develop practical, straightforward websites.",
   heroContactBtn: "Request a service",
   servicesTitle: "Services",
   svc1Title: "n8n Automation",
