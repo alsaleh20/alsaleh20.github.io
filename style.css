@@ -868,6 +868,125 @@ main {
   to { transform: rotateX(-22deg) rotateY(360deg); }
 }
 
+/* Startup (GLTCH) badge and section */
+.startup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  background-color: color-mix(in srgb, var(--white) 5%, transparent);
+  color: var(--grey);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color var(--ease), color var(--ease);
+}
+
+.startup-badge .glitch {
+  color: var(--white);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.startup-badge:hover {
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.startup-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.startup-pillars {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pillar {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-inline-start: 3px solid var(--tone);
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 9%, transparent), transparent 60%), var(--dark-grey);
+}
+
+[dir="rtl"] .pillar {
+  background: linear-gradient(270deg, color-mix(in srgb, var(--tone) 9%, transparent), transparent 60%), var(--dark-grey);
+}
+
+.pillar h3 {
+  color: var(--tone);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-align: start;
+}
+
+[dir="rtl"] .pillar h3 {
+  text-align: right;
+}
+
+.pillar ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  list-style: none;
+}
+
+.pillar li {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);
+  background-color: color-mix(in srgb, var(--black) 55%, transparent);
+  color: var(--white);
+  font-size: 0.88rem;
+}
+
+.startup-name {
+  width: fit-content;
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+}
+
+[dir="rtl"] .startup-name {
+  margin-left: auto;
+}
+
+.startup-tag {
+  margin: 0.6rem 0 1.1rem;
+  color: var(--grey);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-align: start;
+}
+
+[dir="rtl"] .startup-tag {
+  text-align: right;
+}
+
+.founder-role {
+  display: inline-block;
+  padding: 0.15rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--orange) 50%, transparent);
+  background-color: color-mix(in srgb, var(--orange) 12%, transparent);
+  color: var(--orange);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .startup-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---------- 10. Forms & ROI ---------- */
 .inquiry-grid {
   display: grid;

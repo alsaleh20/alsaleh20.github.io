@@ -248,6 +248,13 @@ const translations = {
 
 /* Keys added with the redesigned layout */
 Object.assign(translations.ar, {
+  founderOf: "مؤسس",
+  startupTitle: "شركتي الناشئة",
+  startupDesc: 'GLTCH شركة <strong>Agentic Media-Tech Heavy</strong>: إعلام بحجم كبير يقوم على تقنية ثقيلة ووكلاء ذكاء اصطناعي. نعمل مع عملائنا اليوم، وما زلنا نبني المزيد.',
+  pillarAgentic: '<li>وكلاء AI ينتجون المحتوى</li><li>نشر وإدارة آلية للحسابات</li><li>نؤتمت حياتك وعملك</li>',
+  pillarMedia: '<li>ندير الميديا ونخلّيك تنتشر بشكل فيروسي</li><li>نصمّم الميديا تبعتك لتوصل لعملائك</li><li>نصوّر ونخرج البثوث</li><li>إنتاج إبداعي</li>',
+  pillarTech: '<li>عندنا داتا سنتر</li><li>نبرمج لك شيئاً خارجاً عن المألوف</li><li>نهكّر ونصلّح</li><li>نحميك</li><li>بنية تقنية للإعلام</li>',
+  startupRole: "المؤسس",
   navAbout: "نبذة",
   navServices: "الخدمات",
   navProjects: "المشاريع",
@@ -270,6 +277,13 @@ Object.assign(translations.ar, {
 });
 
 Object.assign(translations.en, {
+  founderOf: "Founder of",
+  startupTitle: "My Startup",
+  startupDesc: 'GLTCH is an <strong>agentic, media-tech heavy</strong> company: high-volume media built on heavy technology and AI agents. We work with clients today and are still building more.',
+  pillarAgentic: '<li>AI agents that produce content</li><li>Automated publishing and account management</li><li>We automate your life and work</li>',
+  pillarMedia: '<li>We run your media and make you go viral</li><li>We design your media so it reaches your clients</li><li>We shoot and direct live streams</li><li>Creative production</li>',
+  pillarTech: '<li>Our own data center</li><li>We build software out of the ordinary</li><li>We hack and we fix</li><li>We protect you</li><li>Technical infrastructure for media</li>',
+  startupRole: "Founder",
   navAbout: "About",
   navServices: "Services",
   navProjects: "Projects",
